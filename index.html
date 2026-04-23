@@ -46,6 +46,10 @@
                 linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
         }
 
+        body.modal-open {
+            overflow: hidden;
+        }
+
         img {
             display: block;
             max-width: 100%;
@@ -767,6 +771,135 @@
             box-shadow: 0 12px 24px rgba(243, 154, 29, 0.24);
         }
 
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .order-modal.is-open {
+            display: flex;
+        }
+
+        .order-modal__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 36, 44, 0.56);
+            backdrop-filter: blur(4px);
+        }
+
+        .order-modal__dialog {
+            position: relative;
+            z-index: 1;
+            width: min(640px, 100%);
+            max-height: min(88vh, 780px);
+            overflow: auto;
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, #ffffff, #f8fbfb);
+            box-shadow: 0 30px 80px rgba(22, 57, 71, 0.22);
+        }
+
+        .order-modal__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface-soft);
+            color: var(--brand-blue-dark);
+            font-size: 1.35rem;
+            line-height: 1;
+        }
+
+        .order-modal__title {
+            margin-top: 16px;
+            color: var(--brand-blue-dark);
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            line-height: 1.08;
+        }
+
+        .order-modal__text {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .order-form {
+            margin-top: 24px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .order-form__row {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(150px, 0.7fr);
+            gap: 14px;
+        }
+
+        .order-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .order-field label {
+            color: var(--brand-blue-dark);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .order-field input,
+        .order-field select,
+        .order-field textarea {
+            width: 100%;
+            min-height: 54px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid #d7e0e4;
+            background: #fff;
+            color: var(--text);
+            font: inherit;
+            outline: none;
+        }
+
+        .order-field textarea {
+            min-height: 124px;
+            resize: vertical;
+        }
+
+        .order-field input:focus,
+        .order-field select:focus,
+        .order-field textarea:focus {
+            border-color: rgba(33, 79, 99, 0.45);
+            box-shadow: 0 0 0 4px rgba(33, 79, 99, 0.08);
+        }
+
+        .order-form__footer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .order-form__hint {
+            flex: 1;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        .order-form__submit {
+            min-width: 250px;
+        }
+
         .units {
             background:
                 linear-gradient(180deg, rgba(121, 187, 69, 0.08), rgba(255, 255, 255, 0)),
@@ -1151,6 +1284,24 @@
             .solicitacao-form input,
             .solicitacao-form button {
                 width: 100%;
+            }
+
+            .order-modal {
+                padding: 14px;
+            }
+
+            .order-modal__dialog {
+                padding: 22px 18px 18px;
+                border-radius: 24px;
+            }
+
+            .order-form__row {
+                grid-template-columns: 1fr;
+            }
+
+            .order-form__submit {
+                width: 100%;
+                min-width: 0;
             }
 
             .footer-grid {
@@ -1555,7 +1706,7 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 39,90</span>
                             </div>
-                            <button class="btn btn-primary" type="button" onclick="abrirWhatsApp('oferta', 'Oferta da Semana em Destaque')">Solicitar atendimento</button>
+                            <button class="btn btn-primary" type="button" onclick="abrirPedidoRapido('Oferta da Semana em Destaque')">Solicitar atendimento</button>
                         </div>
                     </article>
                 </div>
@@ -1599,7 +1750,7 @@
                             id="medicamentoInput"
                             placeholder="Digite aqui o nome do medicamento ou produto"
                         >
-                        <button type="button" onclick="solicitarMedicamento()">Solicitar atendimento</button>
+                        <button type="button" onclick="solicitarMedicamento()">Abrir pedido rápido</button>
                     </div>
                 </div>
             </div>
@@ -1690,45 +1841,56 @@
         </div>
     </footer>
 
+    <div class="order-modal" id="orderModal" aria-hidden="true">
+        <div class="order-modal__backdrop" data-close-order-modal></div>
+        <div class="order-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle" aria-describedby="orderModalText">
+            <button class="order-modal__close" type="button" aria-label="Fechar pedido rápido" data-close-order-modal>×</button>
+            <span class="eyebrow">Pedido rápido</span>
+            <h2 class="order-modal__title" id="orderModalTitle">Finalize seu pedido pelo WhatsApp</h2>
+            <p class="order-modal__text" id="orderModalText">Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.</p>
+
+            <form class="order-form" id="quickOrderForm">
+                <div class="order-form__row">
+                    <div class="order-field">
+                        <label for="orderProduct">Produto</label>
+                        <input type="text" id="orderProduct" name="produto" placeholder="Digite o nome do produto" required>
+                    </div>
+
+                    <div class="order-field">
+                        <label for="orderQuantity">Quantidade</label>
+                        <input type="number" id="orderQuantity" name="quantidade" min="1" step="1" value="1" required>
+                    </div>
+                </div>
+
+                <div class="order-field">
+                    <label for="orderPayment">Forma de pagamento</label>
+                    <select id="orderPayment" name="pagamento" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão na entrega">Cartão na entrega</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="order-field">
+                    <label for="orderAddress">Endereço</label>
+                    <textarea id="orderAddress" name="endereco" placeholder="Rua, número, bairro e referência" required></textarea>
+                </div>
+
+                <div class="order-form__footer">
+                    <p class="order-form__hint">Campos principais obrigatórios para enviar o pedido organizado pelo WhatsApp.</p>
+                    <button class="btn btn-primary order-form__submit" type="submit">Enviar pedido pelo WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <button class="whatsapp-float" type="button" onclick="abrirWhatsApp('atendimento')" aria-label="Falar no WhatsApp" data-label="Falar no WhatsApp" title="Falar no WhatsApp">
         ✆
     </button>
 
     <script>
-        function abrirWhatsApp(tipo = "atendimento", detalhe = "") {
-            const numero = "5541998752482";
-            const mensagens = {
-                atendimento: "Olá! Vim pelo site e quero falar com o atendimento.",
-                pedido_geral: "Olá! Vim pelo site e quero pedir pelo WhatsApp.",
-                produto: `Olá! Vim pelo site e quero pedir este produto: ${detalhe}.`,
-                oferta: detalhe
-                    ? `Olá! Vim pelo site e gostaria de consultar disponibilidade da oferta: ${detalhe}.`
-                    : "Olá! Vim pelo site e gostaria de consultar disponibilidade das ofertas.",
-                consulta: `Olá! Vim pelo site e gostaria de consultar disponibilidade${detalhe ? ` de: ${detalhe}` : "."}`,
-            };
-
-            const mensagem = mensagens[tipo] || mensagens.atendimento;
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, "_blank");
-        }
-
-        function pedirWhatsApp(produto) {
-            abrirWhatsApp("produto", produto);
-        }
-
-        function solicitarMedicamento() {
-            const input = document.getElementById("medicamentoInput");
-            const produto = input.value.trim();
-
-            if (!produto) {
-                alert("Digite o nome do medicamento ou produto.");
-                input.focus();
-                return;
-            }
-
-            abrirWhatsApp("consulta", produto);
-        }
-
         const menuToggle = document.getElementById("menuToggle");
         const mainNav = document.getElementById("mainNav");
         const heroSlides = document.querySelectorAll(".hero-slide");
@@ -1737,9 +1899,117 @@
         const botoesCategoria = document.querySelectorAll(".categoria-btn");
         const produtos = document.querySelectorAll(".product-card");
         const secaoProdutos = document.getElementById("produtos");
+        const medicamentoInput = document.getElementById("medicamentoInput");
+        const orderModal = document.getElementById("orderModal");
+        const quickOrderForm = document.getElementById("quickOrderForm");
+        const orderModalTitle = document.getElementById("orderModalTitle");
+        const orderModalText = document.getElementById("orderModalText");
+        const orderProductInput = document.getElementById("orderProduct");
+        const orderQuantityInput = document.getElementById("orderQuantity");
+        const orderPaymentInput = document.getElementById("orderPayment");
+        const orderAddressInput = document.getElementById("orderAddress");
+        const closeOrderModalButtons = document.querySelectorAll("[data-close-order-modal]");
 
         let currentHeroSlide = 0;
         let heroInterval;
+        let quickOrderOrigin = "produto";
+
+        function normalizarEndereco(endereco = "") {
+            return endereco
+                .split("\n")
+                .map((linha) => linha.trim())
+                .filter(Boolean)
+                .join(", ");
+        }
+
+        function montarMensagemWhatsApp(tipo = "atendimento", dados = {}) {
+            if (tipo === "pedido_rapido") {
+                return `Olá! Vim pelo site da Farmácia Brasil e quero fazer um pedido.\n\nProduto: ${dados.produto}\nQuantidade: ${dados.quantidade}\nForma de pagamento: ${dados.pagamento}\nEndereço: ${normalizarEndereco(dados.endereco)}\n\nAguardo atendimento.`;
+            }
+
+            if (tipo === "pedido_geral") {
+                return "Olá! Vim pelo site e quero pedir pelo WhatsApp.";
+            }
+
+            if (tipo === "produto") {
+                return `Olá! Vim pelo site e quero pedir este produto: ${dados.produto}.`;
+            }
+
+            if (tipo === "oferta") {
+                return dados.oferta
+                    ? `Olá! Vim pelo site e gostaria de consultar disponibilidade da oferta: ${dados.oferta}.`
+                    : "Olá! Vim pelo site e gostaria de consultar disponibilidade das ofertas.";
+            }
+
+            if (tipo === "consulta") {
+                return dados.produto
+                    ? `Olá! Vim pelo site e gostaria de consultar disponibilidade de: ${dados.produto}.`
+                    : "Olá! Vim pelo site e gostaria de consultar disponibilidade.";
+            }
+
+            return "Olá! Vim pelo site e quero falar com o atendimento.";
+        }
+
+        function abrirWhatsApp(tipo = "atendimento", detalhe = "") {
+            const numero = "5541998752482";
+            const dados = typeof detalhe === "string"
+                ? { produto: detalhe, oferta: detalhe }
+                : detalhe;
+            const mensagem = montarMensagemWhatsApp(tipo, dados);
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        }
+
+        function abrirPedidoRapido(produto = "", origem = "produto") {
+            if (!orderModal || !quickOrderForm) return;
+
+            quickOrderOrigin = origem;
+            quickOrderForm.reset();
+            orderProductInput.value = produto ? produto.trim() : "";
+            orderQuantityInput.value = "1";
+
+            if (origem === "manual") {
+                orderModalTitle.textContent = "Solicite seu pedido pelo WhatsApp";
+                orderModalText.textContent = "Informe o produto desejado e preencha os dados abaixo para enviar a solicitação de forma rápida.";
+            } else {
+                orderModalTitle.textContent = "Finalize seu pedido pelo WhatsApp";
+                orderModalText.textContent = "Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.";
+            }
+
+            orderModal.classList.add("is-open");
+            orderModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+
+            window.requestAnimationFrame(() => {
+                if (orderProductInput.value) {
+                    orderQuantityInput.focus();
+                    orderQuantityInput.select();
+                } else {
+                    orderProductInput.focus();
+                }
+            });
+        }
+
+        function fecharPedidoRapido() {
+            if (!orderModal || !quickOrderForm) return;
+
+            orderModal.classList.remove("is-open");
+            orderModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+            quickOrderForm.reset();
+            orderQuantityInput.value = "1";
+            orderModalTitle.textContent = "Finalize seu pedido pelo WhatsApp";
+            orderModalText.textContent = "Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.";
+        }
+
+        function pedirWhatsApp(produto) {
+            abrirPedidoRapido(produto, "produto");
+        }
+
+        function solicitarMedicamento() {
+            const produto = medicamentoInput ? medicamentoInput.value.trim() : "";
+            abrirPedidoRapido(produto, "manual");
+        }
 
         if (menuToggle && mainNav) {
             menuToggle.addEventListener("click", () => {
@@ -1750,6 +2020,49 @@
                 link.addEventListener("click", () => {
                     mainNav.classList.remove("is-open");
                 });
+            });
+        }
+
+        if (quickOrderForm) {
+            quickOrderForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                if (!quickOrderForm.reportValidity()) {
+                    return;
+                }
+
+                const dadosPedido = {
+                    produto: orderProductInput.value.trim(),
+                    quantidade: orderQuantityInput.value.trim(),
+                    pagamento: orderPaymentInput.value,
+                    endereco: orderAddressInput.value.trim(),
+                };
+
+                abrirWhatsApp("pedido_rapido", dadosPedido);
+                fecharPedidoRapido();
+
+                if (quickOrderOrigin === "manual" && medicamentoInput) {
+                    medicamentoInput.value = "";
+                }
+            });
+        }
+
+        closeOrderModalButtons.forEach((button) => {
+            button.addEventListener("click", fecharPedidoRapido);
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && orderModal && orderModal.classList.contains("is-open")) {
+                fecharPedidoRapido();
+            }
+        });
+
+        if (medicamentoInput) {
+            medicamentoInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    solicitarMedicamento();
+                }
             });
         }
 
