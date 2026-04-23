@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin | Farmácia Brasil</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="admin-shell">
+        <header class="admin-header">
+            <div>
+                <span class="eyebrow">Farmácia Brasil</span>
+                <h1>Painel de pedidos</h1>
+                <p>Acompanhe os pedidos recebidos, visualize os itens e atualize o status do atendimento.</p>
+            </div>
+            <button class="refresh-button" id="refreshOrdersButton" type="button">Atualizar pedidos</button>
+        </header>
+
+        <section class="admin-stats" id="adminStats">
+            <article class="stat-card">
+                <span>Total de pedidos</span>
+                <strong id="totalOrdersCount">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Pedidos novos</span>
+                <strong id="newOrdersCount">0</strong>
+            </article>
+            <article class="stat-card">
+                <span>Em andamento</span>
+                <strong id="activeOrdersCount">0</strong>
+            </article>
+        </section>
+
+        <p class="admin-feedback" id="adminFeedback" aria-live="polite"></p>
+
+        <main class="orders-list" id="ordersList">
+            <article class="empty-state">
+                <strong>Carregando pedidos...</strong>
+                <p>Assim que a API responder, os pedidos aparecerão aqui.</p>
+            </article>
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

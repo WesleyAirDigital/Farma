@@ -523,6 +523,20 @@
             align-items: stretch;
         }
 
+        .categories-carousel {
+            position: relative;
+        }
+
+        .categories-carousel__arrow,
+        .categories-carousel__dots {
+            display: none;
+        }
+
+        .categories-carousel__arrow[hidden],
+        .categories-carousel__dots[hidden] {
+            display: none;
+        }
+
         .category-card {
             display: flex;
             flex-direction: column;
@@ -1847,6 +1861,87 @@
                 bottom: 18px;
             }
 
+            .categories-carousel {
+                position: relative;
+            }
+
+            .categories-grid {
+                display: flex;
+                gap: 14px;
+                overflow-x: auto;
+                overscroll-behavior-x: contain;
+                padding: 4px 0 14px;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 0;
+                scroll-behavior: smooth;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                touch-action: pan-x;
+            }
+
+            .categories-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .category-card {
+                flex: 0 0 86%;
+                min-height: 206px;
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+
+            .categories-carousel__arrow {
+                position: absolute;
+                top: 50%;
+                z-index: 3;
+                display: grid;
+                place-items: center;
+                width: 38px;
+                height: 38px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.92);
+                border: 1px solid rgba(24, 55, 67, 0.1);
+                box-shadow: 0 12px 28px rgba(24, 55, 67, 0.14);
+                color: var(--brand-blue-dark);
+                font-size: 1rem;
+                font-weight: 800;
+                transform: translateY(-50%);
+                backdrop-filter: blur(10px);
+            }
+
+            .categories-carousel__arrow--prev {
+                left: 10px;
+            }
+
+            .categories-carousel__arrow--next {
+                right: 10px;
+            }
+
+            .categories-carousel__arrow:disabled {
+                opacity: 0.45;
+            }
+
+            .categories-carousel__dots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 18px;
+            }
+
+            .categories-carousel__dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 999px;
+                background: rgba(24, 55, 67, 0.18);
+                transition: width 0.25s ease, background 0.25s ease, transform 0.25s ease;
+            }
+
+            .categories-carousel__dot.is-active {
+                width: 22px;
+                background: var(--brand-blue-dark);
+            }
+
             .whatsapp-float::before {
                 display: none;
             }
@@ -2128,77 +2223,85 @@
                     </p>
                 </div>
 
-                <div class="categories-grid">
-                    <a class="category-card" data-filter="medicamentos" href="#produtos" aria-label="Ver produtos da categoria Medicamentos">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M8 7.5 16.5 16"></path>
-                                <path d="M6.5 9a3.5 3.5 0 0 1 5-5l6 6a3.5 3.5 0 1 1-5 5l-6-6a3.5 3.5 0 0 1 0-5Z"></path>
-                            </svg>
-                        </div>
-                        <h3>Medicamentos</h3>
-                        <p>Medicamentos de referência, genéricos e soluções para o cuidado diário.</p>
-                    </a>
-                    <a class="category-card" data-filter="beleza" href="#produtos" aria-label="Ver produtos da categoria Beleza">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M9 5h6"></path>
-                                <path d="M10 5v3"></path>
-                                <path d="M14 5v3"></path>
-                                <path d="M8 8h8l-1 10H9L8 8Z"></path>
-                                <path d="M11 11h2"></path>
-                            </svg>
-                        </div>
-                        <h3>Beleza</h3>
-                        <p>Cuidados pessoais, dermocosméticos e produtos para sua rotina de beleza.</p>
-                    </a>
-                    <a class="category-card" data-filter="infantil" href="#produtos" aria-label="Ver produtos da categoria Infantil">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="8" cy="8" r="2"></circle>
-                                <circle cx="16" cy="8" r="2"></circle>
-                                <circle cx="12" cy="13" r="5"></circle>
-                                <path d="M10.5 13h3"></path>
-                                <path d="M11 15c.3.4.7.6 1 .6s.7-.2 1-.6"></path>
-                            </svg>
-                        </div>
-                        <h3>Infantil</h3>
-                        <p>Produtos essenciais para o cuidado dos pequenos com segurança e carinho.</p>
-                    </a>
-                    <a class="category-card" data-filter="vitaminas" href="#produtos" aria-label="Ver produtos da categoria Vitaminas">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 7c3.9 0 7 2.9 7 6.6S15.9 20 12 20s-7-2.9-7-6.4S8.1 7 12 7Z"></path>
-                                <path d="M12 7c0-1.8 1.4-3 3.5-3"></path>
-                                <path d="M12 11v5"></path>
-                                <path d="M9.5 13.5h5"></path>
-                            </svg>
-                        </div>
-                        <h3>Vitaminas</h3>
-                        <p>Suplementos para fortalecer a imunidade, energia e bem-estar diário.</p>
-                    </a>
-                    <a class="category-card" data-filter="higiene" href="#produtos" aria-label="Ver produtos da categoria Higiene">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M7 10h10a3 3 0 0 1 3 3v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-1a3 3 0 0 1 3-3Z"></path>
-                                <path d="M9 10V8a3 3 0 0 1 6 0v2"></path>
-                                <path d="M8.5 14h7"></path>
-                            </svg>
-                        </div>
-                        <h3>Higiene</h3>
-                        <p>Itens essenciais para higiene, prevenção e saúde no dia a dia.</p>
-                    </a>
-                    <a class="category-card" data-filter="ofertas" href="#produtos" aria-label="Ver produtos da categoria Ofertas">
-                        <div class="category-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M10 5h8l1 5-8 8-6-6 8-7Z"></path>
-                                <circle cx="15.5" cy="8.5" r="1"></circle>
-                            </svg>
-                        </div>
-                        <h3>Ofertas</h3>
-                        <p>Destaques da semana com condições especiais para você aproveitar.</p>
-                    </a>
+                <div class="categories-carousel">
+                    <button class="categories-carousel__arrow categories-carousel__arrow--prev" id="categoriesPrevButton" type="button" aria-label="Categoria anterior" hidden>‹</button>
+
+                    <div class="categories-grid" id="categoriesTrack">
+                        <a class="category-card" data-filter="medicamentos" href="#produtos" aria-label="Ver produtos da categoria Medicamentos">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8 7.5 16.5 16"></path>
+                                    <path d="M6.5 9a3.5 3.5 0 0 1 5-5l6 6a3.5 3.5 0 1 1-5 5l-6-6a3.5 3.5 0 0 1 0-5Z"></path>
+                                </svg>
+                            </div>
+                            <h3>Medicamentos</h3>
+                            <p>Medicamentos de referência, genéricos e soluções para o cuidado diário.</p>
+                        </a>
+                        <a class="category-card" data-filter="beleza" href="#produtos" aria-label="Ver produtos da categoria Beleza">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 5h6"></path>
+                                    <path d="M10 5v3"></path>
+                                    <path d="M14 5v3"></path>
+                                    <path d="M8 8h8l-1 10H9L8 8Z"></path>
+                                    <path d="M11 11h2"></path>
+                                </svg>
+                            </div>
+                            <h3>Beleza</h3>
+                            <p>Cuidados pessoais, dermocosméticos e produtos para sua rotina de beleza.</p>
+                        </a>
+                        <a class="category-card" data-filter="infantil" href="#produtos" aria-label="Ver produtos da categoria Infantil">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="8" cy="8" r="2"></circle>
+                                    <circle cx="16" cy="8" r="2"></circle>
+                                    <circle cx="12" cy="13" r="5"></circle>
+                                    <path d="M10.5 13h3"></path>
+                                    <path d="M11 15c.3.4.7.6 1 .6s.7-.2 1-.6"></path>
+                                </svg>
+                            </div>
+                            <h3>Infantil</h3>
+                            <p>Produtos essenciais para o cuidado dos pequenos com segurança e carinho.</p>
+                        </a>
+                        <a class="category-card" data-filter="vitaminas" href="#produtos" aria-label="Ver produtos da categoria Vitaminas">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 7c3.9 0 7 2.9 7 6.6S15.9 20 12 20s-7-2.9-7-6.4S8.1 7 12 7Z"></path>
+                                    <path d="M12 7c0-1.8 1.4-3 3.5-3"></path>
+                                    <path d="M12 11v5"></path>
+                                    <path d="M9.5 13.5h5"></path>
+                                </svg>
+                            </div>
+                            <h3>Vitaminas</h3>
+                            <p>Suplementos para fortalecer a imunidade, energia e bem-estar diário.</p>
+                        </a>
+                        <a class="category-card" data-filter="higiene" href="#produtos" aria-label="Ver produtos da categoria Higiene">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M7 10h10a3 3 0 0 1 3 3v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-1a3 3 0 0 1 3-3Z"></path>
+                                    <path d="M9 10V8a3 3 0 0 1 6 0v2"></path>
+                                    <path d="M8.5 14h7"></path>
+                                </svg>
+                            </div>
+                            <h3>Higiene</h3>
+                            <p>Itens essenciais para higiene, prevenção e saúde no dia a dia.</p>
+                        </a>
+                        <a class="category-card" data-filter="ofertas" href="#produtos" aria-label="Ver produtos da categoria Ofertas">
+                            <div class="category-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M10 5h8l1 5-8 8-6-6 8-7Z"></path>
+                                    <circle cx="15.5" cy="8.5" r="1"></circle>
+                                </svg>
+                            </div>
+                            <h3>Ofertas</h3>
+                            <p>Destaques da semana com condições especiais para você aproveitar.</p>
+                        </a>
+                    </div>
+
+                    <button class="categories-carousel__arrow categories-carousel__arrow--next" id="categoriesNextButton" type="button" aria-label="Próxima categoria" hidden>›</button>
                 </div>
+
+                <div class="categories-carousel__dots" id="categoriesDots" aria-label="Navegação das categorias" hidden></div>
             </div>
         </section>
 
@@ -2512,6 +2615,10 @@
         const heroIndicators = document.querySelectorAll(".hero-indicator");
         const categoriaCards = document.querySelectorAll(".category-card[data-filter]");
         const botoesCategoria = document.querySelectorAll(".categoria-btn");
+        const categoriesTrack = document.getElementById("categoriesTrack");
+        const categoriesDots = document.getElementById("categoriesDots");
+        const categoriesPrevButton = document.getElementById("categoriesPrevButton");
+        const categoriesNextButton = document.getElementById("categoriesNextButton");
         const produtos = document.querySelectorAll(".product-card");
         const addToCartButtons = document.querySelectorAll("[data-add-to-cart]");
         const secaoProdutos = document.getElementById("produtos");
@@ -2562,7 +2669,14 @@
         let ultimoInputManual = null;
         let ultimoCepConsultado = "";
         let requisicaoCepAtual = null;
+        let categoryCarouselAutoScroll = null;
+        let categoryCarouselScrollTimer = null;
+        let categoryCarouselInitialized = false;
         const CART_STORAGE_KEY = "farmaciaBrasilCarrinho";
+        const categoryCarouselMediaQuery = window.matchMedia("(max-width: 768px)");
+        const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
+            ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
+            : (window.location.protocol === "file:" ? "http://localhost:3000" : "");
         let carrinho = carregarCarrinho();
 
         function normalizarCep(cep = "") {
@@ -2629,6 +2743,223 @@
                 .replace(",", ".");
 
             return Number(valor) || 0;
+        }
+
+        function obterCardsCategoria() {
+            return categoriesTrack
+                ? Array.from(categoriesTrack.querySelectorAll(".category-card[data-filter]"))
+                : [];
+        }
+
+        function carouselCategoriasAtivo() {
+            return Boolean(categoriesTrack && categoryCarouselMediaQuery.matches);
+        }
+
+        function limparAutoScrollCategorias() {
+            if (categoryCarouselAutoScroll) {
+                window.clearTimeout(categoryCarouselAutoScroll);
+                categoryCarouselAutoScroll = null;
+            }
+        }
+
+        function obterDeslocamentoCategoria(card) {
+            if (!categoriesTrack || !card) {
+                return 0;
+            }
+
+            const paddingLeft = parseFloat(window.getComputedStyle(categoriesTrack).paddingLeft) || 0;
+            return Math.max(0, card.offsetLeft - paddingLeft);
+        }
+
+        function obterIndiceCategoriaAtiva() {
+            const cards = obterCardsCategoria();
+
+            if (!categoriesTrack || !cards.length) {
+                return 0;
+            }
+
+            const centroTrack = categoriesTrack.scrollLeft + (categoriesTrack.clientWidth / 2);
+            let indiceAtivo = 0;
+            let menorDistancia = Number.POSITIVE_INFINITY;
+
+            cards.forEach((card, index) => {
+                const centroCard = card.offsetLeft + (card.offsetWidth / 2);
+                const distancia = Math.abs(centroCard - centroTrack);
+
+                if (distancia < menorDistancia) {
+                    menorDistancia = distancia;
+                    indiceAtivo = index;
+                }
+            });
+
+            return indiceAtivo;
+        }
+
+        function atualizarDotsCategorias(indiceAtivo = 0) {
+            if (!categoriesDots) return;
+
+            const dots = Array.from(categoriesDots.querySelectorAll("[data-category-dot]"));
+
+            dots.forEach((dot, index) => {
+                const ativo = index === indiceAtivo;
+                dot.classList.toggle("is-active", ativo);
+                dot.setAttribute("aria-current", ativo ? "true" : "false");
+            });
+        }
+
+        function atualizarSetasCategorias(indiceAtivo = 0) {
+            const cards = obterCardsCategoria();
+
+            if (!categoriesPrevButton || !categoriesNextButton) return;
+
+            categoriesPrevButton.disabled = indiceAtivo <= 0;
+            categoriesNextButton.disabled = indiceAtivo >= cards.length - 1;
+        }
+
+        function construirNavegacaoCategorias() {
+            if (!categoriesDots) return;
+
+            const cards = obterCardsCategoria();
+
+            categoriesDots.innerHTML = cards.map((card, index) => {
+                const titulo = card.querySelector("h3")?.textContent.trim() || `Categoria ${index + 1}`;
+                return `
+                    <button
+                        class="categories-carousel__dot"
+                        type="button"
+                        data-category-dot="${index}"
+                        aria-label="Ir para ${titulo}">
+                    </button>
+                `;
+            }).join("");
+        }
+
+        function agendarAutoScrollCategorias(delay = 4200) {
+            limparAutoScrollCategorias();
+
+            const cards = obterCardsCategoria();
+
+            if (!carouselCategoriasAtivo() || document.hidden || cards.length < 2) {
+                return;
+            }
+
+            categoryCarouselAutoScroll = window.setTimeout(() => {
+                const indiceAtual = obterIndiceCategoriaAtiva();
+                const proximoIndice = indiceAtual >= cards.length - 1 ? 0 : indiceAtual + 1;
+
+                irParaCategoriaPorIndice(proximoIndice, "smooth", false);
+                agendarAutoScrollCategorias();
+            }, delay);
+        }
+
+        function irParaCategoriaPorIndice(index, behavior = "smooth", reiniciarAutoScroll = true) {
+            const cards = obterCardsCategoria();
+            const indiceSeguro = Math.max(0, Math.min(index, cards.length - 1));
+            const cardAlvo = cards[indiceSeguro];
+
+            if (!categoriesTrack || !cardAlvo) {
+                return;
+            }
+
+            categoriesTrack.scrollTo({
+                left: obterDeslocamentoCategoria(cardAlvo),
+                behavior,
+            });
+
+            atualizarDotsCategorias(indiceSeguro);
+            atualizarSetasCategorias(indiceSeguro);
+
+            if (reiniciarAutoScroll) {
+                agendarAutoScrollCategorias(5200);
+            }
+        }
+
+        function sincronizarCarouselCategorias() {
+            if (!categoriesTrack || !categoriesDots || !categoriesPrevButton || !categoriesNextButton) {
+                return;
+            }
+
+            const cards = obterCardsCategoria();
+            const habilitarCarousel = carouselCategoriasAtivo() && cards.length > 1;
+
+            categoriesDots.hidden = !habilitarCarousel;
+            categoriesPrevButton.hidden = !habilitarCarousel;
+            categoriesNextButton.hidden = !habilitarCarousel;
+
+            if (!habilitarCarousel) {
+                limparAutoScrollCategorias();
+                categoriesTrack.scrollLeft = 0;
+                return;
+            }
+
+            construirNavegacaoCategorias();
+
+            const indiceAtivo = obterIndiceCategoriaAtiva();
+            atualizarDotsCategorias(indiceAtivo);
+            atualizarSetasCategorias(indiceAtivo);
+            agendarAutoScrollCategorias();
+        }
+
+        function inicializarCarouselCategorias() {
+            if (!categoriesTrack || !categoriesDots || !categoriesPrevButton || !categoriesNextButton || categoryCarouselInitialized) {
+                return;
+            }
+
+            categoryCarouselInitialized = true;
+
+            categoriesTrack.addEventListener("scroll", () => {
+                if (!carouselCategoriasAtivo()) {
+                    return;
+                }
+
+                window.clearTimeout(categoryCarouselScrollTimer);
+                categoryCarouselScrollTimer = window.setTimeout(() => {
+                    const indiceAtivo = obterIndiceCategoriaAtiva();
+                    atualizarDotsCategorias(indiceAtivo);
+                    atualizarSetasCategorias(indiceAtivo);
+                }, 70);
+
+                agendarAutoScrollCategorias(5200);
+            }, { passive: true });
+
+            categoriesTrack.addEventListener("touchstart", () => {
+                agendarAutoScrollCategorias(5200);
+            }, { passive: true });
+
+            categoriesTrack.addEventListener("pointerdown", () => {
+                agendarAutoScrollCategorias(5200);
+            }, { passive: true });
+
+            categoriesDots.addEventListener("click", (event) => {
+                const dot = event.target.closest("[data-category-dot]");
+
+                if (!dot) return;
+
+                irParaCategoriaPorIndice(Number(dot.dataset.categoryDot));
+            });
+
+            categoriesPrevButton.addEventListener("click", () => {
+                irParaCategoriaPorIndice(obterIndiceCategoriaAtiva() - 1);
+            });
+
+            categoriesNextButton.addEventListener("click", () => {
+                irParaCategoriaPorIndice(obterIndiceCategoriaAtiva() + 1);
+            });
+
+            if (typeof categoryCarouselMediaQuery.addEventListener === "function") {
+                categoryCarouselMediaQuery.addEventListener("change", sincronizarCarouselCategorias);
+            } else if (typeof categoryCarouselMediaQuery.addListener === "function") {
+                categoryCarouselMediaQuery.addListener(sincronizarCarouselCategorias);
+            }
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    limparAutoScrollCategorias();
+                    return;
+                }
+
+                sincronizarCarouselCategorias();
+            });
         }
 
         function carregarCarrinho() {
@@ -3113,14 +3444,116 @@
             return "Olá! Vim pelo site e quero falar com o atendimento.";
         }
 
-        function abrirWhatsApp(tipo = "atendimento", detalhe = "") {
+        function montarUrlApi(path = "") {
+            const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+            return `${ORDER_API_BASE_URL}${normalizedPath}`;
+        }
+
+        function montarUrlWhatsApp(mensagem = "") {
             const numero = "5541998752482";
+            return `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+        }
+
+        function abrirJanelaTemporariaWhatsApp() {
+            const popup = window.open("", "_blank");
+
+            if (!popup) {
+                return null;
+            }
+
+            popup.opener = null;
+            popup.document.title = "Abrindo WhatsApp";
+            popup.document.body.innerHTML = `
+                <div style="margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font-family:Segoe UI,sans-serif;background:#f4f9f8;color:#183641;">
+                    <div style="max-width:420px;padding:28px;border-radius:24px;background:#ffffff;box-shadow:0 22px 48px rgba(15,52,63,.12);text-align:center;">
+                        <strong style="display:block;font-size:1.05rem;margin-bottom:10px;">Preparando seu atendimento</strong>
+                        <p style="margin:0;line-height:1.6;color:#5f7a83;">Estamos salvando o pedido e abrindo o WhatsApp para você continuar o atendimento.</p>
+                    </div>
+                </div>
+            `;
+
+            return popup;
+        }
+
+        function redirecionarParaWhatsApp(mensagem = "", popup = null) {
+            const url = montarUrlWhatsApp(mensagem);
+
+            if (popup && !popup.closed) {
+                popup.location.href = url;
+                return;
+            }
+
+            const novaJanela = window.open(url, "_blank");
+
+            if (novaJanela) {
+                novaJanela.opener = null;
+                return;
+            }
+
+            window.location.href = url;
+        }
+
+        function criarPayloadPedidoBackend(dados = {}) {
+            const subtotalNumerico = typeof dados.subtotal === "number" && Number.isFinite(dados.subtotal)
+                ? Number(dados.subtotal.toFixed(2))
+                : null;
+
+            return {
+                customer_name: dados.cliente,
+                phone: dados.telefone,
+                items: (dados.itens || []).map((item) => ({
+                    name: item.nome,
+                    quantity: item.quantidade,
+                    unit_price: typeof item.preco === "number" && Number.isFinite(item.preco)
+                        ? Number(item.preco.toFixed(2))
+                        : null,
+                    line_total: typeof item.preco === "number" && Number.isFinite(item.preco)
+                        ? Number((item.preco * item.quantidade).toFixed(2))
+                        : null,
+                })),
+                subtotal: subtotalNumerico,
+                payment_method: dados.pagamento,
+                change_amount: dados.troco || null,
+                address: {
+                    street: dados.rua,
+                    number: dados.numero || null,
+                    district: dados.bairro || null,
+                    zip: dados.cep || null,
+                    reference: dados.referencia || null,
+                    block: dados.bloco || null,
+                    apartment: dados.apartamento || null,
+                },
+                notes: dados.observacoes || null,
+            };
+        }
+
+        async function salvarPedidoNoBackend(dados = {}) {
+            try {
+                const resposta = await fetch(montarUrlApi("/orders"), {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(criarPayloadPedidoBackend(dados)),
+                });
+
+                if (!resposta.ok) {
+                    throw new Error(`Falha ao salvar pedido. Status ${resposta.status}.`);
+                }
+
+                return await resposta.json();
+            } catch (error) {
+                console.error("[orders] Não foi possível salvar o pedido antes do WhatsApp.", error);
+                return null;
+            }
+        }
+
+        function abrirWhatsApp(tipo = "atendimento", detalhe = "", popup = null) {
             const dados = typeof detalhe === "string"
                 ? { produto: detalhe, oferta: detalhe }
                 : detalhe;
             const mensagem = montarMensagemWhatsApp(tipo, dados);
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, "_blank");
+            redirecionarParaWhatsApp(mensagem, popup);
         }
 
         function validarFormularioPedidoFinal() {
@@ -3232,7 +3665,7 @@
         }
 
         if (quickOrderForm) {
-            quickOrderForm.addEventListener("submit", (event) => {
+            quickOrderForm.addEventListener("submit", async (event) => {
                 event.preventDefault();
 
                 if (!validarFormularioPedidoFinal()) {
@@ -3265,11 +3698,14 @@
                     subtotalTexto: resumoPedido.subtotalTexto,
                 };
 
+                const popupWhatsApp = abrirJanelaTemporariaWhatsApp();
+                await salvarPedidoNoBackend(dadosPedido);
+
                 if (quickOrderOrigin === "carrinho") {
-                    abrirWhatsApp("pedido_checkout", dadosPedido);
+                    abrirWhatsApp("pedido_checkout", dadosPedido, popupWhatsApp);
                     limparCarrinho();
                 } else {
-                    abrirWhatsApp("pedido_checkout", dadosPedido);
+                    abrirWhatsApp("pedido_checkout", dadosPedido, popupWhatsApp);
                 }
 
                 fecharPedidoRapido();
@@ -3511,6 +3947,8 @@
             card.addEventListener("click", acionarCategoria);
         });
 
+        inicializarCarouselCategorias();
+        sincronizarCarouselCategorias();
         renderizarCarrinho();
         startHeroAutoplay();
     </script>
