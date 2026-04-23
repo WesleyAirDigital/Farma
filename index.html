@@ -915,6 +915,10 @@
             gap: 14px;
         }
 
+        .order-form__row--balanced {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
         .order-field {
             display: flex;
             flex-direction: column;
@@ -1046,6 +1050,12 @@
             border-radius: 16px;
             background: #fff;
             border: 1px solid rgba(29, 70, 85, 0.08);
+        }
+
+        .order-cart-preview__item > div {
+            min-width: 0;
+            display: grid;
+            gap: 4px;
         }
 
         .order-cart-preview__item strong {
@@ -2356,7 +2366,7 @@
 
             <div class="order-cart-preview" id="orderCartPreview" hidden>
                 <div class="order-cart-preview__header">
-                    <span>Itens do carrinho</span>
+                    <span>Resumo do pedido</span>
                     <strong id="orderCartPreviewCount">0 itens</strong>
                 </div>
                 <ul class="order-cart-preview__list" id="orderCartPreviewList"></ul>
@@ -2367,7 +2377,19 @@
             </div>
 
             <form class="order-form" id="quickOrderForm">
-                <div class="order-form__row">
+                <div class="order-form__row order-form__row--balanced">
+                    <div class="order-field">
+                        <label for="orderCustomerName">Nome do cliente</label>
+                        <input type="text" id="orderCustomerName" name="cliente" placeholder="Digite seu nome" required autocomplete="name">
+                    </div>
+
+                    <div class="order-field">
+                        <label for="orderCustomerPhone">Telefone</label>
+                        <input type="tel" id="orderCustomerPhone" name="telefone" inputmode="tel" maxlength="15" placeholder="(41) 99999-9999" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="order-form__row" id="orderProductRow">
                     <div class="order-field">
                         <label for="orderProduct" id="orderProductLabel">Produto</label>
                         <input type="text" id="orderProduct" name="produto" placeholder="Digite o nome do produto" required>
@@ -2388,6 +2410,11 @@
                         <option value="Cartão na entrega">Cartão na entrega</option>
                         <option value="Outro">Outro</option>
                     </select>
+                </div>
+
+                <div class="order-field" id="orderChangeField" hidden>
+                    <label for="orderChange">Precisa de troco para quanto?</label>
+                    <input type="text" id="orderChange" name="troco" inputmode="decimal" placeholder="Ex.: R$ 100,00">
                 </div>
 
                 <div class="order-field">
@@ -2426,8 +2453,13 @@
                     <input type="text" id="orderApartment" name="apartamento" placeholder="Informe o apartamento, se houver">
                 </div>
 
+                <div class="order-field">
+                    <label for="orderNotes">Observações do pedido</label>
+                    <textarea id="orderNotes" name="observacoes" placeholder="Ex.: entregar na portaria, chamar no interfone ou outra orientação útil"></textarea>
+                </div>
+
                 <div class="order-form__footer">
-                    <p class="order-form__hint">Preencha o CEP para agilizar o endereço. Referência, bloco e apartamento são opcionais.</p>
+                    <p class="order-form__hint">Preencha nome, telefone e endereço para agilizar o atendimento. Referência, bloco, apartamento, observações e troco são opcionais.</p>
                     <button class="btn btn-primary order-form__submit" type="submit">Enviar pedido pelo WhatsApp</button>
                 </div>
             </form>
@@ -2503,11 +2535,16 @@
         const orderCartPreviewList = document.getElementById("orderCartPreviewList");
         const orderCartPreviewCount = document.getElementById("orderCartPreviewCount");
         const orderCartPreviewSubtotal = document.getElementById("orderCartPreviewSubtotal");
+        const orderCustomerNameInput = document.getElementById("orderCustomerName");
+        const orderCustomerPhoneInput = document.getElementById("orderCustomerPhone");
+        const orderProductRow = document.getElementById("orderProductRow");
         const orderProductLabel = document.getElementById("orderProductLabel");
         const orderQuantityLabel = document.getElementById("orderQuantityLabel");
         const orderProductInput = document.getElementById("orderProduct");
         const orderQuantityInput = document.getElementById("orderQuantity");
         const orderPaymentInput = document.getElementById("orderPayment");
+        const orderChangeField = document.getElementById("orderChangeField");
+        const orderChangeInput = document.getElementById("orderChange");
         const orderZipInput = document.getElementById("orderZip");
         const orderZipStatus = document.getElementById("orderZipStatus");
         const orderStreetInput = document.getElementById("orderStreet");
@@ -2516,6 +2553,7 @@
         const orderReferenceInput = document.getElementById("orderReference");
         const orderBlockInput = document.getElementById("orderBlock");
         const orderApartmentInput = document.getElementById("orderApartment");
+        const orderNotesInput = document.getElementById("orderNotes");
         const closeOrderModalButtons = document.querySelectorAll("[data-close-order-modal]");
 
         let currentHeroSlide = 0;
@@ -2535,6 +2573,31 @@
             }
 
             return `${digitos.slice(0, 5)}-${digitos.slice(5)}`;
+        }
+
+        function normalizarTelefone(telefone = "") {
+            const digitos = telefone.replace(/\D/g, "").slice(0, 11);
+
+            if (!digitos) {
+                return "";
+            }
+
+            if (digitos.length < 3) {
+                return `(${digitos}`;
+            }
+
+            const ddd = digitos.slice(0, 2);
+            const restante = digitos.slice(2);
+
+            if (restante.length <= 4) {
+                return `(${ddd}) ${restante}`;
+            }
+
+            if (restante.length <= 8) {
+                return `(${ddd}) ${restante.slice(0, restante.length - 4)}-${restante.slice(-4)}`;
+            }
+
+            return `(${ddd}) ${restante.slice(0, 5)}-${restante.slice(5)}`;
         }
 
         function sincronizarBodyLock() {
@@ -2640,28 +2703,99 @@
             };
         }
 
-        function renderizarResumoCarrinhoNoModal() {
-            if (!orderCartPreviewList || !orderCartPreviewCount || !orderCartPreviewSubtotal) return;
+        function obterCardProdutoPorNome(nome = "") {
+            const nomeLimpo = nome.trim();
+            const idProduto = criarIdProduto(nomeLimpo);
 
-            const totalItens = obterQuantidadeCarrinho();
-            const totalProdutos = carrinho.length;
+            return Array.from(produtos).find((card) => {
+                const dadosProduto = obterDadosProduto(card);
 
-            orderCartPreviewList.innerHTML = carrinho
+                if (!dadosProduto) {
+                    return false;
+                }
+
+                return dadosProduto.id === idProduto || dadosProduto.nome.toLowerCase() === nomeLimpo.toLowerCase();
+            }) || null;
+        }
+
+        function obterItensPedidoAtual() {
+            if (quickOrderOrigin === "carrinho") {
+                return carrinho.map(enriquecerItemCarrinho);
+            }
+
+            const nomeProduto = orderProductInput.value.trim();
+            const quantidade = Math.max(1, Number(orderQuantityInput.value) || 1);
+
+            if (!nomeProduto) {
+                return [];
+            }
+
+            const cardCorrespondente = obterCardProdutoPorNome(nomeProduto);
+
+            if (!cardCorrespondente) {
+                return [{
+                    id: criarIdProduto(nomeProduto) || "pedido-manual",
+                    nome: nomeProduto,
+                    preco: null,
+                    quantidade,
+                }];
+            }
+
+            const dadosProduto = obterDadosProduto(cardCorrespondente);
+
+            return dadosProduto ? [{ ...dadosProduto, quantidade }] : [];
+        }
+
+        function obterResumoPedidoAtual() {
+            const itens = obterItensPedidoAtual();
+            const totalItens = itens.reduce((total, item) => total + item.quantidade, 0);
+            const subtotalDisponivel = itens.length > 0 && itens.every((item) => Number.isFinite(item.preco) && item.preco > 0);
+            const subtotal = subtotalDisponivel
+                ? itens.reduce((total, item) => total + (item.preco * item.quantidade), 0)
+                : null;
+
+            return {
+                itens,
+                totalItens,
+                subtotal,
+                subtotalTexto: subtotalDisponivel ? formatarMoeda(subtotal) : "Sob consulta",
+            };
+        }
+
+        function renderizarResumoPedidoNoModal() {
+            if (!orderCartPreview || !orderCartPreviewList || !orderCartPreviewCount || !orderCartPreviewSubtotal) return;
+
+            const resumo = obterResumoPedidoAtual();
+
+            if (!resumo.itens.length) {
+                orderCartPreview.hidden = true;
+                orderCartPreviewList.innerHTML = "";
+                orderCartPreviewCount.textContent = "0 itens";
+                orderCartPreviewSubtotal.textContent = formatarMoeda(0);
+                return;
+            }
+
+            orderCartPreview.hidden = false;
+            orderCartPreviewList.innerHTML = resumo.itens
                 .map((item) => `
                     <li class="order-cart-preview__item">
                         <div>
                             <strong>${item.nome}</strong>
-                            <span>${item.quantidade} x ${formatarMoeda(item.preco)}</span>
+                            <span>${item.quantidade} x ${item.preco ? formatarMoeda(item.preco) : "valor sob consulta"}</span>
                         </div>
-                        <strong>${formatarMoeda(item.preco * item.quantidade)}</strong>
+                        <strong>${item.preco ? formatarMoeda(item.preco * item.quantidade) : "Sob consulta"}</strong>
                     </li>
                 `)
                 .join("");
 
-            orderCartPreviewCount.textContent = `${totalItens} ${totalItens === 1 ? "item" : "itens"}`;
-            orderCartPreviewSubtotal.textContent = formatarMoeda(obterSubtotalCarrinho());
-            orderProductInput.value = `Carrinho com ${totalProdutos} ${totalProdutos === 1 ? "produto" : "produtos"}`;
-            orderQuantityInput.value = String(totalItens || 1);
+            orderCartPreviewCount.textContent = `${resumo.totalItens} ${resumo.totalItens === 1 ? "item" : "itens"}`;
+            orderCartPreviewSubtotal.textContent = resumo.subtotalTexto;
+
+            if (quickOrderOrigin === "carrinho") {
+                const totalProdutos = resumo.itens.length;
+                orderProductInput.value = `Carrinho com ${totalProdutos} ${totalProdutos === 1 ? "produto" : "produtos"}`;
+                orderQuantityInput.value = String(resumo.totalItens || 1);
+            }
         }
 
         function configurarFormularioPedido(origem = "produto") {
@@ -2669,6 +2803,7 @@
 
             orderProductInput.readOnly = fluxoCarrinho;
             orderQuantityInput.readOnly = fluxoCarrinho;
+            orderProductRow.hidden = fluxoCarrinho;
 
             if (orderProductLabel) {
                 orderProductLabel.textContent = fluxoCarrinho ? "Resumo do pedido" : "Produto";
@@ -2678,15 +2813,7 @@
                 orderQuantityLabel.textContent = fluxoCarrinho ? "Itens no carrinho" : "Quantidade";
             }
 
-            if (orderCartPreview) {
-                orderCartPreview.hidden = !fluxoCarrinho;
-            }
-
-            if (fluxoCarrinho) {
-                renderizarResumoCarrinhoNoModal();
-            } else if (orderCartPreviewList) {
-                orderCartPreviewList.innerHTML = "";
-            }
+            renderizarResumoPedidoNoModal();
         }
 
         function renderizarCarrinho() {
@@ -2713,6 +2840,8 @@
 
             if (carrinhoVazio) {
                 cartItems.innerHTML = "";
+                salvarCarrinho();
+                renderizarResumoPedidoNoModal();
                 return;
             }
 
@@ -2743,6 +2872,7 @@
                 .join("");
 
             salvarCarrinho();
+            renderizarResumoPedidoNoModal();
         }
 
         function abrirCarrinho() {
@@ -2839,6 +2969,17 @@
             limparStatusCep();
         }
 
+        function atualizarCampoTroco() {
+            if (!orderPaymentInput || !orderChangeField || !orderChangeInput) return;
+
+            const exibirTroco = orderPaymentInput.value === "Dinheiro";
+            orderChangeField.hidden = !exibirTroco;
+
+            if (!exibirTroco) {
+                orderChangeInput.value = "";
+            }
+        }
+
         async function consultarCep(cep = "") {
             const cepLimpo = cep.replace(/\D/g, "");
 
@@ -2893,59 +3034,31 @@
             }
         }
 
-        function montarMensagemPedidoRapido(dados = {}) {
+        function montarMensagemCheckout(dados = {}) {
             const linhas = [
-                "Olá! Vim pelo site da Farmácia Brasil e quero fazer um pedido.",
+                "Olá! Vim pelo site da Farmácia Brasil e quero finalizar este pedido.",
                 "",
-                `Produto: ${dados.produto}`,
-                `Quantidade: ${dados.quantidade}`,
-                `Forma de pagamento: ${dados.pagamento}`,
-                "",
-                "Endereço:",
-            ];
-
-            const linhasEndereco = [
-                ["Rua", dados.rua],
-                ["Número", dados.numero],
-                ["Bairro", dados.bairro],
-                ["CEP", normalizarCep(dados.cep)],
-                ["Referência", dados.referencia],
-                ["Bloco", dados.bloco],
-                ["Apartamento", dados.apartamento],
-            ];
-
-            linhasEndereco.forEach(([rotulo, valor]) => {
-                if (valor) {
-                    linhas.push(`${rotulo}: ${valor}`);
-                }
-            });
-
-            linhas.push("", "Aguardo retorno para confirmação do pedido.");
-
-            return linhas.join("\n");
-        }
-
-        function montarMensagemCarrinho(dados = {}) {
-            const linhas = [
-                "Olá! Vim pelo site da Farmácia Brasil e quero fazer um pedido.",
+                `Cliente: ${dados.cliente}`,
+                `Telefone: ${dados.telefone}`,
                 "",
                 "Itens do pedido:",
             ];
 
             (dados.itens || []).forEach((item) => {
-                linhas.push(`- ${item.nome} x${item.quantidade} - ${formatarMoeda(item.preco * item.quantidade)}`);
+                linhas.push(`- ${item.nome} x ${item.quantidade}`);
             });
-
-            if (typeof dados.subtotal === "number") {
-                linhas.push(`Subtotal: ${formatarMoeda(dados.subtotal)}`);
-            }
 
             linhas.push(
                 "",
-                `Forma de pagamento: ${dados.pagamento}`,
-                "",
-                "Endereço:"
+                `Subtotal: ${dados.subtotalTexto || "Sob consulta"}`,
+                `Forma de pagamento: ${dados.pagamento}`
             );
+
+            if (dados.troco) {
+                linhas.push(`Troco: ${dados.troco}`);
+            }
+
+            linhas.push("", "Endereço:");
 
             const linhasEndereco = [
                 ["Rua", dados.rua],
@@ -2962,6 +3075,10 @@
                     linhas.push(`${rotulo}: ${valor}`);
                 }
             });
+
+            if (dados.observacoes) {
+                linhas.push("", `Observações: ${dados.observacoes}`);
+            }
 
             linhas.push("", "Aguardo retorno para confirmação do pedido.");
 
@@ -2969,12 +3086,8 @@
         }
 
         function montarMensagemWhatsApp(tipo = "atendimento", dados = {}) {
-            if (tipo === "pedido_rapido") {
-                return montarMensagemPedidoRapido(dados);
-            }
-
-            if (tipo === "pedido_carrinho") {
-                return montarMensagemCarrinho(dados);
+            if (tipo === "pedido_checkout") {
+                return montarMensagemCheckout(dados);
             }
 
             if (tipo === "pedido_geral") {
@@ -3010,12 +3123,39 @@
             window.open(url, "_blank");
         }
 
+        function validarFormularioPedidoFinal() {
+            if (!quickOrderForm || !orderCustomerNameInput || !orderCustomerPhoneInput || !orderStreetInput) {
+                return false;
+            }
+
+            orderCustomerNameInput.value = orderCustomerNameInput.value.trim();
+            orderCustomerPhoneInput.value = normalizarTelefone(orderCustomerPhoneInput.value);
+            orderStreetInput.value = orderStreetInput.value.trim();
+            orderNumberInput.value = orderNumberInput.value.trim();
+            orderNeighborhoodInput.value = orderNeighborhoodInput.value.trim();
+            orderReferenceInput.value = orderReferenceInput.value.trim();
+            orderBlockInput.value = orderBlockInput.value.trim();
+            orderApartmentInput.value = orderApartmentInput.value.trim();
+
+            const telefoneDigitos = orderCustomerPhoneInput.value.replace(/\D/g, "");
+
+            orderCustomerNameInput.setCustomValidity(orderCustomerNameInput.value ? "" : "Informe o nome do cliente.");
+            orderCustomerPhoneInput.setCustomValidity(telefoneDigitos.length >= 10 ? "" : "Digite um telefone com DDD para o atendimento.");
+            orderStreetInput.setCustomValidity(orderStreetInput.value ? "" : "Informe a rua para entrega.");
+
+            return quickOrderForm.reportValidity();
+        }
+
         function abrirPedidoRapido(produto = "", origem = "produto") {
             if (!orderModal || !quickOrderForm) return;
 
             quickOrderOrigin = origem;
             quickOrderForm.reset();
             resetarConsultaCep();
+            atualizarCampoTroco();
+            orderCustomerNameInput.setCustomValidity("");
+            orderCustomerPhoneInput.setCustomValidity("");
+            orderStreetInput.setCustomValidity("");
             orderProductInput.value = produto ? produto.trim() : "";
             orderQuantityInput.value = "1";
 
@@ -3041,14 +3181,12 @@
             sincronizarBodyLock();
 
             window.requestAnimationFrame(() => {
-                if (origem === "carrinho") {
-                    orderPaymentInput.focus();
-                } else if (orderProductInput.value) {
-                    orderQuantityInput.focus();
-                    orderQuantityInput.select();
-                } else {
+                if (origem === "manual" && !orderProductInput.value) {
                     orderProductInput.focus();
+                    return;
                 }
+
+                orderCustomerNameInput.focus();
             });
         }
 
@@ -3059,6 +3197,10 @@
             orderModal.setAttribute("aria-hidden", "true");
             quickOrderForm.reset();
             resetarConsultaCep();
+            atualizarCampoTroco();
+            orderCustomerNameInput.setCustomValidity("");
+            orderCustomerPhoneInput.setCustomValidity("");
+            orderStreetInput.setCustomValidity("");
             configurarFormularioPedido("produto");
             orderQuantityInput.value = "1";
             orderModalTitle.textContent = "Finalize seu pedido pelo WhatsApp";
@@ -3093,14 +3235,19 @@
             quickOrderForm.addEventListener("submit", (event) => {
                 event.preventDefault();
 
-                if (!quickOrderForm.reportValidity()) {
+                if (!validarFormularioPedidoFinal()) {
                     return;
                 }
 
+                const resumoPedido = obterResumoPedidoAtual();
+
                 const dadosPedido = {
+                    cliente: orderCustomerNameInput.value.trim(),
+                    telefone: orderCustomerPhoneInput.value.trim(),
                     produto: orderProductInput.value.trim(),
                     quantidade: orderQuantityInput.value.trim(),
                     pagamento: orderPaymentInput.value,
+                    troco: orderPaymentInput.value === "Dinheiro" ? orderChangeInput.value.trim() : "",
                     cep: normalizarCep(orderZipInput.value),
                     rua: orderStreetInput.value.trim(),
                     numero: orderNumberInput.value.trim(),
@@ -3108,15 +3255,21 @@
                     referencia: orderReferenceInput.value.trim(),
                     bloco: orderBlockInput.value.trim(),
                     apartamento: orderApartmentInput.value.trim(),
+                    observacoes: orderNotesInput.value.trim(),
+                    itens: resumoPedido.itens.map((item) => ({
+                        nome: item.nome,
+                        quantidade: item.quantidade,
+                        preco: item.preco,
+                    })),
+                    subtotal: resumoPedido.subtotal,
+                    subtotalTexto: resumoPedido.subtotalTexto,
                 };
 
                 if (quickOrderOrigin === "carrinho") {
-                    dadosPedido.itens = carrinho.map((item) => ({ ...item }));
-                    dadosPedido.subtotal = obterSubtotalCarrinho();
-                    abrirWhatsApp("pedido_carrinho", dadosPedido);
+                    abrirWhatsApp("pedido_checkout", dadosPedido);
                     limparCarrinho();
                 } else {
-                    abrirWhatsApp("pedido_rapido", dadosPedido);
+                    abrirWhatsApp("pedido_checkout", dadosPedido);
                 }
 
                 fecharPedidoRapido();
@@ -3159,6 +3312,55 @@
                 }
 
                 consultarCep(orderZipInput.value);
+            });
+        }
+
+        if (orderCustomerNameInput) {
+            orderCustomerNameInput.addEventListener("input", () => {
+                orderCustomerNameInput.setCustomValidity("");
+            });
+        }
+
+        if (orderCustomerPhoneInput) {
+            orderCustomerPhoneInput.addEventListener("input", () => {
+                orderCustomerPhoneInput.value = normalizarTelefone(orderCustomerPhoneInput.value);
+                orderCustomerPhoneInput.setCustomValidity("");
+            });
+        }
+
+        if (orderStreetInput) {
+            orderStreetInput.addEventListener("input", () => {
+                orderStreetInput.setCustomValidity("");
+            });
+        }
+
+        if (orderPaymentInput) {
+            orderPaymentInput.addEventListener("change", atualizarCampoTroco);
+        }
+
+        if (orderProductInput) {
+            orderProductInput.addEventListener("input", () => {
+                if (quickOrderOrigin !== "carrinho") {
+                    renderizarResumoPedidoNoModal();
+                }
+            });
+        }
+
+        if (orderQuantityInput) {
+            orderQuantityInput.addEventListener("input", () => {
+                if (Number(orderQuantityInput.value) < 1) {
+                    orderQuantityInput.value = "1";
+                }
+
+                renderizarResumoPedidoNoModal();
+            });
+
+            orderQuantityInput.addEventListener("blur", () => {
+                if (Number(orderQuantityInput.value) < 1) {
+                    orderQuantityInput.value = "1";
+                }
+
+                renderizarResumoPedidoNoModal();
             });
         }
 
