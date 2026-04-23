@@ -907,6 +907,22 @@
             font-size: 1.7rem;
         }
 
+        .whatsapp-float::before {
+            content: attr(data-label);
+            position: absolute;
+            right: calc(100% + 12px);
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(22, 57, 71, 0.94);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 12px 24px rgba(22, 57, 71, 0.18);
+        }
+
         .whatsapp-float:hover {
             transform: translateY(-3px);
         }
@@ -1094,6 +1110,10 @@
                 padding: 0;
             }
 
+            .whatsapp-float::before {
+                display: none;
+            }
+
             .footer-brand img {
                 width: 168px;
             }
@@ -1210,6 +1230,10 @@
                 left: 18px;
                 bottom: 18px;
             }
+
+            .whatsapp-float::before {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1236,7 +1260,7 @@
             </nav>
 
             <div class="header-actions">
-                <button class="btn btn-primary header-whatsapp-btn" onclick="pedirWhatsApp('Atendimento geral')">Pedir pelo WhatsApp</button>
+                <button class="btn btn-primary header-whatsapp-btn" type="button" onclick="abrirWhatsApp('atendimento')">Falar no WhatsApp</button>
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
             </div>
         </div>
@@ -1253,7 +1277,7 @@
                                 <h1 class="hero-title">Delivery rápido em <span>São José dos Pinhais</span></h1>
                                 <p class="hero-text">Peça seus medicamentos, itens de higiene e cuidados pessoais com praticidade e atendimento rápido pelo WhatsApp.</p>
                                 <div class="hero-actions">
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20pedir%20pelo%20WhatsApp." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Pedir pelo WhatsApp</a>
+                                    <button class="btn btn-primary" type="button" onclick="abrirWhatsApp('pedido_geral')">Pedir pelo WhatsApp</button>
                                     <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
                                 </div>
                             </div>
@@ -1268,7 +1292,7 @@
                                 <p class="hero-text">Encontre medicamentos, vitaminas, beleza e cuidados diários com preços acessíveis e atendimento direto.</p>
                                 <div class="hero-actions">
                                     <a class="btn btn-primary" href="#produtos" onclick="irParaProdutos('ofertas'); return false;">Ver ofertas</a>
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20saber%20das%20ofertas%20da%20semana." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Falar no WhatsApp</a>
+                                    <button class="btn btn-secondary" type="button" onclick="abrirWhatsApp('oferta', 'Oferta da Semana')">Falar no WhatsApp</button>
                                 </div>
                             </div>
                         </div>
@@ -1282,7 +1306,7 @@
                                 <p class="hero-text">Farmácia completa com variedade, praticidade e suporte rápido para seu pedido sem complicação.</p>
                                 <div class="hero-actions">
                                     <a class="btn btn-primary" href="#categorias">Explorar categorias</a>
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20solicitar%20atendimento." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Solicitar atendimento</a>
+                                    <button class="btn btn-secondary" type="button" onclick="abrirWhatsApp('atendimento')">Solicitar atendimento</button>
                                 </div>
                             </div>
                         </div>
@@ -1531,7 +1555,7 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 39,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Oferta da Semana em Destaque')">Solicitar atendimento</button>
+                            <button class="btn btn-primary" type="button" onclick="abrirWhatsApp('oferta', 'Oferta da Semana em Destaque')">Solicitar atendimento</button>
                         </div>
                     </article>
                 </div>
@@ -1575,7 +1599,7 @@
                             id="medicamentoInput"
                             placeholder="Digite aqui o nome do medicamento ou produto"
                         >
-                        <button type="button" onclick="solicitarMedicamento()">Solicitar pelo WhatsApp</button>
+                        <button type="button" onclick="solicitarMedicamento()">Solicitar atendimento</button>
                     </div>
                 </div>
             </div>
@@ -1607,7 +1631,7 @@
                     <article class="unit-card">
                         <h3>📞 WhatsApp e telefone</h3>
                         <p>41 99875-2482</p>
-                        <button class="btn btn-primary" onclick="pedirWhatsApp('Quero atendimento da Farmácia Brasil')">Chamar no WhatsApp</button>
+                        <button class="btn btn-primary" type="button" onclick="abrirWhatsApp('atendimento')">Falar no WhatsApp</button>
                     </article>
                 </div>
             </div>
@@ -1666,20 +1690,33 @@
         </div>
     </footer>
 
-    <button class="whatsapp-float" onclick="pedirWhatsApp('Quero atendimento da Farmácia Brasil')" aria-label="Abrir WhatsApp">
+    <button class="whatsapp-float" type="button" onclick="abrirWhatsApp('atendimento')" aria-label="Falar no WhatsApp" data-label="Falar no WhatsApp" title="Falar no WhatsApp">
         ✆
     </button>
 
     <script>
-        function pedirWhatsApp(produto) {
+        function abrirWhatsApp(tipo = "atendimento", detalhe = "") {
             const numero = "5541998752482";
-            const mensagem = `Olá! Vim pelo site da Farmácia Brasil e quero pedir: ${produto}`;
+            const mensagens = {
+                atendimento: "Olá! Vim pelo site e quero falar com o atendimento.",
+                pedido_geral: "Olá! Vim pelo site e quero pedir pelo WhatsApp.",
+                produto: `Olá! Vim pelo site e quero pedir este produto: ${detalhe}.`,
+                oferta: detalhe
+                    ? `Olá! Vim pelo site e gostaria de consultar disponibilidade da oferta: ${detalhe}.`
+                    : "Olá! Vim pelo site e gostaria de consultar disponibilidade das ofertas.",
+                consulta: `Olá! Vim pelo site e gostaria de consultar disponibilidade${detalhe ? ` de: ${detalhe}` : "."}`,
+            };
+
+            const mensagem = mensagens[tipo] || mensagens.atendimento;
             const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, "_blank");
         }
 
+        function pedirWhatsApp(produto) {
+            abrirWhatsApp("produto", produto);
+        }
+
         function solicitarMedicamento() {
-            const numero = "5541998752482";
             const input = document.getElementById("medicamentoInput");
             const produto = input.value.trim();
 
@@ -1689,9 +1726,7 @@
                 return;
             }
 
-            const mensagem = `Olá! Vim pelo site da Farmácia Brasil e gostaria de solicitar este produto/medicamento: ${produto}`;
-            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, "_blank");
+            abrirWhatsApp("consulta", produto);
         }
 
         const menuToggle = document.getElementById("menuToggle");
