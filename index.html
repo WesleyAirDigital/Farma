@@ -341,6 +341,18 @@
             margin-top: 26px;
         }
 
+        .hero-actions .btn-secondary {
+            background: rgba(255, 255, 255, 0.14);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-actions .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
         .hero-indicators {
             position: absolute;
             left: 32px;
@@ -491,25 +503,28 @@
 
         .products-grid {
             grid-template-columns: repeat(4, minmax(0, 1fr));
+            align-items: stretch;
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
+            height: 100%;
             overflow: hidden;
             border-radius: 24px;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            box-shadow: 0 18px 42px rgba(29, 70, 85, 0.08);
+            border: 1px solid #e2ecef;
+            background: linear-gradient(180deg, #ffffff, #fcfefe);
+            box-shadow: 0 16px 34px rgba(29, 70, 85, 0.07);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .product-image {
             aspect-ratio: 1 / 1;
             width: 100%;
-            padding: 18px;
+            padding: 20px 20px 14px;
             object-fit: contain;
-            background: linear-gradient(135deg, #f7faf9, #e8f0f2);
+            background: linear-gradient(180deg, #f8fbfb, #eef4f5);
+            border-bottom: 1px solid rgba(29, 70, 85, 0.08);
             cursor: pointer;
         }
 
@@ -517,7 +532,7 @@
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: 22px;
+            padding: 20px 22px 22px;
         }
 
         .product-category {
@@ -536,24 +551,28 @@
 
         .product-card h3 {
             font-size: 1.2rem;
+            line-height: 1.25;
             color: var(--brand-blue-dark);
         }
 
         .product-card p {
-            margin-top: 10px;
+            margin-top: 8px;
             color: var(--muted);
             line-height: 1.65;
             font-size: 0.95rem;
+            flex: 1;
         }
 
         .price-line {
-            margin: 18px 0 20px;
+            margin: 16px 0 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(29, 70, 85, 0.08);
         }
 
         .price-label {
             display: block;
             color: var(--muted);
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -561,7 +580,7 @@
         .price-value {
             display: block;
             margin-top: 4px;
-            font-size: 1.8rem;
+            font-size: 1.72rem;
             font-weight: 800;
             color: var(--brand-orange-deep);
         }
@@ -569,6 +588,7 @@
         .product-body .btn {
             margin-top: auto;
             width: 100%;
+            min-height: 50px;
         }
 
         .about-panel {
@@ -1164,11 +1184,11 @@
                     <article class="hero-slide is-active" style="background-image: url('./images/banners/banner-01.png');">
                         <div class="hero-shell">
                             <div class="hero-copy">
-                                <span class="eyebrow">Farmácia Brasil</span>
-                                <h1 class="hero-title">Delivery rápido em <span>SJP</span></h1>
-                                <p class="hero-text">Peça pelo WhatsApp e receba seus medicamentos no conforto da sua casa.</p>
+                                <span class="eyebrow">Atendimento em São José dos Pinhais</span>
+                                <h1 class="hero-title">Delivery rápido em <span>São José dos Pinhais</span></h1>
+                                <p class="hero-text">Peça seus medicamentos, itens de higiene e cuidados pessoais com praticidade e atendimento rápido pelo WhatsApp.</p>
                                 <div class="hero-actions">
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20pedir%20pelo%20WhatsApp." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Pedir pelo WhatsApp</a>
                                     <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
                                 </div>
                             </div>
@@ -1178,12 +1198,12 @@
                     <article class="hero-slide" style="background-image: url('./images/banners/banner-02.png');">
                         <div class="hero-shell">
                             <div class="hero-copy">
-                                <span class="eyebrow">Farmácia Brasil</span>
-                                <h2 class="hero-title">Tudo para sua <span>saúde</span></h2>
-                                <p class="hero-text">Medicamentos, cosméticos, suplementos e muito mais com os melhores preços.</p>
+                                <span class="eyebrow">Ofertas da semana</span>
+                                <h2 class="hero-title">Ofertas da semana para sua <span>saúde</span></h2>
+                                <p class="hero-text">Encontre medicamentos, vitaminas, beleza e cuidados diários com preços acessíveis e atendimento direto.</p>
                                 <div class="hero-actions">
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
-                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+                                    <a class="btn btn-primary" href="#produtos" onclick="irParaProdutos('ofertas'); return false;">Ver ofertas</a>
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20saber%20das%20ofertas%20da%20semana." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Falar no WhatsApp</a>
                                 </div>
                             </div>
                         </div>
@@ -1192,12 +1212,12 @@
                     <article class="hero-slide" style="background-image: url('./images/banners/banner-03.png');">
                         <div class="hero-shell">
                             <div class="hero-copy">
-                                <span class="eyebrow">Farmácia Brasil</span>
-                                <h2 class="hero-title">Tudo para sua <span>saúde</span></h2>
-                                <p class="hero-text">Medicamentos, cosméticos, suplementos e muito mais com os melhores preços.</p>
+                                <span class="eyebrow">Farmácia completa</span>
+                                <h2 class="hero-title">Tudo o que você precisa em <span>um só lugar</span></h2>
+                                <p class="hero-text">Farmácia completa com variedade, praticidade e suporte rápido para seu pedido sem complicação.</p>
                                 <div class="hero-actions">
-                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
-                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+                                    <a class="btn btn-primary" href="#categorias">Explorar categorias</a>
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20solicitar%20atendimento." target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Solicitar atendimento</a>
                                 </div>
                             </div>
                         </div>
@@ -1302,11 +1322,11 @@
                 <div class="catalog-toolbar">
                     <div class="section-header" style="margin-bottom: 0;">
                         <span class="eyebrow">Produtos</span>
-                        <h2 class="section-title">Promoção da semana</h2>
+                        <h2 class="section-title">Produtos em destaque</h2>
                     </div>
                 </div>
 
-                <div class="catalog-filters" aria-label="Filtrar promocao da semana por categoria">
+                <div class="catalog-filters" aria-label="Filtrar produtos por categoria">
                     <button class="categoria-btn active" type="button" data-filter="todos">Todos</button>
                     <button class="categoria-btn" type="button" data-filter="medicamentos">Medicamentos</button>
                     <button class="categoria-btn" type="button" data-filter="vitaminas">Vitaminas</button>
@@ -1318,114 +1338,114 @@
 
                 <div class="products-grid">
                     <article class="product-card" data-categoria="medicamentos">
-                        <img class="product-image" alt="Dipirona 1g" onclick="pedirWhatsApp('Dipirona 1g')" src="./images/produtos/dipirona-1g.jpg">
+                        <img class="product-image" alt="Dipirona 1g Comprimidos" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')" src="./images/produtos/dipirona-1g.jpg">
                         <div class="product-body">
                             <span class="product-category">Medicamentos</span>
-                            <h3>Dipirona 1g</h3>
-                            <p>Alívio da dor e da febre com apresentação prática para o dia a dia.</p>
+                            <h3>Dipirona 1g Comprimidos</h3>
+                            <p>Alívio prático para dor e febre, com pedido rápido pelo WhatsApp.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 12,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Dipirona 1g')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="vitaminas">
-                        <img class="product-image" alt="Vitamina C 1g" onclick="pedirWhatsApp('Vitamina C 1g')" src="./images/produtos/vitamina-c-1g.jpg">
+                        <img class="product-image" alt="Vitamina C 1g Efervescente" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')" src="./images/produtos/vitamina-c-1g.jpg">
                         <div class="product-body">
                             <span class="product-category">Vitaminas</span>
-                            <h3>Vitamina C 1g</h3>
-                            <p>Suplemento para reforço da rotina e apoio à imunidade.</p>
+                            <h3>Vitamina C 1g Efervescente</h3>
+                            <p>Suplemento para a rotina, com preparo rápido e praticidade no dia a dia.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 29,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Vitamina C 1g')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="beleza">
-                        <img class="product-image" alt="Protetor Solar FPS 60" onclick="pedirWhatsApp('Protetor Solar FPS 60')" src="./images/produtos/protetor-solar-fps-60.jpg">
+                        <img class="product-image" alt="Protetor Solar FPS 60 Diário" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')" src="./images/produtos/protetor-solar-fps-60.jpg">
                         <div class="product-body">
                             <span class="product-category">Beleza</span>
-                            <h3>Protetor Solar FPS 60</h3>
-                            <p>Cuidado diário com a pele, textura leve e alta proteção.</p>
+                            <h3>Protetor Solar FPS 60 Diário</h3>
+                            <p>Alta proteção para a pele com textura leve para o uso de todos os dias.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 54,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Protetor Solar FPS 60')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="infantil">
-                        <img class="product-image" alt="Shampoo Infantil" onclick="pedirWhatsApp('Shampoo Infantil')" src="./images/produtos/shampoo-infantil.jpg">
+                        <img class="product-image" alt="Shampoo Infantil Suave" onclick="pedirWhatsApp('Shampoo Infantil Suave')" src="./images/produtos/shampoo-infantil.jpg">
                         <div class="product-body">
                             <span class="product-category">Infantil</span>
-                            <h3>Shampoo Infantil</h3>
-                            <p>Fórmula suave para o cuidado diário das crianças.</p>
+                            <h3>Shampoo Infantil Suave</h3>
+                            <p>Limpeza delicada para a rotina das crianças, com cuidado diário.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 18,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Shampoo Infantil')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Shampoo Infantil Suave')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="higiene">
-                        <img class="product-image" alt="Sabonete Líquido" onclick="pedirWhatsApp('Sabonete Líquido')" src="./images/produtos/sabonete-liquido.jpg">
+                        <img class="product-image" alt="Sabonete Líquido Uso Diário" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')" src="./images/produtos/sabonete-liquido.jpg">
                         <div class="product-body">
                             <span class="product-category">Higiene</span>
-                            <h3>Sabonete Líquido</h3>
-                            <p>Higiene prática com fragrância suave e toque agradável.</p>
+                            <h3>Sabonete Líquido Uso Diário</h3>
+                            <p>Higiene prática com fragrância suave para cuidar da rotina da família.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 14,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Sabonete Líquido')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="infantil">
-                        <img class="product-image" alt="Fralda Infantil" onclick="pedirWhatsApp('Fralda Infantil')" src="./images/produtos/fralda-infantil.jpg">
+                        <img class="product-image" alt="Fralda Infantil Conforto Diário" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')" src="./images/produtos/fralda-infantil.jpg">
                         <div class="product-body">
                             <span class="product-category">Infantil</span>
-                            <h3>Fralda Infantil</h3>
-                            <p>Conforto e proteção para a rotina dos pequenos.</p>
+                            <h3>Fralda Infantil Conforto Diário</h3>
+                            <p>Proteção e conforto para o dia todo, com praticidade no cuidado infantil.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 44,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Fralda Infantil')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="higiene">
-                        <img class="product-image" alt="Kit Higiene Oral" onclick="pedirWhatsApp('Kit Higiene Oral')" src="./images/produtos/kit-higiene-oral.jpg">
+                        <img class="product-image" alt="Kit de Higiene Oral Completo" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')" src="./images/produtos/kit-higiene-oral.jpg">
                         <div class="product-body">
                             <span class="product-category">Higiene</span>
-                            <h3>Kit Higiene Oral</h3>
-                            <p>Escova, creme dental e cuidados básicos para o dia a dia.</p>
+                            <h3>Kit de Higiene Oral Completo</h3>
+                            <p>Itens essenciais para o cuidado da boca em um kit prático para a rotina.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 22,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Kit Higiene Oral')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')">Pedir pelo WhatsApp</button>
                         </div>
                     </article>
 
                     <article class="product-card" data-categoria="ofertas">
-                        <img class="product-image" alt="Combo Oferta da Semana" onclick="pedirWhatsApp('Combo Oferta da Semana')" src="./images/produtos/combo-oferta-semana-tadala.jpg">
+                        <img class="product-image" alt="Oferta da Semana em Destaque" onclick="pedirWhatsApp('Oferta da Semana em Destaque')" src="./images/produtos/combo-oferta-semana-tadala.jpg">
                         <div class="product-body">
-                            <span class="product-category">Oferta especial</span>
-                            <h3>Combo Oferta da Semana</h3>
-                            <p>Oferta especial com Tadala em destaque. Consulte disponibilidade e peça pelo WhatsApp.</p>
+                            <span class="product-category">Oferta da semana</span>
+                            <h3>Oferta da Semana em Destaque</h3>
+                            <p>Condição especial para pedido rápido. Consulte disponibilidade pelo WhatsApp.</p>
                             <div class="price-line">
-                                <span class="price-label">Preço visual</span>
+                                <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 39,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Combo Oferta da Semana')">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Oferta da Semana em Destaque')">Solicitar atendimento</button>
                         </div>
                     </article>
                 </div>
@@ -1638,6 +1658,14 @@
             startHeroAutoplay();
         }
 
+        function irParaProdutos(filtro = "todos") {
+            aplicarFiltroProdutos(filtro);
+
+            if (secaoProdutos) {
+                secaoProdutos.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
         heroIndicators.forEach((indicator) => {
             indicator.addEventListener("click", () => {
                 const index = Number(indicator.dataset.slide);
@@ -1670,11 +1698,7 @@
                 }
 
                 const filtro = card.dataset.filter;
-                aplicarFiltroProdutos(filtro);
-
-                if (secaoProdutos) {
-                    secaoProdutos.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
+                irParaProdutos(filtro);
             };
 
             card.addEventListener("click", acionarCategoria);
