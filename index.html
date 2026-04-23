@@ -50,6 +50,10 @@
             overflow: hidden;
         }
 
+        [hidden] {
+            display: none !important;
+        }
+
         img {
             display: block;
             max-width: 100%;
@@ -64,6 +68,13 @@
             font: inherit;
             cursor: pointer;
             border: none;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none !important;
+            box-shadow: none !important;
         }
 
         .container {
@@ -241,6 +252,53 @@
             display: flex;
             align-items: center;
             gap: 12px;
+        }
+
+        .cart-toggle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 46px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            color: var(--brand-blue-dark);
+            box-shadow: 0 10px 22px rgba(22, 57, 71, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .cart-toggle:hover {
+            transform: translateY(-2px);
+            border-color: rgba(33, 79, 99, 0.28);
+            box-shadow: 0 14px 28px rgba(22, 57, 71, 0.12);
+        }
+
+        .cart-toggle__icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .cart-toggle__label {
+            font-size: 0.92rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .cart-toggle__count {
+            min-width: 24px;
+            height: 24px;
+            padding: 0 7px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            box-shadow: 0 10px 20px rgba(223, 106, 31, 0.22);
         }
 
         .header-whatsapp-btn {
@@ -643,8 +701,13 @@
             color: var(--brand-orange-deep);
         }
 
-        .product-body .btn {
+        .product-actions {
+            display: grid;
+            gap: 10px;
             margin-top: auto;
+        }
+
+        .product-actions .btn {
             width: 100%;
             min-height: 50px;
         }
@@ -706,6 +769,10 @@
             border-radius: 24px;
             padding: 36px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .solicitacao-box--inline {
+            margin-top: 30px;
         }
 
         .solicitacao-box .tag {
@@ -886,6 +953,31 @@
             box-shadow: 0 0 0 4px rgba(33, 79, 99, 0.08);
         }
 
+        .order-field input[readonly] {
+            background: #f3f7f7;
+            color: var(--brand-blue-dark);
+        }
+
+        .order-field__status {
+            min-height: 20px;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.45;
+        }
+
+        .order-field__status.is-loading {
+            color: var(--brand-blue);
+        }
+
+        .order-field__status.is-success {
+            color: #3e7d2b;
+        }
+
+        .order-field__status.is-error {
+            color: #b14b2c;
+        }
+
         .order-form__footer {
             display: flex;
             align-items: center;
@@ -902,6 +994,335 @@
 
         .order-form__submit {
             min-width: 250px;
+        }
+
+        .order-cart-preview {
+            display: grid;
+            gap: 14px;
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, #ffffff, #f5f9f8);
+        }
+
+        .order-cart-preview[hidden] {
+            display: none;
+        }
+
+        .order-cart-preview__header,
+        .order-cart-preview__subtotal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .order-cart-preview__header span,
+        .order-cart-preview__subtotal span {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .order-cart-preview__header strong,
+        .order-cart-preview__subtotal strong {
+            color: var(--brand-blue-dark);
+            font-size: 1rem;
+        }
+
+        .order-cart-preview__list {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .order-cart-preview__item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid rgba(29, 70, 85, 0.08);
+        }
+
+        .order-cart-preview__item strong {
+            color: var(--brand-blue-dark);
+            font-size: 0.95rem;
+        }
+
+        .order-cart-preview__item span {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            inset: 0;
+            z-index: 1180;
+            display: none;
+        }
+
+        .cart-drawer.is-open {
+            display: block;
+        }
+
+        .cart-drawer__backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 36, 44, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .cart-drawer__panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: min(420px, 100%);
+            height: 100%;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            gap: 20px;
+            padding: 26px 22px 22px;
+            background: linear-gradient(180deg, #ffffff, #f7fbfb);
+            border-left: 1px solid var(--line);
+            box-shadow: -18px 0 48px rgba(22, 57, 71, 0.16);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-drawer.is-open .cart-drawer__panel {
+            transform: translateX(0);
+        }
+
+        .cart-drawer__close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface-soft);
+            color: var(--brand-blue-dark);
+            font-size: 1.35rem;
+            line-height: 1;
+        }
+
+        .cart-drawer__text {
+            margin-top: 10px;
+            padding-right: 44px;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .cart-drawer__meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid rgba(29, 70, 85, 0.08);
+        }
+
+        .cart-drawer__meta span {
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .cart-drawer__meta strong {
+            color: var(--brand-blue-dark);
+            font-size: 1rem;
+        }
+
+        .cart-drawer__body {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 14px;
+            border-radius: 22px;
+            border: 1px solid rgba(29, 70, 85, 0.08);
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .cart-drawer__items {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            display: grid;
+            gap: 12px;
+            padding-right: 4px;
+        }
+
+        .cart-empty {
+            display: grid;
+            gap: 10px;
+            place-items: center;
+            min-height: 220px;
+            padding: 28px 20px;
+            text-align: center;
+            border-radius: 18px;
+            border: 1px dashed rgba(33, 79, 99, 0.22);
+            background: linear-gradient(180deg, #f9fcfc, #f1f6f6);
+        }
+
+        .cart-empty strong {
+            color: var(--brand-blue-dark);
+            font-size: 1.06rem;
+        }
+
+        .cart-empty p {
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.6;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 76px minmax(0, 1fr);
+            gap: 14px;
+            padding: 14px;
+            border-radius: 18px;
+            border: 1px solid rgba(29, 70, 85, 0.08);
+            background: linear-gradient(180deg, #ffffff, #fbfdfd);
+            box-shadow: 0 12px 26px rgba(29, 70, 85, 0.06);
+        }
+
+        .cart-item__thumb {
+            width: 76px;
+            height: 76px;
+            border-radius: 16px;
+            border: 1px solid rgba(29, 70, 85, 0.08);
+            background: linear-gradient(180deg, #f8fbfb, #eef4f5);
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .cart-item__content {
+            min-width: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .cart-item__top {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .cart-item__category {
+            display: inline-flex;
+            margin-bottom: 8px;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: rgba(33, 79, 99, 0.08);
+            color: var(--brand-blue);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cart-item__top h3 {
+            color: var(--brand-blue-dark);
+            font-size: 1rem;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
+
+        .cart-item__unit {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .cart-item__line-price {
+            color: var(--brand-orange-deep);
+            font-size: 1rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .cart-item__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cart-item__qty {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px;
+            border-radius: 999px;
+            background: var(--surface-soft);
+        }
+
+        .cart-item__qty button {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--brand-blue-dark);
+            font-size: 1rem;
+            box-shadow: 0 8px 18px rgba(22, 57, 71, 0.08);
+        }
+
+        .cart-item__qty span {
+            min-width: 18px;
+            text-align: center;
+            color: var(--brand-blue-dark);
+            font-weight: 800;
+        }
+
+        .cart-item__remove {
+            background: transparent;
+            color: var(--brand-orange-deep);
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .cart-drawer__footer {
+            display: grid;
+            gap: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(29, 70, 85, 0.12);
+        }
+
+        .cart-drawer__subtotal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .cart-drawer__subtotal span {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .cart-drawer__subtotal strong {
+            color: var(--brand-blue-dark);
+            font-size: 1.35rem;
+        }
+
+        .cart-drawer__actions {
+            display: grid;
+            gap: 10px;
+        }
+
+        .cart-drawer__actions .btn {
+            width: 100%;
         }
 
         .units {
@@ -1092,6 +1513,10 @@
                 margin-left: auto;
             }
 
+            .cart-toggle__label {
+                display: none;
+            }
+
             .categories-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
@@ -1161,6 +1586,17 @@
                 padding: 10px 16px;
                 min-height: 40px;
                 font-size: 13px;
+            }
+
+            .cart-toggle {
+                min-height: 42px;
+                padding: 0 12px;
+            }
+
+            .cart-toggle__count {
+                min-width: 22px;
+                height: 22px;
+                font-size: 0.74rem;
             }
 
             .hero {
@@ -1308,6 +1744,21 @@
                 min-width: 0;
             }
 
+            .cart-drawer__panel {
+                width: 100%;
+                padding: 24px 18px 18px;
+            }
+
+            .cart-item {
+                grid-template-columns: 64px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .cart-item__thumb {
+                width: 64px;
+                height: 64px;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -1415,6 +1866,11 @@
             </nav>
 
             <div class="header-actions">
+                <button class="cart-toggle" id="cartToggle" type="button" aria-label="Abrir carrinho">
+                    <span class="cart-toggle__icon" aria-hidden="true">🛒</span>
+                    <span class="cart-toggle__label">Carrinho</span>
+                    <span class="cart-toggle__count" id="cartCount">0</span>
+                </button>
                 <button class="btn btn-primary header-whatsapp-btn" type="button" onclick="abrirWhatsApp('atendimento')">Falar no WhatsApp</button>
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
             </div>
@@ -1506,7 +1962,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 12,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1520,7 +1979,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 29,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1534,7 +1996,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 54,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1548,7 +2013,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 18,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Shampoo Infantil Suave')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Shampoo Infantil Suave')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1562,7 +2030,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 14,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1576,7 +2047,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 44,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1590,7 +2064,10 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 22,90</span>
                             </div>
-                            <button class="btn btn-primary" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')">Pedir pelo WhatsApp</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')">Pedir pelo WhatsApp</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
 
@@ -1604,9 +2081,28 @@
                                 <span class="price-label">Preço sugerido</span>
                                 <span class="price-value">R$ 39,90</span>
                             </div>
-                            <button class="btn btn-primary" type="button" onclick="abrirPedidoRapido('Oferta da Semana em Destaque')">Solicitar atendimento</button>
+                            <div class="product-actions">
+                                <button class="btn btn-primary" type="button" onclick="abrirPedidoRapido('Oferta da Semana em Destaque')">Solicitar atendimento</button>
+                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
+                            </div>
                         </div>
                     </article>
+                </div>
+
+                <div class="solicitacao-box solicitacao-box--inline">
+                    <span class="tag">ATENDIMENTO RÁPIDO</span>
+                    <h3>Não encontrou o produto que procura?</h3>
+                    <p>Informe o nome do medicamento ou produto que você precisa e continue seu atendimento pelo WhatsApp com a nossa equipe.</p>
+
+                    <div class="solicitacao-form">
+                        <input
+                            type="text"
+                            id="medicamentoInputDestaque"
+                            class="js-medicamento-input"
+                            placeholder="Digite aqui o nome do medicamento ou produto"
+                        >
+                        <button type="button" onclick="solicitarMedicamento('medicamentoInputDestaque')">Abrir pedido rápido</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1615,10 +2111,10 @@
             <div class="container">
                 <div class="section-header">
                     <span class="eyebrow">Categorias</span>
-                    <h2 class="section-title">Encontre o que precisa com mais rapidez</h2>
+                    <h2 class="section-title">Encontre o que precisa com rapidez e praticidade</h2>
                     <p class="section-text">
-                        Encontre os produtos em destaque ou solicite o que precisa de forma rápida pelo WhatsApp.<br><br>
-                        Nossa equipe cuida de todo o atendimento, informando disponibilidade e orçamento com agilidade para você finalizar seu pedido com segurança.
+                        Explore os produtos em destaque ou solicite exatamente o que precisa de forma rápida pelo WhatsApp.<br><br>
+                        Nossa equipe cuida de todo o atendimento, verificando disponibilidade, valores e orientando você até a finalização do pedido com segurança e agilidade.
                     </p>
                 </div>
 
@@ -1788,9 +2284,10 @@
                         <input
                             type="text"
                             id="medicamentoInput"
+                            class="js-medicamento-input"
                             placeholder="Digite aqui o nome do medicamento ou produto"
                         >
-                        <button type="button" onclick="solicitarMedicamento()">Abrir pedido rápido</button>
+                        <button type="button" onclick="solicitarMedicamento('medicamentoInput')">Abrir pedido rápido</button>
                     </div>
                 </div>
             </div>
@@ -1857,15 +2354,27 @@
             <h2 class="order-modal__title" id="orderModalTitle">Finalize seu pedido pelo WhatsApp</h2>
             <p class="order-modal__text" id="orderModalText">Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.</p>
 
+            <div class="order-cart-preview" id="orderCartPreview" hidden>
+                <div class="order-cart-preview__header">
+                    <span>Itens do carrinho</span>
+                    <strong id="orderCartPreviewCount">0 itens</strong>
+                </div>
+                <ul class="order-cart-preview__list" id="orderCartPreviewList"></ul>
+                <div class="order-cart-preview__subtotal">
+                    <span>Subtotal</span>
+                    <strong id="orderCartPreviewSubtotal">R$ 0,00</strong>
+                </div>
+            </div>
+
             <form class="order-form" id="quickOrderForm">
                 <div class="order-form__row">
                     <div class="order-field">
-                        <label for="orderProduct">Produto</label>
+                        <label for="orderProduct" id="orderProductLabel">Produto</label>
                         <input type="text" id="orderProduct" name="produto" placeholder="Digite o nome do produto" required>
                     </div>
 
                     <div class="order-field">
-                        <label for="orderQuantity">Quantidade</label>
+                        <label for="orderQuantity" id="orderQuantityLabel">Quantidade</label>
                         <input type="number" id="orderQuantity" name="quantidade" min="1" step="1" value="1" required>
                     </div>
                 </div>
@@ -1882,8 +2391,29 @@
                 </div>
 
                 <div class="order-field">
-                    <label for="orderAddress">Endereço</label>
-                    <textarea id="orderAddress" name="endereco" placeholder="Rua, número, bairro e referência" required></textarea>
+                    <label for="orderZip">CEP</label>
+                    <input type="text" id="orderZip" name="cep" inputmode="numeric" maxlength="9" pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000" title="Digite um CEP válido com 8 números" required autocomplete="postal-code">
+                    <p class="order-field__status" id="orderZipStatus" aria-live="polite"></p>
+                </div>
+
+                <div class="order-field">
+                    <label for="orderStreet">Rua</label>
+                    <input type="text" id="orderStreet" name="rua" placeholder="Digite a rua" required autocomplete="address-line1">
+                </div>
+
+                <div class="order-field">
+                    <label for="orderNumber">Número</label>
+                    <input type="text" id="orderNumber" name="numero" placeholder="Número ou s/n" required autocomplete="address-line2">
+                </div>
+
+                <div class="order-field">
+                    <label for="orderNeighborhood">Bairro</label>
+                    <input type="text" id="orderNeighborhood" name="bairro" placeholder="Digite o bairro" required autocomplete="address-level2">
+                </div>
+
+                <div class="order-field">
+                    <label for="orderReference">Ponto de referência</label>
+                    <input type="text" id="orderReference" name="referencia" placeholder="Ex.: próximo ao mercado ou igreja">
                 </div>
 
                 <div class="order-field">
@@ -1896,17 +2426,47 @@
                     <input type="text" id="orderApartment" name="apartamento" placeholder="Informe o apartamento, se houver">
                 </div>
 
-                <div class="order-field">
-                    <label for="orderZip">CEP</label>
-                    <input type="text" id="orderZip" name="cep" inputmode="numeric" maxlength="9" pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000" title="Digite um CEP válido com 8 números" required>
-                </div>
-
                 <div class="order-form__footer">
-                    <p class="order-form__hint">Endereço e CEP ajudam a agilizar a entrega. Bloco e apartamento são opcionais.</p>
+                    <p class="order-form__hint">Preencha o CEP para agilizar o endereço. Referência, bloco e apartamento são opcionais.</p>
                     <button class="btn btn-primary order-form__submit" type="submit">Enviar pedido pelo WhatsApp</button>
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="cart-drawer__backdrop" data-close-cart></div>
+        <aside class="cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartDrawerTitle">
+            <button class="cart-drawer__close" type="button" aria-label="Fechar carrinho" data-close-cart>×</button>
+            <div class="cart-drawer__header">
+                <span class="eyebrow">Carrinho</span>
+                <h2 class="order-modal__title" id="cartDrawerTitle">Seu pedido em andamento</h2>
+                <p class="cart-drawer__text">Adicione vários produtos, revise as quantidades e siga para o pedido rápido quando estiver tudo certo.</p>
+                <div class="cart-drawer__meta">
+                    <span id="cartSummaryText">0 itens no carrinho</span>
+                    <strong id="cartMetaSubtotal">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <div class="cart-drawer__body">
+                <div class="cart-empty" id="cartEmptyState">
+                    <strong>Seu carrinho está vazio.</strong>
+                    <p>Adicione produtos da vitrine para montar um pedido com vários itens antes de finalizar.</p>
+                </div>
+                <div class="cart-drawer__items" id="cartItems"></div>
+            </div>
+
+            <div class="cart-drawer__footer">
+                <div class="cart-drawer__subtotal">
+                    <span>Subtotal</span>
+                    <strong id="cartSubtotal">R$ 0,00</strong>
+                </div>
+                <div class="cart-drawer__actions">
+                    <button class="btn btn-secondary" id="clearCartButton" type="button">Limpar carrinho</button>
+                    <button class="btn btn-primary" id="checkoutCartButton" type="button">Finalizar pedido</button>
+                </div>
+            </div>
+        </aside>
     </div>
 
     <button class="whatsapp-float" type="button" onclick="abrirWhatsApp('atendimento')" aria-label="Falar no WhatsApp" data-label="Falar no WhatsApp" title="Falar no WhatsApp">
@@ -1921,32 +2481,51 @@
         const categoriaCards = document.querySelectorAll(".category-card[data-filter]");
         const botoesCategoria = document.querySelectorAll(".categoria-btn");
         const produtos = document.querySelectorAll(".product-card");
+        const addToCartButtons = document.querySelectorAll("[data-add-to-cart]");
         const secaoProdutos = document.getElementById("produtos");
-        const medicamentoInput = document.getElementById("medicamentoInput");
+        const medicamentoInputs = document.querySelectorAll(".js-medicamento-input");
+        const cartToggle = document.getElementById("cartToggle");
+        const cartCount = document.getElementById("cartCount");
+        const cartDrawer = document.getElementById("cartDrawer");
+        const cartItems = document.getElementById("cartItems");
+        const cartEmptyState = document.getElementById("cartEmptyState");
+        const cartSummaryText = document.getElementById("cartSummaryText");
+        const cartMetaSubtotal = document.getElementById("cartMetaSubtotal");
+        const cartSubtotal = document.getElementById("cartSubtotal");
+        const clearCartButton = document.getElementById("clearCartButton");
+        const checkoutCartButton = document.getElementById("checkoutCartButton");
+        const closeCartButtons = document.querySelectorAll("[data-close-cart]");
         const orderModal = document.getElementById("orderModal");
         const quickOrderForm = document.getElementById("quickOrderForm");
         const orderModalTitle = document.getElementById("orderModalTitle");
         const orderModalText = document.getElementById("orderModalText");
+        const orderCartPreview = document.getElementById("orderCartPreview");
+        const orderCartPreviewList = document.getElementById("orderCartPreviewList");
+        const orderCartPreviewCount = document.getElementById("orderCartPreviewCount");
+        const orderCartPreviewSubtotal = document.getElementById("orderCartPreviewSubtotal");
+        const orderProductLabel = document.getElementById("orderProductLabel");
+        const orderQuantityLabel = document.getElementById("orderQuantityLabel");
         const orderProductInput = document.getElementById("orderProduct");
         const orderQuantityInput = document.getElementById("orderQuantity");
         const orderPaymentInput = document.getElementById("orderPayment");
-        const orderAddressInput = document.getElementById("orderAddress");
+        const orderZipInput = document.getElementById("orderZip");
+        const orderZipStatus = document.getElementById("orderZipStatus");
+        const orderStreetInput = document.getElementById("orderStreet");
+        const orderNumberInput = document.getElementById("orderNumber");
+        const orderNeighborhoodInput = document.getElementById("orderNeighborhood");
+        const orderReferenceInput = document.getElementById("orderReference");
         const orderBlockInput = document.getElementById("orderBlock");
         const orderApartmentInput = document.getElementById("orderApartment");
-        const orderZipInput = document.getElementById("orderZip");
         const closeOrderModalButtons = document.querySelectorAll("[data-close-order-modal]");
 
         let currentHeroSlide = 0;
         let heroInterval;
         let quickOrderOrigin = "produto";
-
-        function normalizarEndereco(endereco = "") {
-            return endereco
-                .split("\n")
-                .map((linha) => linha.trim())
-                .filter(Boolean)
-                .join(", ");
-        }
+        let ultimoInputManual = null;
+        let ultimoCepConsultado = "";
+        let requisicaoCepAtual = null;
+        const CART_STORAGE_KEY = "farmaciaBrasilCarrinho";
+        let carrinho = carregarCarrinho();
 
         function normalizarCep(cep = "") {
             const digitos = cep.replace(/\D/g, "").slice(0, 8);
@@ -1958,6 +2537,362 @@
             return `${digitos.slice(0, 5)}-${digitos.slice(5)}`;
         }
 
+        function sincronizarBodyLock() {
+            const modalAberto = orderModal && orderModal.classList.contains("is-open");
+            const carrinhoAberto = cartDrawer && cartDrawer.classList.contains("is-open");
+            document.body.classList.toggle("modal-open", Boolean(modalAberto || carrinhoAberto));
+        }
+
+        function formatarMoeda(valor = 0) {
+            return Number(valor || 0).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
+        }
+
+        function criarIdProduto(nome = "") {
+            return nome
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)/g, "");
+        }
+
+        function converterPrecoParaNumero(preco = "") {
+            const valor = String(preco)
+                .replace(/[^\d,]/g, "")
+                .replace(/\./g, "")
+                .replace(",", ".");
+
+            return Number(valor) || 0;
+        }
+
+        function carregarCarrinho() {
+            try {
+                const carrinhoSalvo = window.localStorage.getItem(CART_STORAGE_KEY);
+                const itens = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+
+                return Array.isArray(itens) ? itens : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function salvarCarrinho() {
+            window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(carrinho));
+        }
+
+        function obterQuantidadeCarrinho() {
+            return carrinho.reduce((total, item) => total + item.quantidade, 0);
+        }
+
+        function obterSubtotalCarrinho() {
+            return carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+        }
+
+        function obterDadosProduto(card) {
+            if (!card) return null;
+
+            const nome = card.querySelector("h3")?.textContent.trim() || "";
+            const categoria = card.querySelector(".product-category")?.textContent.trim() || "Produtos";
+            const precoTexto = card.querySelector(".price-value")?.textContent.trim() || "R$ 0,00";
+            const preco = converterPrecoParaNumero(precoTexto);
+            const imagem = card.querySelector(".product-image")?.getAttribute("src") || "";
+            const imagemAlt = card.querySelector(".product-image")?.getAttribute("alt") || nome;
+
+            if (!nome) {
+                return null;
+            }
+
+            return {
+                id: criarIdProduto(nome),
+                nome,
+                categoria,
+                preco,
+                imagem,
+                imagemAlt,
+            };
+        }
+
+        function enriquecerItemCarrinho(item = {}) {
+            const quantidade = Math.max(1, Number(item.quantidade) || 1);
+
+            const cardCorrespondente = Array.from(produtos).find((card) => {
+                const dadosProduto = obterDadosProduto(card);
+
+                return dadosProduto && (dadosProduto.id === item.id || dadosProduto.nome === item.nome);
+            });
+
+            if (!cardCorrespondente) {
+                return {
+                    ...item,
+                    quantidade,
+                };
+            }
+
+            const dadosAtualizados = obterDadosProduto(cardCorrespondente);
+
+            return {
+                ...item,
+                ...dadosAtualizados,
+                quantidade,
+            };
+        }
+
+        function renderizarResumoCarrinhoNoModal() {
+            if (!orderCartPreviewList || !orderCartPreviewCount || !orderCartPreviewSubtotal) return;
+
+            const totalItens = obterQuantidadeCarrinho();
+            const totalProdutos = carrinho.length;
+
+            orderCartPreviewList.innerHTML = carrinho
+                .map((item) => `
+                    <li class="order-cart-preview__item">
+                        <div>
+                            <strong>${item.nome}</strong>
+                            <span>${item.quantidade} x ${formatarMoeda(item.preco)}</span>
+                        </div>
+                        <strong>${formatarMoeda(item.preco * item.quantidade)}</strong>
+                    </li>
+                `)
+                .join("");
+
+            orderCartPreviewCount.textContent = `${totalItens} ${totalItens === 1 ? "item" : "itens"}`;
+            orderCartPreviewSubtotal.textContent = formatarMoeda(obterSubtotalCarrinho());
+            orderProductInput.value = `Carrinho com ${totalProdutos} ${totalProdutos === 1 ? "produto" : "produtos"}`;
+            orderQuantityInput.value = String(totalItens || 1);
+        }
+
+        function configurarFormularioPedido(origem = "produto") {
+            const fluxoCarrinho = origem === "carrinho";
+
+            orderProductInput.readOnly = fluxoCarrinho;
+            orderQuantityInput.readOnly = fluxoCarrinho;
+
+            if (orderProductLabel) {
+                orderProductLabel.textContent = fluxoCarrinho ? "Resumo do pedido" : "Produto";
+            }
+
+            if (orderQuantityLabel) {
+                orderQuantityLabel.textContent = fluxoCarrinho ? "Itens no carrinho" : "Quantidade";
+            }
+
+            if (orderCartPreview) {
+                orderCartPreview.hidden = !fluxoCarrinho;
+            }
+
+            if (fluxoCarrinho) {
+                renderizarResumoCarrinhoNoModal();
+            } else if (orderCartPreviewList) {
+                orderCartPreviewList.innerHTML = "";
+            }
+        }
+
+        function renderizarCarrinho() {
+            if (!cartItems || !cartCount || !cartSummaryText || !cartMetaSubtotal || !cartSubtotal || !cartEmptyState || !checkoutCartButton || !clearCartButton) {
+                return;
+            }
+
+            carrinho = carrinho.map(enriquecerItemCarrinho);
+
+            const totalItens = obterQuantidadeCarrinho();
+            const subtotal = obterSubtotalCarrinho();
+            const carrinhoVazio = carrinho.length === 0;
+
+            cartCount.textContent = String(totalItens);
+            cartSummaryText.textContent = totalItens === 0
+                ? "0 itens no carrinho"
+                : `${totalItens} ${totalItens === 1 ? "item" : "itens"} no carrinho`;
+            cartMetaSubtotal.textContent = formatarMoeda(subtotal);
+            cartSubtotal.textContent = formatarMoeda(subtotal);
+            cartEmptyState.toggleAttribute("hidden", !carrinhoVazio);
+            cartItems.toggleAttribute("hidden", carrinhoVazio);
+            checkoutCartButton.disabled = carrinhoVazio;
+            clearCartButton.disabled = carrinhoVazio;
+
+            if (carrinhoVazio) {
+                cartItems.innerHTML = "";
+                return;
+            }
+
+            cartItems.innerHTML = carrinho
+                .map((item) => `
+                    <article class="cart-item" data-cart-id="${item.id}">
+                        <img class="cart-item__thumb" src="${item.imagem || ""}" alt="${item.imagemAlt || item.nome}">
+                        <div class="cart-item__content">
+                            <div class="cart-item__top">
+                                <div>
+                                    <span class="cart-item__category">${item.categoria}</span>
+                                    <h3>${item.nome}</h3>
+                                    <p class="cart-item__unit">${formatarMoeda(item.preco)} por unidade</p>
+                                </div>
+                                <strong class="cart-item__line-price">${formatarMoeda(item.preco * item.quantidade)}</strong>
+                            </div>
+                            <div class="cart-item__bottom">
+                                <div class="cart-item__qty">
+                                    <button type="button" data-cart-action="decrease" data-cart-id="${item.id}" aria-label="Diminuir quantidade">-</button>
+                                    <span>${item.quantidade}</span>
+                                    <button type="button" data-cart-action="increase" data-cart-id="${item.id}" aria-label="Aumentar quantidade">+</button>
+                                </div>
+                                <button class="cart-item__remove" type="button" data-cart-action="remove" data-cart-id="${item.id}">Remover</button>
+                            </div>
+                        </div>
+                    </article>
+                `)
+                .join("");
+
+            salvarCarrinho();
+        }
+
+        function abrirCarrinho() {
+            if (!cartDrawer) return;
+
+            cartDrawer.classList.add("is-open");
+            cartDrawer.setAttribute("aria-hidden", "false");
+            sincronizarBodyLock();
+        }
+
+        function fecharCarrinho() {
+            if (!cartDrawer) return;
+
+            cartDrawer.classList.remove("is-open");
+            cartDrawer.setAttribute("aria-hidden", "true");
+            sincronizarBodyLock();
+        }
+
+        function adicionarAoCarrinho(card) {
+            const produto = obterDadosProduto(card);
+
+            if (!produto) return;
+
+            const itemExistente = carrinho.find((item) => item.id === produto.id);
+
+            if (itemExistente) {
+                itemExistente.quantidade += 1;
+            } else {
+                carrinho.push({
+                    ...produto,
+                    quantidade: 1,
+                });
+            }
+
+            salvarCarrinho();
+            renderizarCarrinho();
+            abrirCarrinho();
+        }
+
+        function atualizarQuantidadeCarrinho(id, incremento) {
+            carrinho = carrinho
+                .map((item) => {
+                    if (item.id !== id) return item;
+
+                    return {
+                        ...item,
+                        quantidade: item.quantidade + incremento,
+                    };
+                })
+                .filter((item) => item.quantidade > 0);
+
+            salvarCarrinho();
+            renderizarCarrinho();
+        }
+
+        function removerDoCarrinho(id) {
+            carrinho = carrinho.filter((item) => item.id !== id);
+            salvarCarrinho();
+            renderizarCarrinho();
+        }
+
+        function limparCarrinho() {
+            carrinho = [];
+            salvarCarrinho();
+            renderizarCarrinho();
+        }
+
+        function limparStatusCep() {
+            if (!orderZipStatus) return;
+
+            orderZipStatus.textContent = "";
+            orderZipStatus.className = "order-field__status";
+        }
+
+        function atualizarStatusCep(mensagem = "", estado = "") {
+            if (!orderZipStatus) return;
+
+            orderZipStatus.textContent = mensagem;
+            orderZipStatus.className = "order-field__status";
+
+            if (estado) {
+                orderZipStatus.classList.add(`is-${estado}`);
+            }
+        }
+
+        function resetarConsultaCep() {
+            ultimoCepConsultado = "";
+
+            if (requisicaoCepAtual) {
+                requisicaoCepAtual.abort();
+                requisicaoCepAtual = null;
+            }
+
+            limparStatusCep();
+        }
+
+        async function consultarCep(cep = "") {
+            const cepLimpo = cep.replace(/\D/g, "");
+
+            if (cepLimpo.length !== 8 || !orderStreetInput || !orderNeighborhoodInput) {
+                return;
+            }
+
+            if (cepLimpo === ultimoCepConsultado) {
+                return;
+            }
+
+            if (requisicaoCepAtual) {
+                requisicaoCepAtual.abort();
+            }
+
+            requisicaoCepAtual = new AbortController();
+            ultimoCepConsultado = cepLimpo;
+            atualizarStatusCep("Buscando endereço pelo CEP...", "loading");
+
+            try {
+                const resposta = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`, {
+                    signal: requisicaoCepAtual.signal,
+                });
+
+                if (!resposta.ok) {
+                    throw new Error("Falha ao consultar CEP");
+                }
+
+                const dadosCep = await resposta.json();
+
+                if (dadosCep.erro) {
+                    atualizarStatusCep("CEP não encontrado. Continue preenchendo os campos manualmente.", "error");
+                    return;
+                }
+
+                orderStreetInput.value = dadosCep.logradouro ? dadosCep.logradouro.trim() : orderStreetInput.value;
+                orderNeighborhoodInput.value = dadosCep.bairro ? dadosCep.bairro.trim() : orderNeighborhoodInput.value;
+                atualizarStatusCep("Rua e bairro preenchidos automaticamente.", "success");
+
+                if (orderNumberInput && !orderNumberInput.value.trim()) {
+                    orderNumberInput.focus();
+                }
+            } catch (error) {
+                if (error.name === "AbortError") {
+                    return;
+                }
+
+                ultimoCepConsultado = "";
+                atualizarStatusCep("Não foi possível consultar o CEP agora. Continue preenchendo manualmente.", "error");
+            } finally {
+                requisicaoCepAtual = null;
+            }
+        }
+
         function montarMensagemPedidoRapido(dados = {}) {
             const linhas = [
                 "Olá! Vim pelo site da Farmácia Brasil e quero fazer um pedido.",
@@ -1965,22 +2900,70 @@
                 `Produto: ${dados.produto}`,
                 `Quantidade: ${dados.quantidade}`,
                 `Forma de pagamento: ${dados.pagamento}`,
-                `Endereço: ${normalizarEndereco(dados.endereco)}`,
+                "",
+                "Endereço:",
             ];
 
-            if (dados.bloco) {
-                linhas.push(`Bloco: ${dados.bloco}`);
+            const linhasEndereco = [
+                ["Rua", dados.rua],
+                ["Número", dados.numero],
+                ["Bairro", dados.bairro],
+                ["CEP", normalizarCep(dados.cep)],
+                ["Referência", dados.referencia],
+                ["Bloco", dados.bloco],
+                ["Apartamento", dados.apartamento],
+            ];
+
+            linhasEndereco.forEach(([rotulo, valor]) => {
+                if (valor) {
+                    linhas.push(`${rotulo}: ${valor}`);
+                }
+            });
+
+            linhas.push("", "Aguardo retorno para confirmação do pedido.");
+
+            return linhas.join("\n");
+        }
+
+        function montarMensagemCarrinho(dados = {}) {
+            const linhas = [
+                "Olá! Vim pelo site da Farmácia Brasil e quero fazer um pedido.",
+                "",
+                "Itens do pedido:",
+            ];
+
+            (dados.itens || []).forEach((item) => {
+                linhas.push(`- ${item.nome} x${item.quantidade} - ${formatarMoeda(item.preco * item.quantidade)}`);
+            });
+
+            if (typeof dados.subtotal === "number") {
+                linhas.push(`Subtotal: ${formatarMoeda(dados.subtotal)}`);
             }
 
-            if (dados.apartamento) {
-                linhas.push(`Apartamento: ${dados.apartamento}`);
-            }
+            linhas.push(
+                "",
+                `Forma de pagamento: ${dados.pagamento}`,
+                "",
+                "Endereço:"
+            );
 
-            if (dados.cep) {
-                linhas.push(`CEP: ${normalizarCep(dados.cep)}`);
-            }
+            const linhasEndereco = [
+                ["Rua", dados.rua],
+                ["Número", dados.numero],
+                ["Bairro", dados.bairro],
+                ["CEP", normalizarCep(dados.cep)],
+                ["Referência", dados.referencia],
+                ["Bloco", dados.bloco],
+                ["Apartamento", dados.apartamento],
+            ];
 
-            linhas.push("", "Aguardo atendimento.");
+            linhasEndereco.forEach(([rotulo, valor]) => {
+                if (valor) {
+                    linhas.push(`${rotulo}: ${valor}`);
+                }
+            });
+
+            linhas.push("", "Aguardo retorno para confirmação do pedido.");
 
             return linhas.join("\n");
         }
@@ -1988,6 +2971,10 @@
         function montarMensagemWhatsApp(tipo = "atendimento", dados = {}) {
             if (tipo === "pedido_rapido") {
                 return montarMensagemPedidoRapido(dados);
+            }
+
+            if (tipo === "pedido_carrinho") {
+                return montarMensagemCarrinho(dados);
             }
 
             if (tipo === "pedido_geral") {
@@ -2028,23 +3015,35 @@
 
             quickOrderOrigin = origem;
             quickOrderForm.reset();
+            resetarConsultaCep();
             orderProductInput.value = produto ? produto.trim() : "";
             orderQuantityInput.value = "1";
 
             if (origem === "manual") {
                 orderModalTitle.textContent = "Solicite seu pedido pelo WhatsApp";
                 orderModalText.textContent = "Informe o produto desejado e preencha os dados abaixo para enviar a solicitação de forma rápida.";
+            } else if (origem === "carrinho") {
+                if (!carrinho.length) {
+                    abrirCarrinho();
+                    return;
+                }
+
+                orderModalTitle.textContent = "Finalize seu carrinho pelo WhatsApp";
+                orderModalText.textContent = "Revise os itens do carrinho e preencha os dados abaixo para enviar o pedido completo.";
             } else {
                 orderModalTitle.textContent = "Finalize seu pedido pelo WhatsApp";
                 orderModalText.textContent = "Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.";
             }
 
+            configurarFormularioPedido(origem);
             orderModal.classList.add("is-open");
             orderModal.setAttribute("aria-hidden", "false");
-            document.body.classList.add("modal-open");
+            sincronizarBodyLock();
 
             window.requestAnimationFrame(() => {
-                if (orderProductInput.value) {
+                if (origem === "carrinho") {
+                    orderPaymentInput.focus();
+                } else if (orderProductInput.value) {
                     orderQuantityInput.focus();
                     orderQuantityInput.select();
                 } else {
@@ -2058,19 +3057,23 @@
 
             orderModal.classList.remove("is-open");
             orderModal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("modal-open");
             quickOrderForm.reset();
+            resetarConsultaCep();
+            configurarFormularioPedido("produto");
             orderQuantityInput.value = "1";
             orderModalTitle.textContent = "Finalize seu pedido pelo WhatsApp";
             orderModalText.textContent = "Preencha os dados abaixo para enviar seu pedido de forma simples e rápida.";
+            sincronizarBodyLock();
         }
 
         function pedirWhatsApp(produto) {
             abrirPedidoRapido(produto, "produto");
         }
 
-        function solicitarMedicamento() {
-            const produto = medicamentoInput ? medicamentoInput.value.trim() : "";
+        function solicitarMedicamento(inputId = "medicamentoInput") {
+            const campo = document.getElementById(inputId);
+            const produto = campo ? campo.value.trim() : "";
+            ultimoInputManual = campo || null;
             abrirPedidoRapido(produto, "manual");
         }
 
@@ -2098,17 +3101,28 @@
                     produto: orderProductInput.value.trim(),
                     quantidade: orderQuantityInput.value.trim(),
                     pagamento: orderPaymentInput.value,
-                    endereco: orderAddressInput.value.trim(),
+                    cep: normalizarCep(orderZipInput.value),
+                    rua: orderStreetInput.value.trim(),
+                    numero: orderNumberInput.value.trim(),
+                    bairro: orderNeighborhoodInput.value.trim(),
+                    referencia: orderReferenceInput.value.trim(),
                     bloco: orderBlockInput.value.trim(),
                     apartamento: orderApartmentInput.value.trim(),
-                    cep: normalizarCep(orderZipInput.value),
                 };
 
-                abrirWhatsApp("pedido_rapido", dadosPedido);
+                if (quickOrderOrigin === "carrinho") {
+                    dadosPedido.itens = carrinho.map((item) => ({ ...item }));
+                    dadosPedido.subtotal = obterSubtotalCarrinho();
+                    abrirWhatsApp("pedido_carrinho", dadosPedido);
+                    limparCarrinho();
+                } else {
+                    abrirWhatsApp("pedido_rapido", dadosPedido);
+                }
+
                 fecharPedidoRapido();
 
-                if (quickOrderOrigin === "manual" && medicamentoInput) {
-                    medicamentoInput.value = "";
+                if (quickOrderOrigin === "manual" && ultimoInputManual) {
+                    ultimoInputManual.value = "";
                 }
             });
         }
@@ -2116,6 +3130,35 @@
         if (orderZipInput) {
             orderZipInput.addEventListener("input", () => {
                 orderZipInput.value = normalizarCep(orderZipInput.value);
+
+                if (orderZipInput.value.replace(/\D/g, "").length < 8) {
+                    ultimoCepConsultado = "";
+
+                    if (orderZipInput.value.trim()) {
+                        atualizarStatusCep("Digite um CEP com 8 números para buscar o endereço.");
+                    } else {
+                        limparStatusCep();
+                    }
+                    return;
+                }
+
+                consultarCep(orderZipInput.value);
+            });
+
+            orderZipInput.addEventListener("blur", () => {
+                const cepLimpo = orderZipInput.value.replace(/\D/g, "");
+
+                if (!cepLimpo) {
+                    limparStatusCep();
+                    return;
+                }
+
+                if (cepLimpo.length !== 8) {
+                    atualizarStatusCep("Digite um CEP com 8 números para buscar o endereço.", "error");
+                    return;
+                }
+
+                consultarCep(orderZipInput.value);
             });
         }
 
@@ -2123,20 +3166,76 @@
             button.addEventListener("click", fecharPedidoRapido);
         });
 
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && orderModal && orderModal.classList.contains("is-open")) {
-                fecharPedidoRapido();
-            }
+        if (cartToggle) {
+            cartToggle.addEventListener("click", abrirCarrinho);
+        }
+
+        closeCartButtons.forEach((button) => {
+            button.addEventListener("click", fecharCarrinho);
         });
 
-        if (medicamentoInput) {
-            medicamentoInput.addEventListener("keydown", (event) => {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    solicitarMedicamento();
+        addToCartButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                adicionarAoCarrinho(button.closest(".product-card"));
+            });
+        });
+
+        if (cartItems) {
+            cartItems.addEventListener("click", (event) => {
+                const actionButton = event.target.closest("[data-cart-action]");
+
+                if (!actionButton) return;
+
+                const { cartAction, cartId } = actionButton.dataset;
+
+                if (cartAction === "increase") {
+                    atualizarQuantidadeCarrinho(cartId, 1);
+                    return;
+                }
+
+                if (cartAction === "decrease") {
+                    atualizarQuantidadeCarrinho(cartId, -1);
+                    return;
+                }
+
+                if (cartAction === "remove") {
+                    removerDoCarrinho(cartId);
                 }
             });
         }
+
+        if (clearCartButton) {
+            clearCartButton.addEventListener("click", limparCarrinho);
+        }
+
+        if (checkoutCartButton) {
+            checkoutCartButton.addEventListener("click", () => {
+                if (!carrinho.length) return;
+
+                fecharCarrinho();
+                abrirPedidoRapido("", "carrinho");
+            });
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && orderModal && orderModal.classList.contains("is-open")) {
+                fecharPedidoRapido();
+                return;
+            }
+
+            if (event.key === "Escape" && cartDrawer && cartDrawer.classList.contains("is-open")) {
+                fecharCarrinho();
+            }
+        });
+
+        medicamentoInputs.forEach((input) => {
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    solicitarMedicamento(input.id);
+                }
+            });
+        });
 
         function goToHeroSlide(index) {
             heroSlides.forEach((slide, slideIndex) => {
@@ -2210,6 +3309,7 @@
             card.addEventListener("click", acionarCategoria);
         });
 
+        renderizarCarrinho();
         startHeroAutoplay();
     </script>
 </body>
