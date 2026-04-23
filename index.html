@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmácia Brasil | Catálogo e Pedidos pelo WhatsApp</title>
+    <meta name="description" content="Farmácia Brasil: catálogo de produtos, atendimento rápido e pedidos direto pelo WhatsApp.">
+    <link rel="icon" href="./images/logo-farmacia-brasil.png" type="image/png">
+    <style>
+        :root {
+            --brand-blue: #214f63;
+            --brand-blue-dark: #163947;
+            --brand-orange: #df6a1f;
+            --brand-orange-deep: #c95a14;
+            --brand-green: #79bb45;
+            --brand-yellow: #ffb114;
+            --surface: #ffffff;
+            --surface-alt: #f4f8f8;
+            --surface-soft: #eef4f5;
+            --text: #24414d;
+            --muted: #5f7680;
+            --line: #dbe7ea;
+            --shadow: 0 24px 60px rgba(24, 55, 67, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 20px;
+            --radius-sm: 14px;
+            --container: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(121, 187, 69, 0.12), transparent 24%),
+                radial-gradient(circle at top right, rgba(255, 177, 20, 0.12), transparent 26%),
+                linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: none;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 82px 0;
+        }
+
+        .section-header {
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: rgba(121, 187, 69, 0.12);
+            color: var(--brand-blue);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--brand-green);
+        }
+
+        h1, h2, h3 {
+            letter-spacing: -0.03em;
+        }
+
+        .section-title {
+            margin-top: 18px;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.05;
+            color: var(--brand-blue-dark);
+        }
+
+        .section-text {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 54px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+            color: #fff;
+            box-shadow: 0 16px 30px rgba(223, 106, 31, 0.28);
+        }
+
+        .btn-secondary {
+            background: rgba(33, 79, 99, 0.08);
+            color: var(--brand-blue-dark);
+        }
+
+        .topbar {
+            background: var(--brand-blue-dark);
+            color: #fff;
+            font-size: 0.84rem;
+        }
+
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 8px 0;
+            flex-wrap: wrap;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            height: 110px;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 24px rgba(24, 55, 67, 0.06);
+        }
+
+        .site-header .container {
+            display: grid;
+            grid-template-columns: 280px 1fr auto;
+            align-items: center;
+            gap: 24px;
+            min-height: 110px;
+            padding: 0 28px;
+        }
+
+        .brand,
+        .footer .logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100%;
+            background: transparent !important;
+        }
+
+        .brand img,
+        .footer .logo img {
+            background: transparent !important;
+            display: block;
+        }
+
+        .brand img {
+            max-height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav a {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+            color: var(--brand-blue);
+            position: relative;
+        }
+
+        .nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--brand-green), var(--brand-orange));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease;
+        }
+
+        .nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-whatsapp-btn {
+            min-height: 44px;
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--surface-soft);
+            color: var(--brand-blue-dark);
+            font-size: 1.2rem;
+        }
+
+        .hero {
+            padding: 22px 0 28px;
+        }
+
+        .hero-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px;
+            min-height: 520px;
+            box-shadow: var(--shadow);
+            background: #183844;
+        }
+
+        .hero-track {
+            position: relative;
+            min-height: 520px;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-slide.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(8, 44, 56, 0.68), rgba(8, 44, 56, 0.36));
+        }
+
+        .hero-shell {
+            position: relative;
+            z-index: 2;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 3;
+            width: min(620px, 100%);
+            padding: clamp(36px, 5vw, 54px);
+            color: #fff;
+        }
+
+        .hero-title {
+            margin-top: 18px;
+            font-size: clamp(2.8rem, 5vw, 4.7rem);
+            line-height: 0.96;
+            color: #fff;
+        }
+
+        .hero-title span {
+            color: #ffd378;
+        }
+
+        .hero-text {
+            margin-top: 18px;
+            max-width: 560px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 26px;
+        }
+
+        .hero-indicators {
+            position: absolute;
+            left: 32px;
+            bottom: 26px;
+            z-index: 4;
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-indicator {
+            width: 12px;
+            height: 12px;
+            padding: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.38);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .hero-indicator.is-active {
+            background: #fff;
+            transform: scale(1.15);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 16px 30px rgba(223, 106, 31, 0.28);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+        }
+
+        .categories-grid,
+        .products-grid,
+        .units-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .categories-grid {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            align-items: stretch;
+        }
+
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 214px;
+            padding: 22px 18px;
+            border-radius: 20px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 12px 28px rgba(29, 70, 85, 0.08);
+            color: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .category-card:hover,
+        .product-card:hover,
+        .unit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(29, 70, 85, 0.12);
+        }
+
+        .category-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 14px;
+            border-radius: 16px;
+            color: var(--brand-blue-dark);
+            background: #f4f7f7;
+            border: 1px solid #e2ecee;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .category-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .category-card h3 {
+            font-size: 1.08rem;
+            line-height: 1.25;
+            color: var(--brand-blue-dark);
+        }
+
+        .category-card p {
+            margin-top: 8px;
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 0.91rem;
+        }
+
+        .catalog {
+            background: var(--surface-alt);
+        }
+
+        .catalog-toolbar {
+            margin-bottom: 28px;
+        }
+
+        .catalog-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .categoria-btn {
+            min-height: 42px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            color: var(--brand-blue);
+            font-size: 0.92rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .categoria-btn:hover,
+        .categoria-btn.active {
+            background: var(--brand-blue-dark);
+            border-color: var(--brand-blue-dark);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(24, 55, 67, 0.14);
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            box-shadow: 0 18px 42px rgba(29, 70, 85, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .product-image {
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            padding: 18px;
+            object-fit: contain;
+            background: linear-gradient(135deg, #f7faf9, #e8f0f2);
+            cursor: pointer;
+        }
+
+        .product-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 22px;
+        }
+
+        .product-category {
+            display: inline-flex;
+            width: fit-content;
+            margin-bottom: 10px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(33, 79, 99, 0.08);
+            color: var(--brand-blue);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            color: var(--brand-blue-dark);
+        }
+
+        .product-card p {
+            margin-top: 10px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 0.95rem;
+        }
+
+        .price-line {
+            margin: 18px 0 20px;
+        }
+
+        .price-label {
+            display: block;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .price-value {
+            display: block;
+            margin-top: 4px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--brand-orange-deep);
+        }
+
+        .product-body .btn {
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .about-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .about-card,
+        .renato-box,
+        .unit-card,
+        .footer-card {
+            border-radius: 28px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 40px rgba(29, 70, 85, 0.08);
+        }
+
+        .about-card {
+            padding: 40px 42px;
+        }
+
+        .about-card p + p {
+            margin-top: 16px;
+        }
+
+        .about-card .section-title {
+            font-size: clamp(2.5rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-top: 18px;
+            margin-bottom: 22px;
+        }
+
+        .about-card .section-text {
+            margin-top: 0;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .renato-box {
+            width: 100%;
+            min-height: 420px;
+            background: url("./images/renato.jpg") center 24% / cover no-repeat;
+        }
+
+        .solicitacao-medicamento {
+            padding: 18px 0 70px;
+        }
+
+        .solicitacao-box {
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .solicitacao-box .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #e7f0de;
+            color: #214a5a;
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .solicitacao-box h3 {
+            font-size: clamp(2rem, 3vw, 2.125rem);
+            line-height: 1.15;
+            margin-bottom: 14px;
+            color: #17384a;
+        }
+
+        .solicitacao-box p {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: #5d7481;
+            margin-bottom: 22px;
+        }
+
+        .solicitacao-form {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .solicitacao-form input {
+            flex: 1;
+            min-width: 260px;
+            height: 56px;
+            border-radius: 16px;
+            border: 1px solid #d7e0e4;
+            padding: 0 18px;
+            font-size: 16px;
+            color: var(--text);
+            outline: none;
+        }
+
+        .solicitacao-form input:focus {
+            border-color: rgba(33, 79, 99, 0.45);
+            box-shadow: 0 0 0 4px rgba(33, 79, 99, 0.08);
+        }
+
+        .solicitacao-form button {
+            height: 56px;
+            padding: 0 24px;
+            border: none;
+            border-radius: 999px;
+            background: #f39a1d;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .solicitacao-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(243, 154, 29, 0.24);
+        }
+
+        .units {
+            background:
+                linear-gradient(180deg, rgba(121, 187, 69, 0.08), rgba(255, 255, 255, 0)),
+                var(--surface-alt);
+        }
+
+        .units-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .unit-card {
+            padding: 22px;
+        }
+
+        .unit-card h3 {
+            font-size: 1.3rem;
+            color: var(--brand-blue-dark);
+        }
+
+        .unit-card p {
+            margin-top: 12px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .unit-highlight {
+            display: inline-flex;
+            padding: 8px 12px;
+            margin-top: 14px;
+            border-radius: 999px;
+            background: rgba(121, 187, 69, 0.14);
+            color: var(--brand-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .footer {
+            padding: 0 0 34px;
+            background: linear-gradient(180deg, #f8fafb, #eef2f4);
+        }
+
+        .footer-card {
+            padding: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(180px, 1fr));
+            gap: 40px;
+            align-items: start;
+            padding: 50px 20px;
+        }
+
+        .footer .logo img {
+            max-width: 160px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .footer-brand img {
+            width: min(160px, 100%);
+        }
+
+        .footer-brand p,
+        .footer-col p,
+        .footer-col a,
+        .footer-col li {
+            margin-top: 10px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 0.92rem;
+        }
+
+        .footer-col h3 {
+            color: var(--brand-blue-dark);
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+            opacity: 0.78;
+        }
+
+        .footer-col a:hover {
+            color: var(--brand-blue-dark);
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8ea;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 13px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .footer-bottom a {
+            font-weight: 600;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+            color: var(--brand-blue-dark);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 40;
+            width: 62px;
+            height: 62px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2fc665, #25d366);
+            color: #fff;
+            box-shadow: 0 18px 30px rgba(37, 211, 102, 0.32);
+            font-size: 1.7rem;
+        }
+
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 1120px) {
+            .site-header .container,
+            .about-panel,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav,
+            .header-actions .btn {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+                justify-self: end;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .site-header .container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .header-actions {
+                margin-left: auto;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav.is-open {
+                display: flex;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 16px;
+                right: 16px;
+                flex-direction: column;
+                gap: 0;
+                padding: 14px;
+                border-radius: 18px;
+                background: #fff;
+                border: 1px solid var(--line);
+                box-shadow: var(--shadow);
+            }
+
+            .nav.is-open a {
+                padding: 14px 8px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .section {
+                padding: 64px 0;
+            }
+
+            .topbar .container {
+                padding: 6px 0;
+                font-size: 0.76rem;
+            }
+
+            .site-header .container {
+                grid-template-columns: 1fr auto;
+                min-height: 85px;
+                padding: 0 16px;
+                gap: 12px;
+            }
+
+            .brand img {
+                max-height: 60px;
+            }
+
+            .nav a {
+                font-size: 13px;
+            }
+
+            .footer-brand img {
+                width: 130px;
+            }
+
+            .header-whatsapp-btn {
+                padding: 10px 16px;
+                min-height: 40px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding-top: 16px;
+            }
+
+            .hero-slider,
+            .hero-track,
+            .hero-shell {
+                min-height: 560px;
+                border-radius: 24px;
+            }
+
+            .hero-slide::before {
+                background: linear-gradient(180deg, rgba(8, 44, 56, 0.22), rgba(8, 44, 56, 0.82));
+            }
+
+            .hero-slide {
+                background-position: center center;
+            }
+
+            .hero-shell {
+                align-items: end;
+            }
+
+            .hero-copy {
+                width: 100%;
+                padding: 28px 22px 68px;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.55rem;
+            }
+
+            .hero-text {
+                font-size: 1rem;
+            }
+
+            .hero-actions,
+            .catalog-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .catalog-filters {
+                gap: 8px;
+            }
+
+            .hero-indicators {
+                left: 22px;
+                bottom: 22px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .header-actions .btn,
+            .header-actions .menu-toggle {
+                width: auto;
+            }
+
+            .footer {
+                padding-bottom: 26px;
+            }
+
+            .footer-card {
+                padding: 0;
+            }
+
+            .footer-brand img {
+                width: 168px;
+            }
+
+            .renato-box {
+                min-height: 300px;
+                background-position: center 18%;
+            }
+
+            .about-card {
+                padding: 30px 24px;
+            }
+
+            .about-card .section-title {
+                font-size: 2.35rem;
+                margin-bottom: 18px;
+            }
+
+            .about-card .section-text {
+                font-size: 0.98rem;
+            }
+
+            .solicitacao-medicamento {
+                padding: 10px 0 54px;
+            }
+
+            .solicitacao-box {
+                padding: 24px 20px;
+            }
+
+            .solicitacao-box p {
+                font-size: 0.98rem;
+            }
+
+            .solicitacao-form input,
+            .solicitacao-form button {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 34px 20px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 14px 0 22px;
+            }
+
+            .hero-slider,
+            .hero-track,
+            .hero-shell {
+                min-height: clamp(360px, 72vw, 420px);
+                border-radius: 22px;
+            }
+
+            .hero-slide {
+                background-size: cover;
+                background-position: center center;
+            }
+
+            .hero-slide::before {
+                background: linear-gradient(180deg, rgba(8, 44, 56, 0.18), rgba(8, 44, 56, 0.84));
+            }
+
+            .hero-shell {
+                align-items: flex-end;
+            }
+
+            .hero-copy {
+                width: 100%;
+                max-width: 100%;
+                padding: 20px 18px 58px;
+            }
+
+            .hero-title {
+                margin-top: 12px;
+                font-size: clamp(1.75rem, 6.6vw, 2.35rem);
+                line-height: 1.05;
+            }
+
+            .hero-text {
+                margin-top: 12px;
+                max-width: 100%;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+                margin-top: 18px;
+            }
+
+            .hero-actions .btn,
+            .hero-actions .btn-whatsapp {
+                width: 100%;
+                min-height: 46px;
+                padding: 12px 16px;
+                font-size: 0.92rem;
+                text-align: center;
+            }
+
+            .hero-indicators {
+                left: 18px;
+                bottom: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="container">
+            <span>Farmácia Brasil | Desde 1996 servindo você e sua família</span>
+            <span>SJP | WhatsApp: 41 99875-2482</span>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="#topo" aria-label="Farmácia Brasil">
+                <img src="./images/logo-farmacia-brasil.png" alt="Farmácia Brasil">
+            </a>
+
+            <nav class="nav" id="mainNav">
+                <a href="#topo">Início</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#unidades">Unidades</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-primary header-whatsapp-btn" onclick="pedirWhatsApp('Atendimento geral')">Pedir pelo WhatsApp</button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="topo">
+        <section class="hero">
+            <div class="container hero-slider" id="heroSlider">
+                <div class="hero-track">
+                    <article class="hero-slide is-active" style="background-image: url('./images/banners/banner-01.png');">
+                        <div class="hero-shell">
+                            <div class="hero-copy">
+                                <span class="eyebrow">Farmácia Brasil</span>
+                                <h1 class="hero-title">Delivery rápido em <span>SJP</span></h1>
+                                <p class="hero-text">Peça pelo WhatsApp e receba seus medicamentos no conforto da sua casa.</p>
+                                <div class="hero-actions">
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
+                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide" style="background-image: url('./images/banners/banner-02.png');">
+                        <div class="hero-shell">
+                            <div class="hero-copy">
+                                <span class="eyebrow">Farmácia Brasil</span>
+                                <h2 class="hero-title">Tudo para sua <span>saúde</span></h2>
+                                <p class="hero-text">Medicamentos, cosméticos, suplementos e muito mais com os melhores preços.</p>
+                                <div class="hero-actions">
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
+                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide" style="background-image: url('./images/banners/banner-03.png');">
+                        <div class="hero-shell">
+                            <div class="hero-copy">
+                                <span class="eyebrow">Farmácia Brasil</span>
+                                <h2 class="hero-title">Tudo para sua <span>saúde</span></h2>
+                                <p class="hero-text">Medicamentos, cosméticos, suplementos e muito mais com os melhores preços.</p>
+                                <div class="hero-actions">
+                                    <a href="https://wa.me/5541998752482?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Farm%C3%A1cia%20Brasil%20e%20quero%20atendimento." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Fale conosco pelo WhatsApp</a>
+                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="hero-indicators" aria-label="Selecionar banner">
+                    <button class="hero-indicator is-active" type="button" data-slide="0" aria-label="Banner 1"></button>
+                    <button class="hero-indicator" type="button" data-slide="1" aria-label="Banner 2"></button>
+                    <button class="hero-indicator" type="button" data-slide="2" aria-label="Banner 3"></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="categorias">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Categorias</span>
+                    <h2 class="section-title">Encontre o que precisa com mais rapidez</h2>
+                    <p class="section-text">
+                        Encontre os produtos em destaque ou solicite o que precisa de forma rápida pelo WhatsApp.<br><br>
+                        Nossa equipe cuida de todo o atendimento, informando disponibilidade e orçamento com agilidade para você finalizar seu pedido com segurança.
+                    </p>
+                </div>
+
+                <div class="categories-grid">
+                    <a class="category-card" data-filter="medicamentos" href="#produtos" aria-label="Ver produtos da categoria Medicamentos">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 7.5 16.5 16"></path>
+                                <path d="M6.5 9a3.5 3.5 0 0 1 5-5l6 6a3.5 3.5 0 1 1-5 5l-6-6a3.5 3.5 0 0 1 0-5Z"></path>
+                            </svg>
+                        </div>
+                        <h3>Medicamentos</h3>
+                        <p>Medicamentos de referência, genéricos e soluções para o cuidado diário.</p>
+                    </a>
+                    <a class="category-card" data-filter="beleza" href="#produtos" aria-label="Ver produtos da categoria Beleza">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 5h6"></path>
+                                <path d="M10 5v3"></path>
+                                <path d="M14 5v3"></path>
+                                <path d="M8 8h8l-1 10H9L8 8Z"></path>
+                                <path d="M11 11h2"></path>
+                            </svg>
+                        </div>
+                        <h3>Beleza</h3>
+                        <p>Cuidados pessoais, dermocosméticos e produtos para sua rotina de beleza.</p>
+                    </a>
+                    <a class="category-card" data-filter="infantil" href="#produtos" aria-label="Ver produtos da categoria Infantil">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="8" cy="8" r="2"></circle>
+                                <circle cx="16" cy="8" r="2"></circle>
+                                <circle cx="12" cy="13" r="5"></circle>
+                                <path d="M10.5 13h3"></path>
+                                <path d="M11 15c.3.4.7.6 1 .6s.7-.2 1-.6"></path>
+                            </svg>
+                        </div>
+                        <h3>Infantil</h3>
+                        <p>Produtos essenciais para o cuidado dos pequenos com segurança e carinho.</p>
+                    </a>
+                    <a class="category-card" data-filter="vitaminas" href="#produtos" aria-label="Ver produtos da categoria Vitaminas">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 7c3.9 0 7 2.9 7 6.6S15.9 20 12 20s-7-2.9-7-6.4S8.1 7 12 7Z"></path>
+                                <path d="M12 7c0-1.8 1.4-3 3.5-3"></path>
+                                <path d="M12 11v5"></path>
+                                <path d="M9.5 13.5h5"></path>
+                            </svg>
+                        </div>
+                        <h3>Vitaminas</h3>
+                        <p>Suplementos para fortalecer a imunidade, energia e bem-estar diário.</p>
+                    </a>
+                    <a class="category-card" data-filter="higiene" href="#produtos" aria-label="Ver produtos da categoria Higiene">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M7 10h10a3 3 0 0 1 3 3v1a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-1a3 3 0 0 1 3-3Z"></path>
+                                <path d="M9 10V8a3 3 0 0 1 6 0v2"></path>
+                                <path d="M8.5 14h7"></path>
+                            </svg>
+                        </div>
+                        <h3>Higiene</h3>
+                        <p>Itens essenciais para higiene, prevenção e saúde no dia a dia.</p>
+                    </a>
+                    <a class="category-card" data-filter="ofertas" href="#produtos" aria-label="Ver produtos da categoria Ofertas">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M10 5h8l1 5-8 8-6-6 8-7Z"></path>
+                                <circle cx="15.5" cy="8.5" r="1"></circle>
+                            </svg>
+                        </div>
+                        <h3>Ofertas</h3>
+                        <p>Destaques da semana com condições especiais para você aproveitar.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section catalog" id="produtos">
+            <div class="container">
+                <div class="catalog-toolbar">
+                    <div class="section-header" style="margin-bottom: 0;">
+                        <span class="eyebrow">Produtos</span>
+                        <h2 class="section-title">Promoção da semana</h2>
+                    </div>
+                </div>
+
+                <div class="catalog-filters" aria-label="Filtrar promocao da semana por categoria">
+                    <button class="categoria-btn active" type="button" data-filter="todos">Todos</button>
+                    <button class="categoria-btn" type="button" data-filter="medicamentos">Medicamentos</button>
+                    <button class="categoria-btn" type="button" data-filter="vitaminas">Vitaminas</button>
+                    <button class="categoria-btn" type="button" data-filter="beleza">Beleza</button>
+                    <button class="categoria-btn" type="button" data-filter="infantil">Infantil</button>
+                    <button class="categoria-btn" type="button" data-filter="higiene">Higiene</button>
+                    <button class="categoria-btn" type="button" data-filter="ofertas">Ofertas</button>
+                </div>
+
+                <div class="products-grid">
+                    <article class="product-card" data-categoria="medicamentos">
+                        <img class="product-image" alt="Dipirona 1g" onclick="pedirWhatsApp('Dipirona 1g')" src="./images/produtos/dipirona-1g.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Medicamentos</span>
+                            <h3>Dipirona 1g</h3>
+                            <p>Alívio da dor e da febre com apresentação prática para o dia a dia.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 12,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Dipirona 1g')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="vitaminas">
+                        <img class="product-image" alt="Vitamina C 1g" onclick="pedirWhatsApp('Vitamina C 1g')" src="./images/produtos/vitamina-c-1g.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Vitaminas</span>
+                            <h3>Vitamina C 1g</h3>
+                            <p>Suplemento para reforço da rotina e apoio à imunidade.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 29,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Vitamina C 1g')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="beleza">
+                        <img class="product-image" alt="Protetor Solar FPS 60" onclick="pedirWhatsApp('Protetor Solar FPS 60')" src="./images/produtos/protetor-solar-fps-60.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Beleza</span>
+                            <h3>Protetor Solar FPS 60</h3>
+                            <p>Cuidado diário com a pele, textura leve e alta proteção.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 54,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Protetor Solar FPS 60')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="infantil">
+                        <img class="product-image" alt="Shampoo Infantil" onclick="pedirWhatsApp('Shampoo Infantil')" src="./images/produtos/shampoo-infantil.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Infantil</span>
+                            <h3>Shampoo Infantil</h3>
+                            <p>Fórmula suave para o cuidado diário das crianças.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 18,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Shampoo Infantil')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="higiene">
+                        <img class="product-image" alt="Sabonete Líquido" onclick="pedirWhatsApp('Sabonete Líquido')" src="./images/produtos/sabonete-liquido.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Higiene</span>
+                            <h3>Sabonete Líquido</h3>
+                            <p>Higiene prática com fragrância suave e toque agradável.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 14,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Sabonete Líquido')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="infantil">
+                        <img class="product-image" alt="Fralda Infantil" onclick="pedirWhatsApp('Fralda Infantil')" src="./images/produtos/fralda-infantil.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Infantil</span>
+                            <h3>Fralda Infantil</h3>
+                            <p>Conforto e proteção para a rotina dos pequenos.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 44,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Fralda Infantil')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="higiene">
+                        <img class="product-image" alt="Kit Higiene Oral" onclick="pedirWhatsApp('Kit Higiene Oral')" src="./images/produtos/kit-higiene-oral.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Higiene</span>
+                            <h3>Kit Higiene Oral</h3>
+                            <p>Escova, creme dental e cuidados básicos para o dia a dia.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 22,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Kit Higiene Oral')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card" data-categoria="ofertas">
+                        <img class="product-image" alt="Combo Oferta da Semana" onclick="pedirWhatsApp('Combo Oferta da Semana')" src="./images/produtos/combo-oferta-semana-tadala.jpg">
+                        <div class="product-body">
+                            <span class="product-category">Oferta especial</span>
+                            <h3>Combo Oferta da Semana</h3>
+                            <p>Oferta especial com Tadala em destaque. Consulte disponibilidade e peça pelo WhatsApp.</p>
+                            <div class="price-line">
+                                <span class="price-label">Preço visual</span>
+                                <span class="price-value">R$ 39,90</span>
+                            </div>
+                            <button class="btn btn-primary" onclick="pedirWhatsApp('Combo Oferta da Semana')">Pedir pelo WhatsApp</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="sobre">
+            <div class="container about-panel">
+                <div class="about-card">
+                    <span class="eyebrow">Sobre a marca</span>
+                    <h2 class="section-title">Uma farmácia próxima de você, com atendimento rápido e prático</h2>
+                    <p class="section-text">
+                        A Farmácia Brasil foi pensada para facilitar o dia a dia de quem busca medicamentos, produtos de
+                        saúde, higiene e bem-estar com atendimento simples e confiável.
+                    </p>
+                    <p class="section-text">
+                        Pelo site, o cliente encontra os principais produtos em destaque e pode solicitar tudo com poucos
+                        cliques pelo WhatsApp, de forma rápida e direta com nossa equipe.
+                    </p>
+                    <p class="section-text">
+                        Mesmo que o medicamento ou produto não esteja exibido no site, o cliente pode fazer a solicitação
+                        informando o nome no atendimento. Assim, a equipe verifica a disponibilidade e continua o suporte
+                        pelo WhatsApp com mais agilidade.
+                    </p>
+                </div>
+
+                <div class="renato-box" aria-label="Foto do Renato"></div>
+            </div>
+        </section>
+
+        <section class="solicitacao-medicamento">
+            <div class="container">
+                <div class="solicitacao-box">
+                    <span class="tag">ATENDIMENTO RÁPIDO</span>
+                    <h3>Não encontrou o produto que procura?</h3>
+                    <p>Informe o nome do medicamento ou produto que você precisa e continue seu atendimento pelo WhatsApp com a nossa equipe.</p>
+
+                    <div class="solicitacao-form">
+                        <input
+                            type="text"
+                            id="medicamentoInput"
+                            placeholder="Digite aqui o nome do medicamento ou produto"
+                        >
+                        <button type="button" onclick="solicitarMedicamento()">Solicitar pelo WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section units" id="unidades">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Unidades</span>
+                    <h2 class="section-title">Atendimento em São José dos Pinhais</h2>
+                    <p class="section-text">
+                        Duas unidades para facilitar o acesso e um único WhatsApp para tirar dúvidas e receber pedidos.
+                    </p>
+                </div>
+
+                <div class="units-grid">
+                    <article class="unit-card">
+                        <h3>📍 Unidade 1</h3>
+                        <p>SJP – R. Adir Pedroso, 1259</p>
+                        <span class="unit-highlight">Farmácia Brasil</span>
+                    </article>
+
+                    <article class="unit-card">
+                        <h3>📍 Unidade 2</h3>
+                        <p>SJP – R. Tavares de Lyra, 3917</p>
+                        <span class="unit-highlight">Atendimento local</span>
+                    </article>
+
+                    <article class="unit-card">
+                        <h3>📞 WhatsApp e telefone</h3>
+                        <p>41 99875-2482</p>
+                        <button class="btn btn-primary" onclick="pedirWhatsApp('Quero atendimento da Farmácia Brasil')">Chamar no WhatsApp</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contato">
+        <div class="container">
+            <div class="footer-card">
+                <div class="footer-grid">
+                    <div class="footer-brand logo">
+                        <img src="./images/logo-farmacia-brasil.png" alt="Farmácia Brasil">
+                        <p>Desde 1996 servindo você e sua família. Cuidado, confiança e qualidade em São José dos Pinhais.</p>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Categorias</h3>
+                        <ul>
+                            <li>Medicamentos</li>
+                            <li>Beleza</li>
+                            <li>Infantil</li>
+                            <li>Vitaminas</li>
+                            <li>Higiene</li>
+                            <li>Ofertas</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Contato</h3>
+                        <ul>
+                            <li>R. Adir Pedroso, 1259 - SJP</li>
+                            <li>R. Tavares de Lyra, 3917 - SJP</li>
+                            <li>(41) 99875-2482</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Navegação</h3>
+                        <ul>
+                            <li><a href="#topo">Início</a></li>
+                            <li><a href="#produtos">Produtos</a></li>
+                            <li><a href="#categorias">Categorias</a></li>
+                            <li><a href="#sobre">Quem Somos</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <span>© 2026 Farmácia Brasil. Todos os direitos reservados.</span>
+                    <span>
+                        Desenvolvido por
+                        <a href="https://airdigitalmarketing.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnqJIWF3P801Poq6_pbTtLCsuLLJSia-0-S6hTMKodkMFIdGLntD_ym5I-71w_aem_c-D0pLUtULBzx8HjelNTnw" target="_blank" rel="noopener noreferrer">AirDigital</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="whatsapp-float" onclick="pedirWhatsApp('Quero atendimento da Farmácia Brasil')" aria-label="Abrir WhatsApp">
+        ✆
+    </button>
+
+    <script>
+        function pedirWhatsApp(produto) {
+            const numero = "5541998752482";
+            const mensagem = `Olá! Vim pelo site da Farmácia Brasil e quero pedir: ${produto}`;
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        }
+
+        function solicitarMedicamento() {
+            const numero = "5541998752482";
+            const input = document.getElementById("medicamentoInput");
+            const produto = input.value.trim();
+
+            if (!produto) {
+                alert("Digite o nome do medicamento ou produto.");
+                input.focus();
+                return;
+            }
+
+            const mensagem = `Olá! Vim pelo site da Farmácia Brasil e gostaria de solicitar este produto/medicamento: ${produto}`;
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, "_blank");
+        }
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mainNav = document.getElementById("mainNav");
+        const heroSlides = document.querySelectorAll(".hero-slide");
+        const heroIndicators = document.querySelectorAll(".hero-indicator");
+        const categoriaCards = document.querySelectorAll(".category-card[data-filter]");
+        const botoesCategoria = document.querySelectorAll(".categoria-btn");
+        const produtos = document.querySelectorAll(".product-card");
+        const secaoProdutos = document.getElementById("produtos");
+
+        let currentHeroSlide = 0;
+        let heroInterval;
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener("click", () => {
+                mainNav.classList.toggle("is-open");
+            });
+
+            mainNav.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    mainNav.classList.remove("is-open");
+                });
+            });
+        }
+
+        function goToHeroSlide(index) {
+            heroSlides.forEach((slide, slideIndex) => {
+                slide.classList.toggle("is-active", slideIndex === index);
+            });
+
+            heroIndicators.forEach((indicator, indicatorIndex) => {
+                indicator.classList.toggle("is-active", indicatorIndex === index);
+            });
+
+            currentHeroSlide = index;
+        }
+
+        function startHeroAutoplay() {
+            if (heroSlides.length < 2) return;
+
+            heroInterval = setInterval(() => {
+                const nextIndex = (currentHeroSlide + 1) % heroSlides.length;
+                goToHeroSlide(nextIndex);
+            }, 5000);
+        }
+
+        function resetHeroAutoplay() {
+            clearInterval(heroInterval);
+            startHeroAutoplay();
+        }
+
+        heroIndicators.forEach((indicator) => {
+            indicator.addEventListener("click", () => {
+                const index = Number(indicator.dataset.slide);
+                goToHeroSlide(index);
+                resetHeroAutoplay();
+            });
+        });
+
+        function aplicarFiltroProdutos(filtro) {
+            botoesCategoria.forEach((btn) => {
+                btn.classList.toggle("active", btn.dataset.filter === filtro);
+            });
+
+            produtos.forEach((produto) => {
+                const categoria = produto.dataset.categoria;
+                produto.style.display = filtro === "todos" || categoria === filtro ? "" : "none";
+            });
+        }
+
+        botoesCategoria.forEach((botao) => {
+            botao.addEventListener("click", () => {
+                aplicarFiltroProdutos(botao.dataset.filter);
+            });
+        });
+
+        categoriaCards.forEach((card) => {
+            const acionarCategoria = (event) => {
+                if (event) {
+                    event.preventDefault();
+                }
+
+                const filtro = card.dataset.filter;
+                aplicarFiltroProdutos(filtro);
+
+                if (secaoProdutos) {
+                    secaoProdutos.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            };
+
+            card.addEventListener("click", acionarCategoria);
+        });
+
+        startHeroAutoplay();
+    </script>
+</body>
+</html>
