@@ -2056,140 +2056,12 @@
                     <button class="categoria-btn" type="button" data-filter="ofertas">Ofertas</button>
                 </div>
 
-                <div class="products-grid">
-                    <article class="product-card" data-categoria="medicamentos">
-                        <img class="product-image" alt="Dipirona 1g Comprimidos" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')" src="./images/produtos/dipirona-1g.jpg">
+                <div class="products-grid" id="productsGrid" aria-live="polite">
+                    <article class="product-card" style="grid-column: 1 / -1;">
                         <div class="product-body">
-                            <span class="product-category">Medicamentos</span>
-                            <h3>Dipirona 1g Comprimidos</h3>
-                            <p>Alívio prático para dor e febre, com pedido rápido pelo WhatsApp.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 12,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Dipirona 1g Comprimidos')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="vitaminas">
-                        <img class="product-image" alt="Vitamina C 1g Efervescente" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')" src="./images/produtos/vitamina-c-1g.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Vitaminas</span>
-                            <h3>Vitamina C 1g Efervescente</h3>
-                            <p>Suplemento para a rotina, com preparo rápido e praticidade no dia a dia.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 29,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Vitamina C 1g Efervescente')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="beleza">
-                        <img class="product-image" alt="Protetor Solar FPS 60 Diário" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')" src="./images/produtos/protetor-solar-fps-60.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Beleza</span>
-                            <h3>Protetor Solar FPS 60 Diário</h3>
-                            <p>Alta proteção para a pele com textura leve para o uso de todos os dias.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 54,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Protetor Solar FPS 60 Diário')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="infantil">
-                        <img class="product-image" alt="Shampoo Infantil Suave" onclick="pedirWhatsApp('Shampoo Infantil Suave')" src="./images/produtos/shampoo-infantil.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Infantil</span>
-                            <h3>Shampoo Infantil Suave</h3>
-                            <p>Limpeza delicada para a rotina das crianças, com cuidado diário.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 18,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Shampoo Infantil Suave')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="higiene">
-                        <img class="product-image" alt="Sabonete Líquido Uso Diário" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')" src="./images/produtos/sabonete-liquido.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Higiene</span>
-                            <h3>Sabonete Líquido Uso Diário</h3>
-                            <p>Higiene prática com fragrância suave para cuidar da rotina da família.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 14,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Sabonete Líquido Uso Diário')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="infantil">
-                        <img class="product-image" alt="Fralda Infantil Conforto Diário" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')" src="./images/produtos/fralda-infantil.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Infantil</span>
-                            <h3>Fralda Infantil Conforto Diário</h3>
-                            <p>Proteção e conforto para o dia todo, com praticidade no cuidado infantil.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 44,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Fralda Infantil Conforto Diário')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="higiene">
-                        <img class="product-image" alt="Kit de Higiene Oral Completo" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')" src="./images/produtos/kit-higiene-oral.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Higiene</span>
-                            <h3>Kit de Higiene Oral Completo</h3>
-                            <p>Itens essenciais para o cuidado da boca em um kit prático para a rotina.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 22,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="pedirWhatsApp('Kit de Higiene Oral Completo')">Pedir pelo WhatsApp</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card" data-categoria="ofertas">
-                        <img class="product-image" alt="Oferta da Semana em Destaque" onclick="pedirWhatsApp('Oferta da Semana em Destaque')" src="./images/produtos/combo-oferta-semana-tadala.jpg">
-                        <div class="product-body">
-                            <span class="product-category">Oferta da semana</span>
-                            <h3>Oferta da Semana em Destaque</h3>
-                            <p>Condição especial para pedido rápido. Consulte disponibilidade pelo WhatsApp.</p>
-                            <div class="price-line">
-                                <span class="price-label">Preço sugerido</span>
-                                <span class="price-value">R$ 39,90</span>
-                            </div>
-                            <div class="product-actions">
-                                <button class="btn btn-primary" type="button" onclick="abrirPedidoRapido('Oferta da Semana em Destaque')">Solicitar atendimento</button>
-                                <button class="btn btn-secondary" type="button" data-add-to-cart>Adicionar ao carrinho</button>
-                            </div>
+                            <span class="product-category">Catálogo</span>
+                            <h3>Carregando produtos...</h3>
+                            <p>Estamos preparando a vitrine atualizada da Farmácia Brasil.</p>
                         </div>
                     </article>
                 </div>
@@ -2619,8 +2491,7 @@
         const categoriesDots = document.getElementById("categoriesDots");
         const categoriesPrevButton = document.getElementById("categoriesPrevButton");
         const categoriesNextButton = document.getElementById("categoriesNextButton");
-        const produtos = document.querySelectorAll(".product-card");
-        const addToCartButtons = document.querySelectorAll("[data-add-to-cart]");
+        const productsGrid = document.getElementById("productsGrid");
         const secaoProdutos = document.getElementById("produtos");
         const medicamentoInputs = document.querySelectorAll(".js-medicamento-input");
         const cartToggle = document.getElementById("cartToggle");
@@ -2662,6 +2533,7 @@
         const orderApartmentInput = document.getElementById("orderApartment");
         const orderNotesInput = document.getElementById("orderNotes");
         const closeOrderModalButtons = document.querySelectorAll("[data-close-order-modal]");
+        const PRODUCTS_JSON_PATH = "./products/products.json";
 
         let currentHeroSlide = 0;
         let heroInterval;
@@ -2677,6 +2549,8 @@
         const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
             ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
             : (window.location.protocol === "file:" ? "http://localhost:3000" : "");
+        let catalogoProdutos = [];
+        let filtroProdutosAtivo = "todos";
         let carrinho = carregarCarrinho();
 
         function normalizarCep(cep = "") {
@@ -2727,6 +2601,144 @@
             });
         }
 
+        function formatarPrecoOuConsulta(valor = null) {
+            return Number.isFinite(valor) ? formatarMoeda(valor) : "Sob consulta";
+        }
+
+        function escaparHtml(valor = "") {
+            return String(valor)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        function escaparAtributo(valor = "") {
+            return escaparHtml(valor)
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function normalizarTextoBusca(valor = "") {
+            return String(valor)
+                .trim()
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function normalizarCategoriaFiltro(categoria = "") {
+            const mapaCategorias = {
+                Medicamentos: "medicamentos",
+                Vitaminas: "vitaminas",
+                Beleza: "beleza",
+                Infantil: "infantil",
+                Higiene: "higiene",
+                Ofertas: "ofertas",
+            };
+
+            return mapaCategorias[categoria] || "todos";
+        }
+
+        function obterCardsProduto() {
+            return productsGrid
+                ? Array.from(productsGrid.querySelectorAll(".product-card"))
+                : [];
+        }
+
+        function obterProdutoCatalogoPorId(id = "") {
+            return catalogoProdutos.find((produto) => produto.id === id) || null;
+        }
+
+        function obterProdutoCatalogoPorNome(nome = "") {
+            const nomeNormalizado = normalizarTextoBusca(nome);
+
+            return catalogoProdutos.find((produto) => {
+                return normalizarTextoBusca(produto.nome) === nomeNormalizado;
+            }) || null;
+        }
+
+        function criarMarkupProduto(produto = {}) {
+            const precoDisponivel = Number.isFinite(produto.preco);
+            const precoLabel = precoDisponivel ? "Preço sugerido" : "Disponibilidade";
+
+            return `
+                <article class="product-card" data-categoria="${escaparAtributo(normalizarCategoriaFiltro(produto.categoria))}" data-product-id="${escaparAtributo(produto.id)}">
+                    <img
+                        class="product-image"
+                        alt="${escaparAtributo(produto.nome)}"
+                        data-whatsapp-product="${escaparAtributo(produto.nome)}"
+                        src="${escaparAtributo(produto.imagem || "")}">
+                    <div class="product-body">
+                        <span class="product-category">${escaparHtml(produto.categoria || "Produtos")}</span>
+                        <h3>${escaparHtml(produto.nome || "Produto")}</h3>
+                        <p>${escaparHtml(produto.descricao || "Consulte disponibilidade pelo WhatsApp.")}</p>
+                        <div class="price-line">
+                            <span class="price-label">${precoLabel}</span>
+                            <span class="price-value">${escaparHtml(formatarPrecoOuConsulta(produto.preco))}</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary" type="button" data-whatsapp-product="${escaparAtributo(produto.nome)}">Pedir pelo WhatsApp</button>
+                            <button class="btn btn-secondary" type="button" data-add-to-cart data-product-id="${escaparAtributo(produto.id)}">Adicionar ao carrinho</button>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderizarCatalogoProdutos() {
+            if (!productsGrid) {
+                return;
+            }
+
+            if (!catalogoProdutos.length) {
+                productsGrid.innerHTML = `
+                    <article class="product-card" style="grid-column: 1 / -1;">
+                        <div class="product-body">
+                            <span class="product-category">Catálogo</span>
+                            <h3>Nenhum produto disponível.</h3>
+                            <p>Atualize o arquivo <code>products/products.json</code> para exibir novos itens.</p>
+                        </div>
+                    </article>
+                `;
+                return;
+            }
+
+            productsGrid.innerHTML = catalogoProdutos.map(criarMarkupProduto).join("");
+            aplicarFiltroProdutos(filtroProdutosAtivo);
+        }
+
+        async function carregarCatalogoProdutos() {
+            if (!productsGrid) {
+                return;
+            }
+
+            try {
+                const resposta = await fetch(PRODUCTS_JSON_PATH, { cache: "no-store" });
+
+                if (!resposta.ok) {
+                    throw new Error("Não foi possível carregar o catálogo de produtos.");
+                }
+
+                const dados = await resposta.json();
+                catalogoProdutos = Array.isArray(dados) ? dados : [];
+                renderizarCatalogoProdutos();
+                carrinho = carrinho.map(enriquecerItemCarrinho).filter(Boolean);
+                renderizarCarrinho();
+            } catch (error) {
+                console.error("[catalogo] Falha ao carregar products/products.json.", error);
+                productsGrid.innerHTML = `
+                    <article class="product-card" style="grid-column: 1 / -1;">
+                        <div class="product-body">
+                            <span class="product-category">Catálogo</span>
+                            <h3>Não foi possível carregar os produtos.</h3>
+                            <p>Verifique o arquivo <code>products/products.json</code> e tente novamente.</p>
+                        </div>
+                    </article>
+                `;
+                renderizarCarrinho();
+            }
+        }
+
         function criarIdProduto(nome = "") {
             return nome
                 .toLowerCase()
@@ -2742,7 +2754,13 @@
                 .replace(/\./g, "")
                 .replace(",", ".");
 
-            return Number(valor) || 0;
+            if (!valor) {
+                return null;
+            }
+
+            const precoConvertido = Number(valor);
+
+            return Number.isFinite(precoConvertido) ? precoConvertido : null;
         }
 
         function obterCardsCategoria() {
@@ -2982,15 +3000,34 @@
         }
 
         function obterSubtotalCarrinho() {
+            if (!carrinho.length) {
+                return 0;
+            }
+
+            const subtotalDisponivel = carrinho.every((item) => Number.isFinite(item.preco));
+
+            if (!subtotalDisponivel) {
+                return null;
+            }
+
             return carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
         }
 
         function obterDadosProduto(card) {
             if (!card) return null;
 
+            const produtoCatalogo = obterProdutoCatalogoPorId(card.dataset.productId || "");
+
+            if (produtoCatalogo) {
+                return {
+                    ...produtoCatalogo,
+                    imagemAlt: produtoCatalogo.nome,
+                };
+            }
+
             const nome = card.querySelector("h3")?.textContent.trim() || "";
             const categoria = card.querySelector(".product-category")?.textContent.trim() || "Produtos";
-            const precoTexto = card.querySelector(".price-value")?.textContent.trim() || "R$ 0,00";
+            const precoTexto = card.querySelector(".price-value")?.textContent.trim() || "";
             const preco = converterPrecoParaNumero(precoTexto);
             const imagem = card.querySelector(".product-image")?.getAttribute("src") || "";
             const imagemAlt = card.querySelector(".product-image")?.getAttribute("alt") || nome;
@@ -3000,7 +3037,7 @@
             }
 
             return {
-                id: criarIdProduto(nome),
+                id: card.dataset.productId || criarIdProduto(nome),
                 nome,
                 categoria,
                 preco,
@@ -3011,47 +3048,28 @@
 
         function enriquecerItemCarrinho(item = {}) {
             const quantidade = Math.max(1, Number(item.quantidade) || 1);
+            const dadosAtualizados = obterProdutoCatalogoPorId(item.id) || obterProdutoCatalogoPorNome(item.nome);
 
-            const cardCorrespondente = Array.from(produtos).find((card) => {
-                const dadosProduto = obterDadosProduto(card);
-
-                return dadosProduto && (dadosProduto.id === item.id || dadosProduto.nome === item.nome);
-            });
-
-            if (!cardCorrespondente) {
-                return {
-                    ...item,
-                    quantidade,
-                };
+            if (!dadosAtualizados) {
+                return catalogoProdutos.length
+                    ? null
+                    : {
+                        ...item,
+                        quantidade,
+                    };
             }
-
-            const dadosAtualizados = obterDadosProduto(cardCorrespondente);
 
             return {
                 ...item,
                 ...dadosAtualizados,
+                imagemAlt: dadosAtualizados.nome,
                 quantidade,
             };
         }
 
-        function obterCardProdutoPorNome(nome = "") {
-            const nomeLimpo = nome.trim();
-            const idProduto = criarIdProduto(nomeLimpo);
-
-            return Array.from(produtos).find((card) => {
-                const dadosProduto = obterDadosProduto(card);
-
-                if (!dadosProduto) {
-                    return false;
-                }
-
-                return dadosProduto.id === idProduto || dadosProduto.nome.toLowerCase() === nomeLimpo.toLowerCase();
-            }) || null;
-        }
-
         function obterItensPedidoAtual() {
             if (quickOrderOrigin === "carrinho") {
-                return carrinho.map(enriquecerItemCarrinho);
+                return carrinho.map(enriquecerItemCarrinho).filter(Boolean);
             }
 
             const nomeProduto = orderProductInput.value.trim();
@@ -3061,18 +3079,17 @@
                 return [];
             }
 
-            const cardCorrespondente = obterCardProdutoPorNome(nomeProduto);
+            const dadosProduto = obterProdutoCatalogoPorNome(nomeProduto);
 
-            if (!cardCorrespondente) {
+            if (!dadosProduto) {
                 return [{
                     id: criarIdProduto(nomeProduto) || "pedido-manual",
                     nome: nomeProduto,
+                    categoria: "Produtos",
                     preco: null,
                     quantidade,
                 }];
             }
-
-            const dadosProduto = obterDadosProduto(cardCorrespondente);
 
             return dadosProduto ? [{ ...dadosProduto, quantidade }] : [];
         }
@@ -3080,7 +3097,7 @@
         function obterResumoPedidoAtual() {
             const itens = obterItensPedidoAtual();
             const totalItens = itens.reduce((total, item) => total + item.quantidade, 0);
-            const subtotalDisponivel = itens.length > 0 && itens.every((item) => Number.isFinite(item.preco) && item.preco > 0);
+            const subtotalDisponivel = itens.length > 0 && itens.every((item) => Number.isFinite(item.preco));
             const subtotal = subtotalDisponivel
                 ? itens.reduce((total, item) => total + (item.preco * item.quantidade), 0)
                 : null;
@@ -3112,9 +3129,9 @@
                     <li class="order-cart-preview__item">
                         <div>
                             <strong>${item.nome}</strong>
-                            <span>${item.quantidade} x ${item.preco ? formatarMoeda(item.preco) : "valor sob consulta"}</span>
+                            <span>${item.quantidade} x ${Number.isFinite(item.preco) ? formatarMoeda(item.preco) : "valor sob consulta"}</span>
                         </div>
-                        <strong>${item.preco ? formatarMoeda(item.preco * item.quantidade) : "Sob consulta"}</strong>
+                        <strong>${Number.isFinite(item.preco) ? formatarMoeda(item.preco * item.quantidade) : "Sob consulta"}</strong>
                     </li>
                 `)
                 .join("");
@@ -3152,18 +3169,19 @@
                 return;
             }
 
-            carrinho = carrinho.map(enriquecerItemCarrinho);
+            carrinho = carrinho.map(enriquecerItemCarrinho).filter(Boolean);
 
             const totalItens = obterQuantidadeCarrinho();
             const subtotal = obterSubtotalCarrinho();
             const carrinhoVazio = carrinho.length === 0;
+            const subtotalTexto = subtotal == null ? "Sob consulta" : formatarMoeda(subtotal);
 
             cartCount.textContent = String(totalItens);
             cartSummaryText.textContent = totalItens === 0
                 ? "0 itens no carrinho"
                 : `${totalItens} ${totalItens === 1 ? "item" : "itens"} no carrinho`;
-            cartMetaSubtotal.textContent = formatarMoeda(subtotal);
-            cartSubtotal.textContent = formatarMoeda(subtotal);
+            cartMetaSubtotal.textContent = subtotalTexto;
+            cartSubtotal.textContent = subtotalTexto;
             cartEmptyState.toggleAttribute("hidden", !carrinhoVazio);
             cartItems.toggleAttribute("hidden", carrinhoVazio);
             checkoutCartButton.disabled = carrinhoVazio;
@@ -3185,9 +3203,9 @@
                                 <div>
                                     <span class="cart-item__category">${item.categoria}</span>
                                     <h3>${item.nome}</h3>
-                                    <p class="cart-item__unit">${formatarMoeda(item.preco)} por unidade</p>
+                                    <p class="cart-item__unit">${Number.isFinite(item.preco) ? `${formatarMoeda(item.preco)} por unidade` : "Valor sob consulta"}</p>
                                 </div>
-                                <strong class="cart-item__line-price">${formatarMoeda(item.preco * item.quantidade)}</strong>
+                                <strong class="cart-item__line-price">${Number.isFinite(item.preco) ? formatarMoeda(item.preco * item.quantidade) : "Sob consulta"}</strong>
                             </div>
                             <div class="cart-item__bottom">
                                 <div class="cart-item__qty">
@@ -3812,11 +3830,22 @@
             button.addEventListener("click", fecharCarrinho);
         });
 
-        addToCartButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                adicionarAoCarrinho(button.closest(".product-card"));
+        if (productsGrid) {
+            productsGrid.addEventListener("click", (event) => {
+                const whatsappTrigger = event.target.closest("[data-whatsapp-product]");
+
+                if (whatsappTrigger) {
+                    pedirWhatsApp(whatsappTrigger.dataset.whatsappProduct || "");
+                    return;
+                }
+
+                const addToCartButton = event.target.closest("[data-add-to-cart]");
+
+                if (!addToCartButton) return;
+
+                adicionarAoCarrinho(addToCartButton.closest(".product-card"));
             });
-        });
+        }
 
         if (cartItems) {
             cartItems.addEventListener("click", (event) => {
@@ -3918,11 +3947,13 @@
         });
 
         function aplicarFiltroProdutos(filtro) {
+            filtroProdutosAtivo = filtro;
+
             botoesCategoria.forEach((btn) => {
                 btn.classList.toggle("active", btn.dataset.filter === filtro);
             });
 
-            produtos.forEach((produto) => {
+            obterCardsProduto().forEach((produto) => {
                 const categoria = produto.dataset.categoria;
                 produto.style.display = filtro === "todos" || categoria === filtro ? "" : "none";
             });
@@ -3949,7 +3980,7 @@
 
         inicializarCarouselCategorias();
         sincronizarCarouselCategorias();
-        renderizarCarrinho();
+        carregarCatalogoProdutos();
         startHeroAutoplay();
     </script>
 </body>

@@ -1,0 +1,16 @@
+# Sensitive environment files
+.env
+backend/.env
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# OS artifacts
+.DS_Store
+
+# Debug logs
+npm-debug.log*
+
+# Intentionally not ignored:
+# package-lock.json files should be versioned when generated.

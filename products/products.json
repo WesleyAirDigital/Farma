@@ -1,0 +1,634 @@
+[
+  {
+    "id": "aceviton-cimed-vitamina-c-1g-10-comprimidos",
+    "nome": "Aceviton Cimed Vitamina C 1g 10 Comprimidos",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 15.74,
+    "imagem": "./images/produtos/ACEVITON - CIMED- 1G- 10COMPRIMIDOS - DE 19,96 POR 15,74.webp"
+  },
+  {
+    "id": "ambroxmel-sabor-mel-cimed-120ml",
+    "nome": "Ambroxmel Sabor Mel Cimed 120ml",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 15.74,
+    "imagem": "./images/produtos/AMBROXMEL - SABOR MEL - 15MG:5ML - CIMED - DE 26,73 POR 15,74.jpg"
+  },
+  {
+    "id": "doril-enxaqueca-4-comprimidos",
+    "nome": "Doril Enxaqueca 4 Comprimidos",
+    "categoria": "Medicamentos",
+    "descricao": "Medicamento de uso oral para apoio no alívio de sintomas, conforme orientação profissional.",
+    "preco": 12.28,
+    "imagem": "./images/produtos/Analgesico-e-Antitermico-Doril-Enxaqueca-250mg---250mg---65mg-4-Comprimidos- 12,28.webp"
+  },
+  {
+    "id": "aptamil-premium-1-0-a-6-meses-400g",
+    "nome": "Aptamil Premium 1 0 a 6 Meses 400g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 59.6,
+    "imagem": "./images/produtos/APTAMIL PREMIUM 1 - 0 A 6 MESES- 400G - 59,60.webp"
+  },
+  {
+    "id": "aptamil-premium-2-6-a-12-meses-800g",
+    "nome": "Aptamil Premium 2 6 a 12 Meses 800g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 102.6,
+    "imagem": "./images/produtos/APTAMIL PREMIUM- 2 - 6 A 12 MES - 800G- 102,60.webp"
+  },
+  {
+    "id": "aptamil-profutura-1-0-a-6-meses-800g",
+    "nome": "Aptamil Profutura 1 0 a 6 Meses 800g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 97.5,
+    "imagem": "./images/produtos/APTAMIL PREMIUN 1 - 0 A 6 MES - 800G - 97,50.png"
+  },
+  {
+    "id": "aptanutri-premium-3-1-a-3-anos-800g",
+    "nome": "Aptanutri Premium 3 1 a 3 Anos 800g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 114,
+    "imagem": "./images/produtos/APTANUTRI PRO FUTURA 3 - 1 A 3 - 800G - 114,00.webp"
+  },
+  {
+    "id": "babymed-rosa-cimed-45g",
+    "nome": "Babymed Rosa Cimed 45g",
+    "categoria": "Infantil",
+    "descricao": "Pomada para assaduras com cuidado suave para a pele delicada do bebê.",
+    "preco": 10.5,
+    "imagem": "./images/produtos/BABYMED- AZUL-CIMED- 45G- 10,50.png"
+  },
+  {
+    "id": "babymed-azul-cimed-45g",
+    "nome": "Babymed Azul Cimed 45g",
+    "categoria": "Infantil",
+    "descricao": "Pomada para assaduras com cuidado suave para a pele delicada do bebê.",
+    "preco": 10.5,
+    "imagem": "./images/produtos/Babymed-Azul - 100MG:G- CIMID- 10,50.png"
+  },
+  {
+    "id": "betacaroteno-pro-vitamina-a-la-san-day-60-capsulas",
+    "nome": "Betacaroteno Pró-Vitamina A La San Day 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 60,
+    "imagem": "./images/produtos/betacaroteno-pro-vit-ga-60c- LA SAN DAY - 60,00.jpeg"
+  },
+  {
+    "id": "ciflogex-mel-e-limao-cimed-12-pastilhas",
+    "nome": "Ciflogex Mel e Limão Cimed 12 Pastilhas",
+    "categoria": "Medicamentos",
+    "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
+    "preco": 24.2,
+    "imagem": "./images/produtos/CIFLOGEX - CIMED - SABOR MEL LIMAO - 3MG- 24,20.webp"
+  },
+  {
+    "id": "ciflogex-cereja-cimed-12-pastilhas",
+    "nome": "Ciflogex Cereja Cimed 12 Pastilhas",
+    "categoria": "Medicamentos",
+    "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
+    "preco": 24.2,
+    "imagem": "./images/produtos/ciflogex-cereja-cimed-12-pastilhas-3MG- 24,20.webp"
+  },
+  {
+    "id": "cimegripe-cimed-20-capsulas",
+    "nome": "Cimegripe Cimed 20 Cápsulas",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 20.99,
+    "imagem": "./images/produtos/CIMEGRIPE - 20CAPS- CIMED- DE 29,88 POR 20,99.webp"
+  },
+  {
+    "id": "colirio-moura-brasil-20ml",
+    "nome": "Colírio Moura Brasil 20ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oftálmica para o cuidado dos olhos e uso prático no dia a dia.",
+    "preco": 33.08,
+    "imagem": "./images/produtos/COLIRIO MOURA BRASIL - 20ML- 33,08.webp"
+  },
+  {
+    "id": "colirio-geolab-solucao-oftalmica-20ml",
+    "nome": "Colírio Geolab Solução Oftálmica 20ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oftálmica para o cuidado dos olhos e uso prático no dia a dia.",
+    "preco": 17.79,
+    "imagem": "./images/produtos/colirio-geolab-solucao-oftalmica-20ml - 17,79.webp"
+  },
+  {
+    "id": "nutren-kids-nestle-baunilha-350g",
+    "nome": "Nutren Kids Nestlé Baunilha 350g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 34.8,
+    "imagem": "./images/produtos/Complemento-Alimentar-Nutren-Kids- NESTLE-Baunilha-350g- 34,80.png"
+  },
+  {
+    "id": "complexo-b-la-san-day-90-capsulas",
+    "nome": "Complexo B La San Day 90 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 139.9,
+    "imagem": "./images/produtos/COMPLEXO B - LA SAN DAY - 90 CPS - 139,90.webp"
+  },
+  {
+    "id": "ninho-fases-1-a-3-anos-800g",
+    "nome": "Ninho Fases 1 a 3 Anos 800g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 55,
+    "imagem": "./images/produtos/composto-lacteo-ninho-fases-1 A 3 ANOS -lata-800g-55,00.webp"
+  },
+  {
+    "id": "creatina-100-pure-absolut-nutrition-300g",
+    "nome": "Creatina 100% Pure Absolut Nutrition 300g",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento de creatina para apoiar força, desempenho e rotina esportiva.",
+    "preco": 72,
+    "imagem": "./images/produtos/creatina_100_pure_absolut_nutrition_300g- 72,00.webp"
+  },
+  {
+    "id": "dermaone-sabonete-liquido-intimo-200ml-2-frascos",
+    "nome": "DermaOne Sabonete Líquido Íntimo 200ml 2 Frascos",
+    "categoria": "Beleza",
+    "descricao": "Sabonete íntimo para higiene diária com sensação de conforto e cuidado suave.",
+    "preco": 17.99,
+    "imagem": "./images/produtos/DermaOne- SABONETE LIQUIDO INTIMO- 200ML- 2 FRASCOS- 17,99.jpg"
+  },
+  {
+    "id": "dipirona-monoidratada-vitamedic-1g-10-comprimidos",
+    "nome": "Dipirona Monoidratada Vitamedic 1g 10 Comprimidos",
+    "categoria": "Medicamentos",
+    "descricao": "Medicamento de uso oral para apoio no alívio de sintomas, conforme orientação profissional.",
+    "preco": 18.9,
+    "imagem": "./images/produtos/DIPIRONA MONOIDRATA- VITAMEDIC- 10CPS - 18,90.webp"
+  },
+  {
+    "id": "dorflex-10-comprimidos",
+    "nome": "Dorflex 10 Comprimidos",
+    "categoria": "Medicamentos",
+    "descricao": "Medicamento de uso oral para apoio no alívio de sintomas, conforme orientação profissional.",
+    "preco": 8.92,
+    "imagem": "./images/produtos/DORFLEX- 10 COMPRIMIDOS - 8,92.png"
+  },
+  {
+    "id": "expec-xarope-120ml",
+    "nome": "Expec Xarope 120ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oral de uso prático para complementar o cuidado diário conforme orientação.",
+    "preco": 55.4,
+    "imagem": "./images/produtos/EXPEC - XAROPE - 12OML- 55,40.webp"
+  },
+  {
+    "id": "nan-comfor-hmo-0-a-6-meses-800g",
+    "nome": "Nan Comfor HMO 0 a 6 Meses 800g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 90.99,
+    "imagem": "./images/produtos/Formula-Infantil-NAN-Comfor-HMO-de-0-a-6-meses-800g - 90,99.png"
+  },
+  {
+    "id": "nestogeno-2-6-a-12-meses-400g",
+    "nome": "Nestogeno 2 6 a 12 Meses 400g",
+    "categoria": "Infantil",
+    "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
+    "preco": 39.9,
+    "imagem": "./images/produtos/Formula-Infantil-Nestogeno 6 A 2-400g- 39,90.webp"
+  },
+  {
+    "id": "nan-comfor-hmo-0-a-6-meses-400g",
+    "nome": "Nan Comfor HMO 0 a 6 Meses 400g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 54.9,
+    "imagem": "./images/produtos/Formula-Infantil-para-lactentes-NAN-Comfor-HMO-de-0-a-6-meses-400g- 54,90.png"
+  },
+  {
+    "id": "fralda-mili-love-care-g-24-unidades",
+    "nome": "Fralda Mili Love & Care G 24 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
+    "preco": 59.99,
+    "imagem": "./images/produtos/FRALDA - MILI LOVE CARE - G 24 - 59,99.jpg"
+  },
+  {
+    "id": "fralda-mili-love-care-xxxg-18-unidades",
+    "nome": "Fralda Mili Love & Care XXXG 18 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
+    "preco": 59.99,
+    "imagem": "./images/produtos/FRALDA MILI  LOVE CARE - XXXG- 18 FRALDAS - 59,99.webp"
+  },
+  {
+    "id": "fralda-mili-love-care-g-48-unidades",
+    "nome": "Fralda Mili Love & Care G 48 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
+    "preco": 59.99,
+    "imagem": "./images/produtos/Fralda mili G 48 fraldas 59,99.png"
+  },
+  {
+    "id": "fralda-mili-love-care-m-52-unidades",
+    "nome": "Fralda Mili Love & Care M 52 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
+    "preco": 59.99,
+    "imagem": "./images/produtos/FRALDA MILI LOVE CARE - M 52 - 59,99.webp"
+  },
+  {
+    "id": "fralda-mili-love-care-xg-44-unidades",
+    "nome": "Fralda Mili Love & Care XG 44 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
+    "preco": 59.99,
+    "imagem": "./images/produtos/FRALDA MILI LOVE CARE - XG 44 - 59,99.jpg"
+  },
+  {
+    "id": "gammadrol-homem-la-san-day-60-capsulas",
+    "nome": "Gammadrol Homem La San Day 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 149.9,
+    "imagem": "./images/produtos/GAMMADROL HOMEM- LA SAN DAY- 60 CPS -149,90.webp"
+  },
+  {
+    "id": "ibupril-400mg-8-capsulas",
+    "nome": "Ibupril 400mg 8 Cápsulas",
+    "categoria": "Medicamentos",
+    "descricao": "Medicamento de uso oral para apoio no alívio de sintomas, conforme orientação profissional.",
+    "preco": 21.59,
+    "imagem": "./images/produtos/ibupril-400mg-com-8-capsulas- 21,59.png"
+  },
+  {
+    "id": "imefort-cabelos-pele-e-unhas-60-capsulas",
+    "nome": "Imefort Cabelos Pele e Unhas 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 117,
+    "imagem": "./images/produtos/IMEFORT- CABELOS PELE UNHAS - 60CAPS- 117,00.webp"
+  },
+  {
+    "id": "inalador-vick",
+    "nome": "Inalador Vick",
+    "categoria": "Medicamentos",
+    "descricao": "Inalador nasal prático para sensação refrescante e apoio ao cuidado respiratório.",
+    "preco": 20.09,
+    "imagem": "./images/produtos/INALADOR VICK - 20,09.webp"
+  },
+  {
+    "id": "inibi-kon-laranja-moro-la-san-day-60-capsulas",
+    "nome": "Inibi Kon Laranja Moro La San Day 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 120,
+    "imagem": "./images/produtos/INIBI KON - LARANJA MORO - 400 MG 60CPS -120,00.jpeg"
+  },
+  {
+    "id": "inibikon-black-la-san-day-60-capsulas",
+    "nome": "Inibikon Black La San Day 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 149.7,
+    "imagem": "./images/produtos/INIBIKON BLACK- 60 CAPSULAS - LAN SAN DAY - 149,70.jpg"
+  },
+  {
+    "id": "inibikon-mastigavel-la-san-day-60-capsulas",
+    "nome": "Inibikon Mastigável La San Day 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 149.7,
+    "imagem": "./images/produtos/inibikon-mastigavel-60cps-la-san-day- 149,70.webp"
+  },
+  {
+    "id": "la-san-day-taurina-cafeina-10-capsulas",
+    "nome": "La San Day Taurina + Cafeína 10 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para apoiar energia, foco e disposição na rotina diária.",
+    "preco": 39.06,
+    "imagem": "./images/produtos/LA SAN DAY - TAURINA+ CAFEINA - 10 CAPSULAS - 39,06.jpg"
+  },
+  {
+    "id": "lavitan-a-z-mulher-cimed-60-capsulas",
+    "nome": "Lavitan A-Z Mulher Cimed 60 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 39.99,
+    "imagem": "./images/produtos/LAVITAN - A-Z + MULHER - 60CPS- CIMED - 39,99.jpeg"
+  },
+  {
+    "id": "lavitan-a-z-original-cimed",
+    "nome": "Lavitan A-Z Original Cimed",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 39.99,
+    "imagem": "./images/produtos/LAVITAN - CIMED - A Z ORIGINAL- 39,99.webp"
+  },
+  {
+    "id": "lavitan-cabelos-e-unhas-cimed-30-capsulas",
+    "nome": "Lavitan Cabelos e Unhas Cimed 30 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 40,
+    "imagem": "./images/produtos/Lavitan cabelos e unhas 30 cps - 40,00.jpeg"
+  },
+  {
+    "id": "lavitan-patati-patata-cimed-60-comprimidos",
+    "nome": "Lavitan Patati Patatá Cimed 60 Comprimidos",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 24.99,
+    "imagem": "./images/produtos/LAVITAN PATATI PATATA- CIMED - 60 COMPRIMIDOS- DE 49,99 POR 24,99.webp"
+  },
+  {
+    "id": "magnesio-dimalato-la-san-day-90-capsulas",
+    "nome": "Magnésio Dimalato La San Day 90 Cápsulas",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 199.99,
+    "imagem": "./images/produtos/MAGNESIO DIMALADO- LA SAN DAY - 90 CAPSULAS - 199,99.jpg"
+  },
+  {
+    "id": "meu-bebe-soft-toalhas-umedecidas-100-folhas",
+    "nome": "Meu Bebê Soft Toalhas Umedecidas 100 Folhas",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 12,
+    "imagem": "./images/produtos/MEU BEBE SOFT- 100 FOLHAS - TOALHA UMEDECIDAS - 12,00.webp"
+  },
+  {
+    "id": "nan-supreme-pro-0-a-6-meses-400g",
+    "nome": "Nan Supreme Pro 0 a 6 Meses 400g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 71.9,
+    "imagem": "./images/produtos/NAN SUPREME PRO- 0 A 6 MESES - 400G- 71,90.webp"
+  },
+  {
+    "id": "narix-cimed-0-5mg-ml-30ml",
+    "nome": "Narix Cimed 0,5mg/ml 30ml",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 5.25,
+    "imagem": "./images/produtos/narix 0,5mg_ml - CIMED - DE 10,49 POR 5,25.webp"
+  },
+  {
+    "id": "colirio-neo-brasil-neo-quimica-20ml",
+    "nome": "Colírio Neo Brasil Neo Química 20ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oftálmica para o cuidado dos olhos e uso prático no dia a dia.",
+    "preco": 19.88,
+    "imagem": "./images/produtos/NEO QUIMICA- COLIRIO NEO BRASIL- 20ML- 19,88.webp"
+  },
+  {
+    "id": "neosoro-solucao-nasal-neo-quimica-30ml",
+    "nome": "Neosoro Solução Nasal Neo Química 30ml",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 7.87,
+    "imagem": "./images/produtos/neosoro-solucao-nasal-30ml.- NEO QUIMICA - DE 12,95 POR 7,87.png"
+  },
+  {
+    "id": "mucilon-arroz-nestle-180g",
+    "nome": "Mucilon Arroz Nestlé 180g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 9.99,
+    "imagem": "./images/produtos/NESTLE MUCILON - ARROZ - 180G - 9,99.jpeg"
+  },
+  {
+    "id": "mucilon-arroz-e-aveia-nestle-400g",
+    "nome": "Mucilon Arroz e Aveia Nestlé 400g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 20,
+    "imagem": "./images/produtos/NESTLE MUCILON- ARROZ E AVEIA - 400G - 20,00.webp"
+  },
+  {
+    "id": "ninho-leite-integral-instantaneo-nestle-380g",
+    "nome": "Ninho Leite Integral Instantâneo Nestlé 380g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 29.9,
+    "imagem": "./images/produtos/NESTLE NINHO- LEITE INTEGRA; INSTANTANEO - 380G- 29,90.webp"
+  },
+  {
+    "id": "nutren-senior-nestle-chocolate-740g",
+    "nome": "Nutren Senior Nestlé Chocolate 740g",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
+    "preco": 187.91,
+    "imagem": "./images/produtos/NESTLE- NUTREN  SENIOR - SABOR CHOCOLATE 740G - 187,91.webp"
+  },
+  {
+    "id": "nimesulida-100mg-12-comprimidos",
+    "nome": "Nimesulida 100mg 12 Comprimidos",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 18.89,
+    "imagem": "./images/produtos/nimesulida-100mg-c-12cpr- DE 25,82 POR 18,89.webp"
+  },
+  {
+    "id": "papegu-baby-toalhas-umedecidas-48-unidades",
+    "nome": "Papegu Baby Toalhas Umedecidas 48 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 4.99,
+    "imagem": "./images/produtos/papegu baby- 48 unidaes - toalha umedecias - 4,99.webp"
+  },
+  {
+    "id": "papegu-baby-toalhas-umedecidas-96-unidades",
+    "nome": "Papegu Baby Toalhas Umedecidas 96 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 9.99,
+    "imagem": "./images/produtos/papegu baby- 96 unidaes - toalha umedecias - 9,99.webp"
+  },
+  {
+    "id": "ciflogex-menta-e-limao-cimed-12-pastilhas",
+    "nome": "Ciflogex Menta e Limão Cimed 12 Pastilhas",
+    "categoria": "Medicamentos",
+    "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
+    "preco": 24.2,
+    "imagem": "./images/produtos/pastilha-de-garganta-ciflogex-3mg-menta-e-limao-com-12- 24,20.webp"
+  },
+  {
+    "id": "perfenol-5-em-1-20-capsulas",
+    "nome": "Perfenol 5 em 1 20 Cápsulas",
+    "categoria": "Ofertas",
+    "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
+    "preco": 15.74,
+    "imagem": "./images/produtos/PERFENOL - 5 EM 1 - 20 CAPSULAS - DE 24,50 POR 15,74.webp"
+  },
+  {
+    "id": "personalidade-baby-plus-toalhas-umedecidas-100-unidades",
+    "nome": "Personalidade Baby Plus Toalhas Umedecidas 100 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 13,
+    "imagem": "./images/produtos/PERSONALIDE BABY - 100 UNIDADES - TOALHA UMEDECIDA - 13,00.webp"
+  },
+  {
+    "id": "personalidade-baby-plus-toalhas-umedecidas-50-unidades",
+    "nome": "Personalidade Baby Plus Toalhas Umedecidas 50 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 7,
+    "imagem": "./images/produtos/PERSONALIDE BABY - 50 UNIDADES - TOALHA UMEDECIDA - 7,00.webp"
+  },
+  {
+    "id": "petty-baby-plus-toalhas-umedecidas-50-unidades",
+    "nome": "Petty Baby Plus Toalhas Umedecidas 50 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 5.99,
+    "imagem": "./images/produtos/PETTY BABY  PLUS- 5OUN- TOALHAS UMEDECIDAS- 5,99.webp"
+  },
+  {
+    "id": "petty-baby-plus-toalhas-umedecidas-100-unidades",
+    "nome": "Petty Baby Plus Toalhas Umedecidas 100 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 10.99,
+    "imagem": "./images/produtos/PETTY BABY PLUS - 100 TOALHAS UMEDECIDAS - 10,99.jpg"
+  },
+  {
+    "id": "renu-fresh-bausch-lomb-120ml",
+    "nome": "Renu Fresh Bausch + Lomb 120ml",
+    "categoria": "Higiene",
+    "descricao": "Solução para lentes de contato com limpeza, hidratação e conservação diária.",
+    "preco": 54.74,
+    "imagem": "./images/produtos/RENU - BAUSCH+LOM- FRESH - 120ML-54,74.webp"
+  },
+  {
+    "id": "renu-advanced-bausch-lomb-475ml-gratis-120ml",
+    "nome": "Renu Advanced Bausch + Lomb 475ml + Grátis 120ml",
+    "categoria": "Higiene",
+    "descricao": "Solução para lentes de contato com limpeza, hidratação e conservação diária.",
+    "preco": 72,
+    "imagem": "./images/produtos/RENU - BAUSCH+LOMB- ADVANCED- 475ML- GRATIS 120ML- 72,00.webp"
+  },
+  {
+    "id": "sal-de-fruta-eno-limao-2-unidades",
+    "nome": "Sal de Fruta Eno Limão 2 Unidades",
+    "categoria": "Medicamentos",
+    "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
+    "preco": 5.24,
+    "imagem": "./images/produtos/SAL DE FRUTA ENO- SABOR LIMAO - 2UNIDADE - 5,24.webp"
+  },
+  {
+    "id": "sal-de-fruta-eno-tradicional-2-unidades",
+    "nome": "Sal de Fruta Eno Tradicional 2 Unidades",
+    "categoria": "Medicamentos",
+    "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
+    "preco": 5.24,
+    "imagem": "./images/produtos/SAL DE FRUTA ENO- SABOR TRADICIONAL - 2UNIDADE - 5G- 5,24.webp"
+  },
+  {
+    "id": "sal-de-fruta-eno-abacaxi-2-envelopes",
+    "nome": "Sal de Fruta Eno Abacaxi 2 Envelopes",
+    "categoria": "Medicamentos",
+    "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
+    "preco": 5.24,
+    "imagem": "./images/produtos/Sal-de-Fruta-Eno-Abacaxi-5g-2-Envelopes-1 - 5,24.webp"
+  },
+  {
+    "id": "sal-de-fruta-eno-guarana-2-envelopes",
+    "nome": "Sal de Fruta Eno Guaraná 2 Envelopes",
+    "categoria": "Medicamentos",
+    "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
+    "preco": 5.24,
+    "imagem": "./images/produtos/Sal-de-Fruta-Eno-Guarana-5g-2-Envelopes - 5,24.webp"
+  },
+  {
+    "id": "sininho-toalhas-umedecidas-50-unidades",
+    "nome": "Sininho Toalhas Umedecidas 50 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 5.99,
+    "imagem": "./images/produtos/sininho-50un - toalhas umedecidas - 5,99.webp"
+  },
+  {
+    "id": "stilgrip-mel-e-limao-sache-5g",
+    "nome": "Stilgrip Mel e Limão Sachê 5g",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oral de uso prático para complementar o cuidado diário conforme orientação.",
+    "preco": 3.88,
+    "imagem": "./images/produtos/stilgrip- sabor mel e limao-sache-5g- 3,88.webp"
+  },
+  {
+    "id": "sustagen-kids-sabor-chocolate-450g",
+    "nome": "Sustagen Kids Sabor Chocolate 450g",
+    "categoria": "Infantil",
+    "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
+    "preco": 29.99,
+    "imagem": "./images/produtos/SUSTAGEN KIDS - SABOR CHOCOLATE - 450G - 29,99.webp"
+  },
+  {
+    "id": "sininho-toalhas-umedecidas-100-unidades",
+    "nome": "Sininho Toalhas Umedecidas 100 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 8.99,
+    "imagem": "./images/produtos/TOALHAS UMEDECIDA- SININHO - 100UNI- 8,99.jpg"
+  },
+  {
+    "id": "papegu-baby-toalhas-umedecidas-50-unidades",
+    "nome": "Papegu Baby Toalhas Umedecidas 50 Unidades",
+    "categoria": "Infantil",
+    "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
+    "preco": 4.99,
+    "imagem": "./images/produtos/TOALHAS UMEDECIDAS - 5OUN- PAPEGU BABY- 4,99.png"
+  },
+  {
+    "id": "unifort-energy",
+    "nome": "Unifort Energy",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento alimentar para apoiar energia, foco e disposição na rotina diária.",
+    "preco": 77.99,
+    "imagem": "./images/produtos/Unifort energy 77,99.webp"
+  },
+  {
+    "id": "xarope-vick-pediatrico-120ml",
+    "nome": "Xarope Vick Pediátrico 120ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oral de uso prático para complementar o cuidado diário conforme orientação.",
+    "preco": 40.15,
+    "imagem": "./images/produtos/VICK- XAROPE VICK PEDIATRICO- 120ML- 40,15.webp"
+  },
+  {
+    "id": "whey-3w-absolut-nutrition-chocolate-belga-900g",
+    "nome": "Whey 3W Absolut Nutrition Chocolate Belga 900g",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento proteico para apoiar a rotina de treinos e recuperação muscular.",
+    "preco": 187,
+    "imagem": "./images/produtos/WHEY 3W MINOT 900G- chocolate belga -Absolut Nutrition 187,00.png"
+  },
+  {
+    "id": "whey-3w-absolut-nutrition-doce-de-leite-900g",
+    "nome": "Whey 3W Absolut Nutrition Doce de Leite 900g",
+    "categoria": "Vitaminas",
+    "descricao": "Suplemento proteico para apoiar a rotina de treinos e recuperação muscular.",
+    "preco": 187.91,
+    "imagem": "./images/produtos/WHEY 3W MINOT 900G- doce de leite -Absolut Nutrition 187,91.png"
+  },
+  {
+    "id": "xarope-vick-44e-guaifenesina-120ml",
+    "nome": "Xarope Vick 44E Guaifenesina 120ml",
+    "categoria": "Medicamentos",
+    "descricao": "Solução oral de uso prático para complementar o cuidado diário conforme orientação.",
+    "preco": 48.38,
+    "imagem": "./images/produtos/Xarope-Guaifenesina-44E-Vick-120ml - 48,38.webp"
+  },
+  {
+    "id": "you-can-body-breaker-pre-workout-maca-verde",
+    "nome": "You Can Body Breaker Pré-Workout Maçã Verde",
+    "categoria": "Vitaminas",
+    "descricao": "Pré-treino em pó para apoiar energia, foco e desempenho antes das atividades físicas.",
+    "preco": 85,
+    "imagem": "./images/produtos/YOU CAN - BODY BREAKER - PRE WORKOUT - SABOR MAÇA VERDE - 85,00.webp"
+  }
+]
