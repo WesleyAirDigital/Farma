@@ -1,7 +1,7 @@
 [
   {
     "id": "aceviton-cimed-vitamina-c-1g-10-comprimidos",
-    "nome": "Aceviton Cimed Vitamina C 1g 10 Comprimidos",
+    "nome": "Aceviton Vitamina C 1g 10 Comprimidos",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 15.74,
@@ -9,7 +9,7 @@
   },
   {
     "id": "ambroxmel-sabor-mel-cimed-120ml",
-    "nome": "Ambroxmel Sabor Mel Cimed 120ml",
+    "nome": "Ambroxmel Xarope Sabor Mel 120ml",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 15.74,
@@ -25,7 +25,7 @@
   },
   {
     "id": "aptamil-premium-1-0-a-6-meses-400g",
-    "nome": "Aptamil Premium 1 0 a 6 Meses 400g",
+    "nome": "Aptamil Premium 1 Fórmula Infantil 400g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 59.6,
@@ -33,7 +33,7 @@
   },
   {
     "id": "aptamil-premium-2-6-a-12-meses-800g",
-    "nome": "Aptamil Premium 2 6 a 12 Meses 800g",
+    "nome": "Aptamil Premium 2 Fórmula Infantil 800g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 102.6,
@@ -41,7 +41,7 @@
   },
   {
     "id": "aptamil-profutura-1-0-a-6-meses-800g",
-    "nome": "Aptamil Profutura 1 0 a 6 Meses 800g",
+    "nome": "Aptamil Profutura 1 Fórmula Infantil 800g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 97.5,
@@ -49,7 +49,7 @@
   },
   {
     "id": "aptanutri-premium-3-1-a-3-anos-800g",
-    "nome": "Aptanutri Premium 3 1 a 3 Anos 800g",
+    "nome": "Aptanutri Premium 3 Fórmula Infantil 800g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 114,
@@ -57,7 +57,7 @@
   },
   {
     "id": "babymed-rosa-cimed-45g",
-    "nome": "Babymed Rosa Cimed 45g",
+    "nome": "Babymed Rosa Pomada para Assaduras 45g",
     "categoria": "Infantil",
     "descricao": "Pomada para assaduras com cuidado suave para a pele delicada do bebê.",
     "preco": 10.5,
@@ -65,7 +65,7 @@
   },
   {
     "id": "babymed-azul-cimed-45g",
-    "nome": "Babymed Azul Cimed 45g",
+    "nome": "Babymed Azul Pomada para Assaduras 45g",
     "categoria": "Infantil",
     "descricao": "Pomada para assaduras com cuidado suave para a pele delicada do bebê.",
     "preco": 10.5,
@@ -73,7 +73,7 @@
   },
   {
     "id": "betacaroteno-pro-vitamina-a-la-san-day-60-capsulas",
-    "nome": "Betacaroteno Pró-Vitamina A La San Day 60 Cápsulas",
+    "nome": "Betacaroteno Pró-Vitamina A 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 60,
@@ -81,7 +81,7 @@
   },
   {
     "id": "ciflogex-mel-e-limao-cimed-12-pastilhas",
-    "nome": "Ciflogex Mel e Limão Cimed 12 Pastilhas",
+    "nome": "Ciflogex Mel e Limão 12 Pastilhas",
     "categoria": "Medicamentos",
     "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
     "preco": 24.2,
@@ -89,7 +89,7 @@
   },
   {
     "id": "ciflogex-cereja-cimed-12-pastilhas",
-    "nome": "Ciflogex Cereja Cimed 12 Pastilhas",
+    "nome": "Ciflogex Cereja 12 Pastilhas",
     "categoria": "Medicamentos",
     "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
     "preco": 24.2,
@@ -97,7 +97,7 @@
   },
   {
     "id": "cimegripe-cimed-20-capsulas",
-    "nome": "Cimegripe Cimed 20 Cápsulas",
+    "nome": "Cimegripe 20 Cápsulas",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 20.99,
@@ -121,7 +121,7 @@
   },
   {
     "id": "nutren-kids-nestle-baunilha-350g",
-    "nome": "Nutren Kids Nestlé Baunilha 350g",
+    "nome": "Nutren Kids Baunilha 350g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 34.8,
@@ -129,7 +129,7 @@
   },
   {
     "id": "complexo-b-la-san-day-90-capsulas",
-    "nome": "Complexo B La San Day 90 Cápsulas",
+    "nome": "Complexo B 90 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 139.9,
@@ -137,7 +137,7 @@
   },
   {
     "id": "ninho-fases-1-a-3-anos-800g",
-    "nome": "Ninho Fases 1 a 3 Anos 800g",
+    "nome": "Ninho Fases 1+ Composto Lácteo 800g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 55,
@@ -145,7 +145,7 @@
   },
   {
     "id": "creatina-100-pure-absolut-nutrition-300g",
-    "nome": "Creatina 100% Pure Absolut Nutrition 300g",
+    "nome": "Creatina 100% Pure 300g",
     "categoria": "Vitaminas",
     "descricao": "Suplemento de creatina para apoiar força, desempenho e rotina esportiva.",
     "preco": 72,
@@ -153,7 +153,7 @@
   },
   {
     "id": "dermaone-sabonete-liquido-intimo-200ml-2-frascos",
-    "nome": "DermaOne Sabonete Líquido Íntimo 200ml 2 Frascos",
+    "nome": "DermaOne Sabonete Líquido Íntimo 2 Frascos 200ml",
     "categoria": "Beleza",
     "descricao": "Sabonete íntimo para higiene diária com sensação de conforto e cuidado suave.",
     "preco": 17.99,
@@ -161,7 +161,7 @@
   },
   {
     "id": "dipirona-monoidratada-vitamedic-1g-10-comprimidos",
-    "nome": "Dipirona Monoidratada Vitamedic 1g 10 Comprimidos",
+    "nome": "Dipirona Monoidratada 1g 10 Comprimidos",
     "categoria": "Medicamentos",
     "descricao": "Medicamento de uso oral para apoio no alívio de sintomas, conforme orientação profissional.",
     "preco": 18.9,
@@ -185,7 +185,7 @@
   },
   {
     "id": "nan-comfor-hmo-0-a-6-meses-800g",
-    "nome": "Nan Comfor HMO 0 a 6 Meses 800g",
+    "nome": "NAN Comfor HMO Fórmula Infantil 800g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 90.99,
@@ -193,7 +193,7 @@
   },
   {
     "id": "nestogeno-2-6-a-12-meses-400g",
-    "nome": "Nestogeno 2 6 a 12 Meses 400g",
+    "nome": "Nestogeno 2 Fórmula Infantil 400g",
     "categoria": "Infantil",
     "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
     "preco": 39.9,
@@ -201,7 +201,7 @@
   },
   {
     "id": "nan-comfor-hmo-0-a-6-meses-400g",
-    "nome": "Nan Comfor HMO 0 a 6 Meses 400g",
+    "nome": "NAN Comfor HMO Fórmula Infantil 400g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 54.9,
@@ -209,7 +209,7 @@
   },
   {
     "id": "fralda-mili-love-care-g-24-unidades",
-    "nome": "Fralda Mili Love & Care G 24 Unidades",
+    "nome": "Fralda Mili Love & Care Tamanho G 24 Unidades",
     "categoria": "Infantil",
     "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
     "preco": 59.99,
@@ -217,7 +217,7 @@
   },
   {
     "id": "fralda-mili-love-care-xxxg-18-unidades",
-    "nome": "Fralda Mili Love & Care XXXG 18 Unidades",
+    "nome": "Fralda Mili Love & Care Tamanho XXXG 18 Unidades",
     "categoria": "Infantil",
     "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
     "preco": 59.99,
@@ -225,7 +225,7 @@
   },
   {
     "id": "fralda-mili-love-care-g-48-unidades",
-    "nome": "Fralda Mili Love & Care G 48 Unidades",
+    "nome": "Fralda Mili Love & Care Tamanho G 48 Unidades",
     "categoria": "Infantil",
     "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
     "preco": 59.99,
@@ -233,7 +233,7 @@
   },
   {
     "id": "fralda-mili-love-care-m-52-unidades",
-    "nome": "Fralda Mili Love & Care M 52 Unidades",
+    "nome": "Fralda Mili Love & Care Tamanho M 52 Unidades",
     "categoria": "Infantil",
     "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
     "preco": 59.99,
@@ -241,7 +241,7 @@
   },
   {
     "id": "fralda-mili-love-care-xg-44-unidades",
-    "nome": "Fralda Mili Love & Care XG 44 Unidades",
+    "nome": "Fralda Mili Love & Care Tamanho XG 44 Unidades",
     "categoria": "Infantil",
     "descricao": "Fralda descartável com toque macio e boa absorção para a rotina de cuidados do bebê.",
     "preco": 59.99,
@@ -249,7 +249,7 @@
   },
   {
     "id": "gammadrol-homem-la-san-day-60-capsulas",
-    "nome": "Gammadrol Homem La San Day 60 Cápsulas",
+    "nome": "Gammadrol Homem 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 149.9,
@@ -281,7 +281,7 @@
   },
   {
     "id": "inibi-kon-laranja-moro-la-san-day-60-capsulas",
-    "nome": "Inibi Kon Laranja Moro La San Day 60 Cápsulas",
+    "nome": "Inibi Kon Laranja Moro 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 120,
@@ -289,7 +289,7 @@
   },
   {
     "id": "inibikon-black-la-san-day-60-capsulas",
-    "nome": "Inibikon Black La San Day 60 Cápsulas",
+    "nome": "Inibikon Black 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 149.7,
@@ -297,7 +297,7 @@
   },
   {
     "id": "inibikon-mastigavel-la-san-day-60-capsulas",
-    "nome": "Inibikon Mastigável La San Day 60 Cápsulas",
+    "nome": "Inibikon Mastigável 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 149.7,
@@ -305,7 +305,7 @@
   },
   {
     "id": "la-san-day-taurina-cafeina-10-capsulas",
-    "nome": "La San Day Taurina + Cafeína 10 Cápsulas",
+    "nome": "Taurina + Cafeína 10 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para apoiar energia, foco e disposição na rotina diária.",
     "preco": 39.06,
@@ -313,7 +313,7 @@
   },
   {
     "id": "lavitan-a-z-mulher-cimed-60-capsulas",
-    "nome": "Lavitan A-Z Mulher Cimed 60 Cápsulas",
+    "nome": "Lavitan A-Z Mulher 60 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 39.99,
@@ -321,7 +321,7 @@
   },
   {
     "id": "lavitan-a-z-original-cimed",
-    "nome": "Lavitan A-Z Original Cimed",
+    "nome": "Lavitan A-Z Original 90 Comprimidos",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 39.99,
@@ -329,7 +329,7 @@
   },
   {
     "id": "lavitan-cabelos-e-unhas-cimed-30-capsulas",
-    "nome": "Lavitan Cabelos e Unhas Cimed 30 Cápsulas",
+    "nome": "Lavitan Cabelos e Unhas 30 Comprimidos",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 40,
@@ -337,7 +337,7 @@
   },
   {
     "id": "lavitan-patati-patata-cimed-60-comprimidos",
-    "nome": "Lavitan Patati Patatá Cimed 60 Comprimidos",
+    "nome": "Lavitan Patati Patatá 60 Comprimidos",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 24.99,
@@ -345,7 +345,7 @@
   },
   {
     "id": "magnesio-dimalato-la-san-day-90-capsulas",
-    "nome": "Magnésio Dimalato La San Day 90 Cápsulas",
+    "nome": "Magnésio Dimalato 90 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 199.99,
@@ -353,7 +353,7 @@
   },
   {
     "id": "meu-bebe-soft-toalhas-umedecidas-100-folhas",
-    "nome": "Meu Bebê Soft Toalhas Umedecidas 100 Folhas",
+    "nome": "Meu Bebê Soft Toalhas Umedecidas 100 Unidades",
     "categoria": "Infantil",
     "descricao": "Toalhas umedecidas para limpeza delicada e prática no cuidado diário infantil.",
     "preco": 12,
@@ -361,7 +361,7 @@
   },
   {
     "id": "nan-supreme-pro-0-a-6-meses-400g",
-    "nome": "Nan Supreme Pro 0 a 6 Meses 400g",
+    "nome": "NAN Supreme Pro Fórmula Infantil 400g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 71.9,
@@ -369,7 +369,7 @@
   },
   {
     "id": "narix-cimed-0-5mg-ml-30ml",
-    "nome": "Narix Cimed 0,5mg/ml 30ml",
+    "nome": "Narix Solução Nasal 0,5mg/ml 30ml",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 5.25,
@@ -377,7 +377,7 @@
   },
   {
     "id": "colirio-neo-brasil-neo-quimica-20ml",
-    "nome": "Colírio Neo Brasil Neo Química 20ml",
+    "nome": "Colírio Neo Brasil 20ml",
     "categoria": "Medicamentos",
     "descricao": "Solução oftálmica para o cuidado dos olhos e uso prático no dia a dia.",
     "preco": 19.88,
@@ -385,7 +385,7 @@
   },
   {
     "id": "neosoro-solucao-nasal-neo-quimica-30ml",
-    "nome": "Neosoro Solução Nasal Neo Química 30ml",
+    "nome": "Neosoro Solução Nasal 30ml",
     "categoria": "Ofertas",
     "descricao": "Oferta especial com condição promocional para pedido rápido e prático pelo WhatsApp.",
     "preco": 7.87,
@@ -393,7 +393,7 @@
   },
   {
     "id": "mucilon-arroz-nestle-180g",
-    "nome": "Mucilon Arroz Nestlé 180g",
+    "nome": "Mucilon Arroz 180g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 9.99,
@@ -401,7 +401,7 @@
   },
   {
     "id": "mucilon-arroz-e-aveia-nestle-400g",
-    "nome": "Mucilon Arroz e Aveia Nestlé 400g",
+    "nome": "Mucilon Arroz e Aveia 400g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 20,
@@ -409,7 +409,7 @@
   },
   {
     "id": "ninho-leite-integral-instantaneo-nestle-380g",
-    "nome": "Ninho Leite Integral Instantâneo Nestlé 380g",
+    "nome": "Ninho Leite Integral Instantâneo 380g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 29.9,
@@ -417,7 +417,7 @@
   },
   {
     "id": "nutren-senior-nestle-chocolate-740g",
-    "nome": "Nutren Senior Nestlé Chocolate 740g",
+    "nome": "Nutren Senior Chocolate 740g",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para complementar a rotina de cuidados, bem-estar e nutrição diária.",
     "preco": 187.91,
@@ -449,7 +449,7 @@
   },
   {
     "id": "ciflogex-menta-e-limao-cimed-12-pastilhas",
-    "nome": "Ciflogex Menta e Limão Cimed 12 Pastilhas",
+    "nome": "Ciflogex Menta e Limão 12 Pastilhas",
     "categoria": "Medicamentos",
     "descricao": "Pastilhas para garganta com ação local e praticidade para a rotina de cuidados.",
     "preco": 24.2,
@@ -497,7 +497,7 @@
   },
   {
     "id": "renu-fresh-bausch-lomb-120ml",
-    "nome": "Renu Fresh Bausch + Lomb 120ml",
+    "nome": "Renu Fresh Solução Multiuso 120ml",
     "categoria": "Higiene",
     "descricao": "Solução para lentes de contato com limpeza, hidratação e conservação diária.",
     "preco": 54.74,
@@ -505,7 +505,7 @@
   },
   {
     "id": "renu-advanced-bausch-lomb-475ml-gratis-120ml",
-    "nome": "Renu Advanced Bausch + Lomb 475ml + Grátis 120ml",
+    "nome": "Renu Advanced Solução Multiuso 475ml + 120ml",
     "categoria": "Higiene",
     "descricao": "Solução para lentes de contato com limpeza, hidratação e conservação diária.",
     "preco": 72,
@@ -513,7 +513,7 @@
   },
   {
     "id": "sal-de-fruta-eno-limao-2-unidades",
-    "nome": "Sal de Fruta Eno Limão 2 Unidades",
+    "nome": "Sal de Fruta Eno Limão 2 Sachês",
     "categoria": "Medicamentos",
     "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
     "preco": 5.24,
@@ -521,7 +521,7 @@
   },
   {
     "id": "sal-de-fruta-eno-tradicional-2-unidades",
-    "nome": "Sal de Fruta Eno Tradicional 2 Unidades",
+    "nome": "Sal de Fruta Eno Tradicional 2 Sachês",
     "categoria": "Medicamentos",
     "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
     "preco": 5.24,
@@ -529,7 +529,7 @@
   },
   {
     "id": "sal-de-fruta-eno-abacaxi-2-envelopes",
-    "nome": "Sal de Fruta Eno Abacaxi 2 Envelopes",
+    "nome": "Sal de Fruta Eno Abacaxi 2 Sachês",
     "categoria": "Medicamentos",
     "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
     "preco": 5.24,
@@ -537,7 +537,7 @@
   },
   {
     "id": "sal-de-fruta-eno-guarana-2-envelopes",
-    "nome": "Sal de Fruta Eno Guaraná 2 Envelopes",
+    "nome": "Sal de Fruta Eno Guaraná 2 Sachês",
     "categoria": "Medicamentos",
     "descricao": "Sal de fruta em sachê para praticidade no alívio da má digestão e azia ocasional.",
     "preco": 5.24,
@@ -553,7 +553,7 @@
   },
   {
     "id": "stilgrip-mel-e-limao-sache-5g",
-    "nome": "Stilgrip Mel e Limão Sachê 5g",
+    "nome": "Stilgrip Mel e Limão 5g 1 Sachê",
     "categoria": "Medicamentos",
     "descricao": "Solução oral de uso prático para complementar o cuidado diário conforme orientação.",
     "preco": 3.88,
@@ -561,7 +561,7 @@
   },
   {
     "id": "sustagen-kids-sabor-chocolate-450g",
-    "nome": "Sustagen Kids Sabor Chocolate 450g",
+    "nome": "Sustagen Kids Chocolate 450g",
     "categoria": "Infantil",
     "descricao": "Alimento infantil para complementar a rotina nutricional conforme a fase de crescimento.",
     "preco": 29.99,
@@ -585,7 +585,7 @@
   },
   {
     "id": "unifort-energy",
-    "nome": "Unifort Energy",
+    "nome": "Unifort Energy 30 Cápsulas",
     "categoria": "Vitaminas",
     "descricao": "Suplemento alimentar para apoiar energia, foco e disposição na rotina diária.",
     "preco": 77.99,
@@ -601,7 +601,7 @@
   },
   {
     "id": "whey-3w-absolut-nutrition-chocolate-belga-900g",
-    "nome": "Whey 3W Absolut Nutrition Chocolate Belga 900g",
+    "nome": "3W Absoluto Whey Chocolate Belga 900g",
     "categoria": "Vitaminas",
     "descricao": "Suplemento proteico para apoiar a rotina de treinos e recuperação muscular.",
     "preco": 187,
@@ -609,7 +609,7 @@
   },
   {
     "id": "whey-3w-absolut-nutrition-doce-de-leite-900g",
-    "nome": "Whey 3W Absolut Nutrition Doce de Leite 900g",
+    "nome": "3W Absoluto Whey Doce de Leite 900g",
     "categoria": "Vitaminas",
     "descricao": "Suplemento proteico para apoiar a rotina de treinos e recuperação muscular.",
     "preco": 187.91,
@@ -625,7 +625,7 @@
   },
   {
     "id": "you-can-body-breaker-pre-workout-maca-verde",
-    "nome": "You Can Body Breaker Pré-Workout Maçã Verde",
+    "nome": "Body Breaker Pré-Workout Maçã Verde",
     "categoria": "Vitaminas",
     "descricao": "Pré-treino em pó para apoiar energia, foco e desempenho antes das atividades físicas.",
     "preco": 85,
