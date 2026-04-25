@@ -632,98 +632,237 @@
         }
 
         .products-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: 1fr;
+            gap: 32px;
             align-items: stretch;
         }
 
-        .product-card {
+        .products-state {
+            display: grid;
+            gap: 12px;
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid #dfe8ec;
+            background: #ffffff;
+            box-shadow: 0 18px 36px rgba(29, 70, 85, 0.08);
+        }
+
+        .products-state h3 {
+            margin: 0;
+            color: var(--brand-blue-dark);
+            font-size: 1.25rem;
+        }
+
+        .products-state p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .products-category-section {
+            display: grid;
+            gap: 18px;
+        }
+
+        .products-category-head {
             display: flex;
             flex-direction: column;
+            gap: 8px;
+        }
+
+        .products-category-kicker {
+            display: inline-flex;
+            width: fit-content;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(33, 79, 99, 0.08);
+            color: var(--brand-blue);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .products-category-title {
+            margin: 0;
+            color: var(--brand-blue-dark);
+            font-size: clamp(1.45rem, 2.4vw, 2rem);
+            line-height: 1.05;
+        }
+
+        .products-category-note {
+            margin: 0;
+            max-width: 420px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .products-category-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 152px;
+            grid-auto-rows: 1fr;
+            gap: 14px;
+            overflow-x: auto;
+            padding: 4px 20px 10px 0;
+            scroll-snap-type: x proximity;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .products-category-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
             height: 100%;
             overflow: hidden;
-            border-radius: 24px;
+            border-radius: 18px;
             border: 1px solid #e2ecef;
-            background: linear-gradient(180deg, #ffffff, #fcfefe);
-            box-shadow: 0 16px 34px rgba(29, 70, 85, 0.07);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: #ffffff;
+            box-shadow: 0 14px 32px rgba(29, 70, 85, 0.08);
+            scroll-snap-align: start;
+            align-self: stretch;
+        }
+
+        .product-card__add {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2dbf73, #1f9d59);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 12px 24px rgba(31, 157, 89, 0.28);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .product-card__add:hover {
+            transform: scale(1.04);
+            box-shadow: 0 16px 30px rgba(31, 157, 89, 0.34);
+        }
+
+        .product-card__quick {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .product-image-shell {
+            display: grid;
+            place-items: center;
+            min-height: 154px;
+            padding: 20px 16px 10px;
+            background: linear-gradient(180deg, #f8fbfb, #eef4f5);
         }
 
         .product-image {
             aspect-ratio: 1 / 1;
             width: 100%;
-            padding: 20px 20px 14px;
+            max-width: 108px;
+            padding: 0;
             object-fit: contain;
-            background: linear-gradient(180deg, #f8fbfb, #eef4f5);
-            border-bottom: 1px solid rgba(29, 70, 85, 0.08);
-            cursor: pointer;
+            background: transparent;
+            border-bottom: 0;
         }
 
         .product-body {
             display: flex;
             flex: 1;
             flex-direction: column;
-            padding: 20px 22px 22px;
+            gap: 10px;
+            padding: 0 14px 14px;
         }
 
         .product-category {
             display: inline-flex;
             width: fit-content;
-            margin-bottom: 10px;
-            padding: 6px 10px;
+            margin-bottom: 0;
+            padding: 5px 10px;
             border-radius: 999px;
             background: rgba(33, 79, 99, 0.08);
             color: var(--brand-blue);
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .product-card h3 {
-            font-size: 1.2rem;
-            line-height: 1.25;
-            color: var(--brand-blue-dark);
-        }
-
-        .product-card p {
-            margin-top: 8px;
-            color: var(--muted);
-            line-height: 1.65;
-            font-size: 0.95rem;
-            flex: 1;
-        }
-
-        .price-line {
-            margin: 16px 0 18px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(29, 70, 85, 0.08);
-        }
-
-        .price-label {
-            display: block;
-            color: var(--muted);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
+        .product-card h3 {
+            margin: 0;
+            color: var(--brand-blue-dark);
+            font-size: 0.9rem;
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 2.45em;
+        }
+
+        .product-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 0.95rem;
+        }
+
+        .product-card__meta {
+            display: grid;
+            gap: 4px;
+            margin-top: auto;
+            padding-top: 10px;
+            border-top: 1px solid rgba(29, 70, 85, 0.08);
+        }
+
+        .price-line {
+            margin: 0;
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .price-label {
+            display: none;
+        }
+
         .price-value {
             display: block;
-            margin-top: 4px;
-            font-size: 1.72rem;
+            margin-top: 0;
+            font-size: 1.18rem;
             font-weight: 800;
+            line-height: 1.1;
             color: var(--brand-orange-deep);
         }
 
-        .product-actions {
-            display: grid;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .product-actions .btn {
-            width: 100%;
-            min-height: 50px;
+        .product-price-note {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.74rem;
+            font-weight: 600;
         }
 
         .about-panel {
@@ -1349,6 +1488,32 @@
             width: 100%;
         }
 
+        .cart-drawer__clear {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 14px;
+            background: rgba(33, 79, 99, 0.07);
+            color: var(--brand-blue-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+
+        .cart-drawer__clear:hover {
+            background: rgba(33, 79, 99, 0.13);
+            transform: translateY(-1px);
+        }
+
+        .cart-drawer__clear:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .units {
             background:
                 linear-gradient(180deg, rgba(121, 187, 69, 0.08), rgba(255, 255, 255, 0)),
@@ -1545,10 +1710,6 @@
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
 
-            .products-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
             .trust-list {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -1651,8 +1812,7 @@
                 padding: 28px 22px 68px;
             }
 
-            .categories-grid,
-            .products-grid {
+            .categories-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1683,6 +1843,14 @@
 
             .catalog-filters {
                 gap: 8px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                scrollbar-width: none;
+            }
+
+            .catalog-filters::-webkit-scrollbar {
+                display: none;
             }
 
             .hero-indicators {
@@ -1793,6 +1961,64 @@
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
+            }
+        }
+
+        @media (min-width: 721px) {
+            .products-category-head {
+                flex-direction: row;
+                align-items: end;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .products-category-track {
+                grid-auto-flow: row;
+                grid-auto-columns: auto;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                overflow: visible;
+                padding: 0;
+                scroll-snap-type: none;
+            }
+
+            .product-card__add {
+                top: 14px;
+                right: 14px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.2rem;
+            }
+
+            .product-image-shell {
+                min-height: 212px;
+                padding: 24px 22px 14px;
+            }
+
+            .product-image {
+                max-width: 162px;
+            }
+
+            .product-body {
+                padding: 0 18px 18px;
+            }
+
+            .product-card h3 {
+                font-size: 0.98rem;
+                min-height: 2.6em;
+            }
+
+            .price-value {
+                font-size: 1.46rem;
+            }
+
+            .product-price-note {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 1121px) {
+            .products-category-track {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
         }
 
@@ -2057,8 +2283,8 @@
                 </div>
 
                 <div class="products-grid" id="productsGrid" aria-live="polite">
-                    <article class="product-card" style="grid-column: 1 / -1;">
-                        <div class="product-body">
+                    <article class="products-state">
+                        <div>
                             <span class="product-category">Catálogo</span>
                             <h3>Carregando produtos...</h3>
                             <p>Estamos preparando a vitrine atualizada da Farmácia Brasil.</p>
@@ -2469,8 +2695,9 @@
                     <strong id="cartSubtotal">R$ 0,00</strong>
                 </div>
                 <div class="cart-drawer__actions">
-                    <button class="btn btn-secondary" id="clearCartButton" type="button">Limpar carrinho</button>
-                    <button class="btn btn-primary" id="checkoutCartButton" type="button">Finalizar pedido</button>
+                    <button class="btn btn-secondary" id="continueCartButton" type="button">Continuar comprando</button>
+                    <button class="cart-drawer__clear" id="clearCartButton" type="button">Limpar carrinho</button>
+                    <button class="btn btn-primary" id="checkoutCartButton" type="button">Finalizar pedido no WhatsApp</button>
                 </div>
             </div>
         </aside>
@@ -2502,6 +2729,7 @@
         const cartSummaryText = document.getElementById("cartSummaryText");
         const cartMetaSubtotal = document.getElementById("cartMetaSubtotal");
         const cartSubtotal = document.getElementById("cartSubtotal");
+        const continueCartButton = document.getElementById("continueCartButton");
         const clearCartButton = document.getElementById("clearCartButton");
         const checkoutCartButton = document.getElementById("checkoutCartButton");
         const closeCartButtons = document.querySelectorAll("[data-close-cart]");
@@ -2549,6 +2777,48 @@
         const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
             ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
             : (window.location.protocol === "file:" ? "http://localhost:3000" : "");
+        const PRODUCT_CATEGORY_GROUPS = [
+            {
+                id: "ofertas",
+                title: "Ofertas",
+                kicker: "Condições especiais",
+                note: "Deslize para ver mais ofertas e aproveite os preços em destaque.",
+                filters: ["ofertas"],
+                categories: ["Ofertas"],
+            },
+            {
+                id: "medicamentos",
+                title: "Medicamentos",
+                kicker: "Cuidado diário",
+                note: "Seleção prática para alívio, prevenção e rotina de saúde.",
+                filters: ["medicamentos"],
+                categories: ["Medicamentos"],
+            },
+            {
+                id: "infantil",
+                title: "Infantil",
+                kicker: "Cuidados para os pequenos",
+                note: "Produtos infantis em uma vitrine fácil de navegar no celular.",
+                filters: ["infantil"],
+                categories: ["Infantil"],
+            },
+            {
+                id: "vitaminas",
+                title: "Vitaminas",
+                kicker: "Bem-estar e energia",
+                note: "Encontre suplementos e multivitamínicos em uma lista rápida para comparar.",
+                filters: ["vitaminas"],
+                categories: ["Vitaminas"],
+            },
+            {
+                id: "beleza-higiene",
+                title: "Beleza e Higiene",
+                kicker: "Rotina completa",
+                note: "Arraste para o lado e veja cuidados pessoais, higiene e autocuidado no mesmo lugar.",
+                filters: ["beleza", "higiene"],
+                categories: ["Beleza", "Higiene"],
+            },
+        ];
         let catalogoProdutos = [];
         let filtroProdutosAtivo = "todos";
         let carrinho = carregarCarrinho();
@@ -2639,12 +2909,6 @@
             return mapaCategorias[categoria] || "todos";
         }
 
-        function obterCardsProduto() {
-            return productsGrid
-                ? Array.from(productsGrid.querySelectorAll(".product-card"))
-                : [];
-        }
-
         function obterProdutoCatalogoPorId(id = "") {
             return catalogoProdutos.find((produto) => produto.id === id) || null;
         }
@@ -2657,31 +2921,66 @@
             }) || null;
         }
 
+        function criarMarkupEstadoCatalogo(titulo = "", descricao = "") {
+            return `
+                <article class="products-state">
+                    <div>
+                        <span class="product-category">Catálogo</span>
+                        <h3>${escaparHtml(titulo)}</h3>
+                        <p>${escaparHtml(descricao)}</p>
+                    </div>
+                </article>
+            `;
+        }
+
         function criarMarkupProduto(produto = {}) {
             const precoDisponivel = Number.isFinite(produto.preco);
-            const precoLabel = precoDisponivel ? "Preço sugerido" : "Disponibilidade";
+            const precoDescricao = precoDisponivel
+                ? "Toque no produto para pedir no WhatsApp."
+                : "Consulte disponibilidade pelo WhatsApp.";
 
             return `
                 <article class="product-card" data-categoria="${escaparAtributo(normalizarCategoriaFiltro(produto.categoria))}" data-product-id="${escaparAtributo(produto.id)}">
-                    <img
-                        class="product-image"
-                        alt="${escaparAtributo(produto.nome)}"
-                        data-whatsapp-product="${escaparAtributo(produto.nome)}"
-                        src="${escaparAtributo(produto.imagem || "")}">
-                    <div class="product-body">
-                        <span class="product-category">${escaparHtml(produto.categoria || "Produtos")}</span>
-                        <h3>${escaparHtml(produto.nome || "Produto")}</h3>
-                        <p>${escaparHtml(produto.descricao || "Consulte disponibilidade pelo WhatsApp.")}</p>
-                        <div class="price-line">
-                            <span class="price-label">${precoLabel}</span>
-                            <span class="price-value">${escaparHtml(formatarPrecoOuConsulta(produto.preco))}</span>
+                    <button class="product-card__add" type="button" data-add-to-cart data-product-id="${escaparAtributo(produto.id)}" aria-label="Adicionar ${escaparAtributo(produto.nome || "produto")} ao carrinho">+</button>
+                    <button class="product-card__quick" type="button" data-whatsapp-product="${escaparAtributo(produto.nome)}" aria-label="Pedir ${escaparAtributo(produto.nome || "produto")} pelo WhatsApp">
+                        <span class="product-image-shell">
+                            <img
+                                class="product-image"
+                                alt="${escaparAtributo(produto.nome)}"
+                                decoding="async"
+                                loading="lazy"
+                                src="${escaparAtributo(produto.imagem || "")}">
+                        </span>
+                        <div class="product-body">
+                            <span class="product-category">${escaparHtml(produto.categoria || "Produtos")}</span>
+                            <h3>${escaparHtml(produto.nome || "Produto")}</h3>
+                            <div class="product-card__meta">
+                                <div class="price-line">
+                                    <span class="price-label">Preço</span>
+                                    <span class="price-value">${escaparHtml(formatarPrecoOuConsulta(produto.preco))}</span>
+                                    <span class="product-price-note">${escaparHtml(precoDescricao)}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="product-actions">
-                            <button class="btn btn-primary" type="button" data-whatsapp-product="${escaparAtributo(produto.nome)}">Pedir pelo WhatsApp</button>
-                            <button class="btn btn-secondary" type="button" data-add-to-cart data-product-id="${escaparAtributo(produto.id)}">Adicionar ao carrinho</button>
-                        </div>
-                    </div>
+                    </button>
                 </article>
+            `;
+        }
+
+        function criarMarkupSecaoCategoria(grupo = {}, produtos = []) {
+            return `
+                <section class="products-category-section" data-category-group="${escaparAtributo(grupo.id || "")}" data-category-filters="${escaparAtributo((grupo.filters || []).join("|"))}">
+                    <div class="products-category-head">
+                        <div>
+                            <span class="products-category-kicker">${escaparHtml(grupo.kicker || "Produtos")}</span>
+                            <h3 class="products-category-title">${escaparHtml(grupo.title || "Produtos")}</h3>
+                        </div>
+                        <p class="products-category-note">${escaparHtml(grupo.note || "Deslize para ver mais produtos desta categoria.")}</p>
+                    </div>
+                    <div class="products-category-track" aria-label="${escaparAtributo(grupo.title || "Produtos")}">
+                        ${produtos.map(criarMarkupProduto).join("")}
+                    </div>
+                </section>
             `;
         }
 
@@ -2691,19 +2990,23 @@
             }
 
             if (!catalogoProdutos.length) {
-                productsGrid.innerHTML = `
-                    <article class="product-card" style="grid-column: 1 / -1;">
-                        <div class="product-body">
-                            <span class="product-category">Catálogo</span>
-                            <h3>Nenhum produto disponível.</h3>
-                            <p>Atualize o arquivo <code>products/products.json</code> para exibir novos itens.</p>
-                        </div>
-                    </article>
-                `;
+                productsGrid.innerHTML = criarMarkupEstadoCatalogo(
+                    "Nenhum produto disponível.",
+                    "Atualize o arquivo products/products.json para exibir novos itens."
+                );
                 return;
             }
 
-            productsGrid.innerHTML = catalogoProdutos.map(criarMarkupProduto).join("");
+            const secoesCatalogo = PRODUCT_CATEGORY_GROUPS
+                .map((grupo) => ({
+                    ...grupo,
+                    produtos: catalogoProdutos.filter((produto) => grupo.categories.includes(produto.categoria)),
+                }))
+                .filter((grupo) => grupo.produtos.length > 0);
+
+            productsGrid.innerHTML = secoesCatalogo
+                .map((grupo) => criarMarkupSecaoCategoria(grupo, grupo.produtos))
+                .join("");
             aplicarFiltroProdutos(filtroProdutosAtivo);
         }
 
@@ -2726,15 +3029,10 @@
                 renderizarCarrinho();
             } catch (error) {
                 console.error("[catalogo] Falha ao carregar products/products.json.", error);
-                productsGrid.innerHTML = `
-                    <article class="product-card" style="grid-column: 1 / -1;">
-                        <div class="product-body">
-                            <span class="product-category">Catálogo</span>
-                            <h3>Não foi possível carregar os produtos.</h3>
-                            <p>Verifique o arquivo <code>products/products.json</code> e tente novamente.</p>
-                        </div>
-                    </article>
-                `;
+                productsGrid.innerHTML = criarMarkupEstadoCatalogo(
+                    "Não foi possível carregar os produtos.",
+                    "Verifique o arquivo products/products.json e tente novamente."
+                );
                 renderizarCarrinho();
             }
         }
@@ -3394,12 +3692,14 @@
             ];
 
             (dados.itens || []).forEach((item) => {
-                linhas.push(`- ${item.nome} x ${item.quantidade}`);
+                const valorUnitario = Number.isFinite(item.preco) ? formatarMoeda(item.preco) : "Sob consulta";
+                const valorTotalItem = Number.isFinite(item.preco) ? formatarMoeda(item.preco * item.quantidade) : "Sob consulta";
+                linhas.push(`- ${item.nome} | qtd: ${item.quantidade} | unitário: ${valorUnitario} | total: ${valorTotalItem}`);
             });
 
             linhas.push(
                 "",
-                `Subtotal: ${dados.subtotalTexto || "Sob consulta"}`,
+                `Total do pedido: ${dados.subtotalTexto || "Sob consulta"}`,
                 `Forma de pagamento: ${dados.pagamento}`
             );
 
@@ -3875,6 +4175,10 @@
             clearCartButton.addEventListener("click", limparCarrinho);
         }
 
+        if (continueCartButton) {
+            continueCartButton.addEventListener("click", fecharCarrinho);
+        }
+
         if (checkoutCartButton) {
             checkoutCartButton.addEventListener("click", () => {
                 if (!carrinho.length) return;
@@ -3953,9 +4257,30 @@
                 btn.classList.toggle("active", btn.dataset.filter === filtro);
             });
 
-            obterCardsProduto().forEach((produto) => {
-                const categoria = produto.dataset.categoria;
-                produto.style.display = filtro === "todos" || categoria === filtro ? "" : "none";
+            const secoes = productsGrid
+                ? Array.from(productsGrid.querySelectorAll(".products-category-section"))
+                : [];
+
+            secoes.forEach((secao) => {
+                const filtrosSecao = (secao.dataset.categoryFilters || "").split("|").filter(Boolean);
+                const cards = Array.from(secao.querySelectorAll(".product-card"));
+                let totalVisiveis = 0;
+
+                cards.forEach((produto) => {
+                    const categoria = produto.dataset.categoria;
+                    const exibirProduto = filtro === "todos" || categoria === filtro;
+                    produto.hidden = !exibirProduto;
+
+                    if (exibirProduto) {
+                        totalVisiveis += 1;
+                    }
+                });
+
+                const exibirSecao = filtro === "todos"
+                    ? totalVisiveis > 0
+                    : filtrosSecao.includes(filtro) && totalVisiveis > 0;
+
+                secao.hidden = !exibirSecao;
             });
         }
 
