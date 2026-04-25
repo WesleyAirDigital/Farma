@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin | Farmácia Brasil</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="auth-shell">
+        <main class="auth-card">
+            <span class="eyebrow">Farmácia Brasil</span>
+            <h1>Acesso administrativo</h1>
+            <p>Entre com seu usuário e senha para visualizar e atualizar os pedidos.</p>
+
+            <form class="auth-form" id="adminLoginForm" novalidate>
+                <label class="auth-field" for="adminUsername">
+                    <span>Usuário</span>
+                    <input id="adminUsername" name="username" type="text" autocomplete="username" required>
+                </label>
+
+                <label class="auth-field" for="adminPassword">
+                    <span>Senha</span>
+                    <input id="adminPassword" name="password" type="password" autocomplete="current-password" required>
+                </label>
+
+                <button class="refresh-button auth-submit" id="adminLoginSubmit" type="submit">Entrar</button>
+                <p class="admin-feedback" id="adminLoginFeedback" aria-live="polite"></p>
+            </form>
+        </main>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

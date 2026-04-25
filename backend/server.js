@@ -4,8 +4,10 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
+const authRoutes = require("./routes/auth");
 const orderRoutes = require("./routes/orders");
 const { testDatabaseConnection } = require("./database/connection");
+const { getAuthenticatedAdmin } = require("./middleware/auth");
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
@@ -13,6 +15,8 @@ const projectRoot = path.resolve(__dirname, "..");
 const adminDirectory = path.join(projectRoot, "admin");
 const imagesDirectory = path.join(projectRoot, "images");
 const frontendIndexFile = path.join(projectRoot, "index.html");
+const adminIndexFile = path.join(adminDirectory, "index.html");
+const adminLoginFile = path.join(adminDirectory, "login.html");
 
 function resolveCorsOrigins() {
     const configuredOrigins = (process.env.CORS_ORIGIN || "")
@@ -48,9 +52,51 @@ app.get("/health", (_request, response) => {
     });
 });
 
+app.use("/auth", authRoutes);
 app.use("/orders", orderRoutes);
 
-app.use("/admin", express.static(adminDirectory));
+function serveProtectedAdminPage(request, response) {
+    if (!getAuthenticatedAdmin(request)) {
+        response.redirect("/admin/login");
+        return;
+    }
+
+    response.sendFile(adminIndexFile);
+}
+
+function serveAdminLoginPage(request, response) {
+    if (getAuthenticatedAdmin(request)) {
+        response.redirect("/admin");
+        return;
+    }
+
+    response.sendFile(adminLoginFile);
+}
+
+app.use("/admin", (request, response, next) => {
+    const normalizedPath = request.path.replace(/\/+/g, "/");
+
+    if (normalizedPath === "/" || normalizedPath === "/index.html") {
+        serveProtectedAdminPage(request, response);
+        return;
+    }
+
+    if (
+        normalizedPath === "/login"
+        || normalizedPath === "/login/"
+        || normalizedPath === "/login.html"
+    ) {
+        serveAdminLoginPage(request, response);
+        return;
+    }
+
+    next();
+});
+
+app.use("/admin", express.static(adminDirectory, {
+    index: false,
+    redirect: false,
+}));
 app.use("/images", express.static(imagesDirectory));
 
 app.get("/", (_request, response) => {
