@@ -327,14 +327,15 @@
             position: relative;
             overflow: hidden;
             border-radius: 32px;
-            min-height: 520px;
+            min-height: 360px;
             box-shadow: var(--shadow);
             background: #183844;
         }
 
         .hero-track {
             position: relative;
-            min-height: 520px;
+            min-height: 360px;
+            aspect-ratio: 16 / 5;
         }
 
         .hero-slide {
@@ -346,6 +347,10 @@
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: clamp(28px, 5vw, 56px);
         }
 
         .hero-slide.is-active {
@@ -357,7 +362,35 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(8, 44, 56, 0.68), rgba(8, 44, 56, 0.36));
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            width: min(100%, 540px);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            color: #fff;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .banner-title {
+            color: #fff;
+            font-size: clamp(1.9rem, 2.8vw, 2rem);
+            line-height: 1.12;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            text-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+        }
+
+        .banner-subtitle {
+            max-width: 34ch;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: clamp(1rem, 1.55vw, 1.125rem);
+            line-height: 1.6;
+            text-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
         }
 
         .hero-shell {
@@ -1791,25 +1824,29 @@
             .hero-slider,
             .hero-track,
             .hero-shell {
-                min-height: 560px;
+                min-height: 320px;
                 border-radius: 24px;
             }
 
             .hero-slide::before {
-                background: linear-gradient(180deg, rgba(8, 44, 56, 0.22), rgba(8, 44, 56, 0.82));
+                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
             }
 
             .hero-slide {
                 background-position: center center;
+                padding: 32px 22px 68px;
             }
 
-            .hero-shell {
-                align-items: end;
+            .banner-content {
+                width: min(100%, 460px);
             }
 
-            .hero-copy {
-                width: 100%;
-                padding: 28px 22px 68px;
+            .banner-title {
+                font-size: clamp(1.8rem, 3.8vw, 2rem);
+            }
+
+            .banner-subtitle {
+                font-size: 1rem;
             }
 
             .categories-grid {
@@ -2030,56 +2067,36 @@
             .hero-slider,
             .hero-track,
             .hero-shell {
-                min-height: clamp(360px, 72vw, 420px);
+                min-height: 280px;
                 border-radius: 22px;
             }
 
             .hero-slide {
                 background-size: cover;
                 background-position: center center;
+                justify-content: center;
+                padding: 24px 18px 58px;
             }
 
             .hero-slide::before {
-                background: linear-gradient(180deg, rgba(8, 44, 56, 0.18), rgba(8, 44, 56, 0.84));
+                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
             }
 
-            .hero-shell {
-                align-items: flex-end;
-            }
-
-            .hero-copy {
-                width: 100%;
-                max-width: 100%;
-                padding: 20px 18px 58px;
-            }
-
-            .hero-title {
-                margin-top: 12px;
-                font-size: clamp(1.75rem, 6.6vw, 2.35rem);
-                line-height: 1.05;
-            }
-
-            .hero-text {
-                margin-top: 12px;
-                max-width: 100%;
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
-                margin-top: 18px;
-            }
-
-            .hero-actions .btn,
-            .hero-actions .btn-whatsapp {
-                width: 100%;
-                min-height: 46px;
-                padding: 12px 16px;
-                font-size: 0.92rem;
+            .banner-content {
+                width: min(100%, 320px);
                 text-align: center;
+                align-items: center;
+            }
+
+            .banner-title {
+                font-size: clamp(1.55rem, 6.9vw, 1.85rem);
+                line-height: 1.15;
+            }
+
+            .banner-subtitle {
+                max-width: 28ch;
+                font-size: 0.98rem;
+                line-height: 1.5;
             }
 
             .hero-indicators {
@@ -2212,45 +2229,17 @@
         <section class="hero">
             <div class="container hero-slider" id="heroSlider">
                 <div class="hero-track">
-                    <article class="hero-slide is-active" style="background-image: url('./images/banners/banner-01.png');">
-                        <div class="hero-shell">
-                            <div class="hero-copy">
-                                <span class="eyebrow">Atendimento em São José dos Pinhais</span>
-                                <h1 class="hero-title">Delivery rápido em <span>São José dos Pinhais</span></h1>
-                                <p class="hero-text">Peça seus medicamentos, itens de higiene e cuidados pessoais com praticidade e atendimento rápido pelo WhatsApp.</p>
-                                <div class="hero-actions">
-                                    <button class="btn btn-primary" type="button" onclick="abrirWhatsApp('pedido_geral')">Pedir pelo WhatsApp</button>
-                                    <a class="btn btn-secondary" href="#produtos">Ver produtos</a>
-                                </div>
-                            </div>
+                    <article class="hero-slide is-active" style="background-image: url('./images/banners/banner-01.png');" aria-label="Banner promocional 1 da Farmácia Brasil">
+                        <div class="banner-content">
+                            <h1 class="banner-title">Cuidando da sua saúde todos os dias</h1>
+                            <p class="banner-subtitle">Atendimento rápido, confiança e os melhores produtos</p>
                         </div>
                     </article>
 
-                    <article class="hero-slide" style="background-image: url('./images/banners/banner-02.png');">
-                        <div class="hero-shell">
-                            <div class="hero-copy">
-                                <span class="eyebrow">Ofertas da semana</span>
-                                <h2 class="hero-title">Ofertas da semana para sua <span>saúde</span></h2>
-                                <p class="hero-text">Encontre medicamentos, vitaminas, beleza e cuidados diários com preços acessíveis e atendimento direto.</p>
-                                <div class="hero-actions">
-                                    <a class="btn btn-primary" href="#produtos" onclick="irParaProdutos('ofertas'); return false;">Ver ofertas</a>
-                                    <button class="btn btn-secondary" type="button" onclick="abrirWhatsApp('oferta', 'Oferta da Semana')">Falar no WhatsApp</button>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="hero-slide" style="background-image: url('./images/banners/banner-03.png');">
-                        <div class="hero-shell">
-                            <div class="hero-copy">
-                                <span class="eyebrow">Farmácia completa</span>
-                                <h2 class="hero-title">Tudo o que você precisa em <span>um só lugar</span></h2>
-                                <p class="hero-text">Farmácia completa com variedade, praticidade e suporte rápido para seu pedido sem complicação.</p>
-                                <div class="hero-actions">
-                                    <a class="btn btn-primary" href="#categorias">Explorar categorias</a>
-                                    <button class="btn btn-secondary" type="button" onclick="abrirWhatsApp('atendimento')">Solicitar atendimento</button>
-                                </div>
-                            </div>
+                    <article class="hero-slide" style="background-image: url('./images/banners/banner-02.png');" aria-label="Banner promocional 2 da Farmácia Brasil">
+                        <div class="banner-content">
+                            <h2 class="banner-title">Ofertas da Semana</h2>
+                            <p class="banner-subtitle">Medicamentos, vitaminas e cuidados com at&eacute; 40% OFF</p>
                         </div>
                     </article>
                 </div>
@@ -2258,7 +2247,6 @@
                 <div class="hero-indicators" aria-label="Selecionar banner">
                     <button class="hero-indicator is-active" type="button" data-slide="0" aria-label="Banner 1"></button>
                     <button class="hero-indicator" type="button" data-slide="1" aria-label="Banner 2"></button>
-                    <button class="hero-indicator" type="button" data-slide="2" aria-label="Banner 3"></button>
                 </div>
             </div>
         </section>
