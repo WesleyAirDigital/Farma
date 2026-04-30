@@ -344,13 +344,11 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.7s ease, visibility 0.7s ease;
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             padding: clamp(28px, 5vw, 56px);
+            overflow: hidden;
         }
 
         .hero-slide.is-active {
@@ -358,10 +356,26 @@
             visibility: visible;
         }
 
+        .hero-media {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            display: block;
+        }
+
+        .hero-slide__image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center center;
+        }
+
         .hero-slide::before {
             content: "";
             position: absolute;
             inset: 0;
+            z-index: 1;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
         }
 
@@ -372,6 +386,8 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            align-items: flex-start;
+            text-align: left;
             color: #fff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -1833,7 +1849,6 @@
             }
 
             .hero-slide {
-                background-position: center center;
                 padding: 32px 22px 68px;
             }
 
@@ -2065,38 +2080,52 @@
             }
 
             .hero-slider,
-            .hero-track,
+            .hero-track {
+                min-height: clamp(360px, 90vw, 460px);
+            }
+
+            .hero-track {
+                height: clamp(360px, 90vw, 460px);
+                aspect-ratio: auto;
+            }
+
             .hero-shell {
-                min-height: 280px;
+                min-height: clamp(360px, 90vw, 460px);
                 border-radius: 22px;
             }
 
             .hero-slide {
-                background-size: cover;
-                background-position: center center;
                 justify-content: center;
+                align-items: flex-end;
                 padding: 24px 18px 58px;
             }
 
             .hero-slide::before {
-                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+                background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.52));
             }
 
             .banner-content {
-                width: min(100%, 320px);
+                width: min(100%, 280px);
                 text-align: center;
                 align-items: center;
+                gap: 0;
             }
 
             .banner-title {
-                font-size: clamp(1.55rem, 6.9vw, 1.85rem);
-                line-height: 1.15;
+                font-size: clamp(1.25rem, 5.4vw, 1.4rem);
+                line-height: 1.2;
             }
 
             .banner-subtitle {
-                max-width: 28ch;
-                font-size: 0.98rem;
-                line-height: 1.5;
+                display: none;
+            }
+
+            .hero-slide--team .hero-slide__image {
+                object-position: center 18%;
+            }
+
+            .hero-slide--offers .hero-slide__image {
+                object-position: center 22%;
             }
 
             .hero-indicators {
@@ -2229,14 +2258,22 @@
         <section class="hero">
             <div class="container hero-slider" id="heroSlider">
                 <div class="hero-track">
-                    <article class="hero-slide is-active" style="background-image: url('./images/banners/banner-01.png');" aria-label="Banner promocional 1 da Farmácia Brasil">
+                    <article class="hero-slide hero-slide--team is-active" aria-label="Banner promocional 1 da Farmácia Brasil">
+                        <picture class="hero-media">
+                            <source media="(max-width: 768px)" srcset="./images/banners/mobile/banner-01-mobile.png">
+                            <img class="hero-slide__image" src="./images/banners/desktop/banner-01.png" alt="Banner Farmácia Brasil">
+                        </picture>
                         <div class="banner-content">
                             <h1 class="banner-title">Cuidando da sua saúde todos os dias</h1>
                             <p class="banner-subtitle">Atendimento rápido, confiança e os melhores produtos</p>
                         </div>
                     </article>
 
-                    <article class="hero-slide" style="background-image: url('./images/banners/banner-02.png');" aria-label="Banner promocional 2 da Farmácia Brasil">
+                    <article class="hero-slide hero-slide--offers" aria-label="Banner promocional 2 da Farmácia Brasil">
+                        <picture class="hero-media">
+                            <source media="(max-width: 768px)" srcset="./images/banners/mobile/banner-02-mobile.png">
+                            <img class="hero-slide__image" src="./images/banners/desktop/banner-02.png" alt="Banner Farmácia Brasil">
+                        </picture>
                         <div class="banner-content">
                             <h2 class="banner-title">Ofertas da Semana</h2>
                             <p class="banner-subtitle">Medicamentos, vitaminas e cuidados com at&eacute; 40% OFF</p>
