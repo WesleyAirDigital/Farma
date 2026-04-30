@@ -376,37 +376,120 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+            background: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.2)
+            );
         }
 
         .banner-content {
             position: relative;
             z-index: 2;
-            width: min(100%, 540px);
+            width: min(100%, 530px);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
             align-items: flex-start;
             text-align: left;
             color: #fff;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        .banner-content > * {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            will-change: opacity, transform;
+        }
+
+        .hero-slide.is-active .banner-content > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-slide.is-active .banner-content > *:nth-child(1) {
+            transition-delay: 0.12s;
+        }
+
+        .hero-slide.is-active .banner-content > *:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .hero-slide.is-active .banner-content > *:nth-child(3) {
+            transition-delay: 0.28s;
+        }
+
         .banner-title {
             color: #fff;
-            font-size: clamp(1.9rem, 2.8vw, 2rem);
-            line-height: 1.12;
+            font-size: clamp(2.35rem, 3.2vw, 2.5rem);
+            line-height: 1.2;
             font-weight: 800;
             letter-spacing: -0.03em;
             text-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            text-wrap: balance;
+        }
+
+        .banner-title__desktop,
+        .banner-title__mobile {
+            display: block;
+        }
+
+        .banner-title__mobile {
+            display: none;
         }
 
         .banner-subtitle {
-            max-width: 34ch;
-            color: rgba(255, 255, 255, 0.92);
-            font-size: clamp(1rem, 1.55vw, 1.125rem);
-            line-height: 1.6;
+            max-width: 38ch;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: clamp(1rem, 1.3vw, 1.08rem);
+            line-height: 1.58;
+            font-weight: 500;
             text-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+            text-wrap: balance;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            min-height: 52px;
+            padding: 0 24px;
+            border-radius: 999px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, color 0.24s ease;
+            box-shadow: 0 16px 32px rgba(12, 31, 39, 0.24);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 18px 36px rgba(12, 31, 39, 0.28);
+        }
+
+        .hero-cta:focus-visible {
+            outline: 3px solid rgba(255, 255, 255, 0.52);
+            outline-offset: 3px;
+        }
+
+        .hero-cta--light {
+            background: #fff;
+            color: var(--brand-blue-dark);
+        }
+
+        .hero-cta--light:hover {
+            background: #f3f7f8;
+        }
+
+        .hero-cta--whatsapp {
+            background: linear-gradient(135deg, #4eb848, #2f8f34);
+            color: #fff;
+        }
+
+        .hero-cta--whatsapp:hover {
+            background: linear-gradient(135deg, #56c851, #328d38);
         }
 
         .hero-shell {
@@ -1845,7 +1928,11 @@
             }
 
             .hero-slide::before {
-                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+                background: linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.54),
+                    rgba(0, 0, 0, 0.24)
+                );
             }
 
             .hero-slide {
@@ -1857,7 +1944,7 @@
             }
 
             .banner-title {
-                font-size: clamp(1.8rem, 3.8vw, 2rem);
+                font-size: clamp(2rem, 3.7vw, 2.25rem);
             }
 
             .banner-subtitle {
@@ -2100,24 +2187,48 @@
                 padding: 24px 18px 58px;
             }
 
+            .hero-slide--offers {
+                align-items: flex-start;
+                padding-top: 30px;
+            }
+
             .hero-slide::before {
-                background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.52));
+                background: linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.46) 0%,
+                    rgba(0, 0, 0, 0.16) 42%,
+                    rgba(0, 0, 0, 0.58) 100%
+                );
             }
 
             .banner-content {
-                width: min(100%, 280px);
+                width: min(100%, 292px);
                 text-align: center;
                 align-items: center;
-                gap: 0;
+                gap: 12px;
             }
 
             .banner-title {
-                font-size: clamp(1.25rem, 5.4vw, 1.4rem);
+                font-size: clamp(1.3rem, 5.7vw, 1.375rem);
                 line-height: 1.2;
+            }
+
+            .banner-title__desktop {
+                display: none;
+            }
+
+            .banner-title__mobile {
+                display: block;
             }
 
             .banner-subtitle {
                 display: none;
+            }
+
+            .hero-cta {
+                min-height: 48px;
+                padding: 0 22px;
+                font-size: 0.94rem;
             }
 
             .hero-slide--team .hero-slide__image {
@@ -2264,8 +2375,12 @@
                             <img class="hero-slide__image" src="./images/banners/desktop/banner-01.png" alt="Banner Farmácia Brasil">
                         </picture>
                         <div class="banner-content">
-                            <h1 class="banner-title">Cuidando da sua saúde todos os dias</h1>
-                            <p class="banner-subtitle">Atendimento rápido, confiança e os melhores produtos</p>
+                            <h1 class="banner-title">
+                                <span class="banner-title__desktop">Atendimento pr&oacute;ximo, r&aacute;pido e de confian&ccedil;a</span>
+                                <span class="banner-title__mobile">Atendimento r&aacute;pido e de confian&ccedil;a</span>
+                            </h1>
+                            <p class="banner-subtitle">Nossa equipe pronta para te ajudar em cada pedido</p>
+                            <button class="hero-cta hero-cta--whatsapp" type="button" onclick="abrirWhatsApp('atendimento')">Falar no WhatsApp</button>
                         </div>
                     </article>
 
@@ -2275,8 +2390,12 @@
                             <img class="hero-slide__image" src="./images/banners/desktop/banner-02.png" alt="Banner Farmácia Brasil">
                         </picture>
                         <div class="banner-content">
-                            <h2 class="banner-title">Ofertas da Semana</h2>
-                            <p class="banner-subtitle">Medicamentos, vitaminas e cuidados com at&eacute; 40% OFF</p>
+                            <h2 class="banner-title">
+                                <span class="banner-title__desktop">Ofertas imperd&iacute;veis em medicamentos e cuidados</span>
+                                <span class="banner-title__mobile">Ofertas reais em sa&uacute;de e bem-estar</span>
+                            </h2>
+                            <p class="banner-subtitle">Economia de verdade nos produtos que voc&ecirc; usa todos os dias</p>
+                            <button class="hero-cta hero-cta--light" type="button" onclick="irParaProdutos()">Ver ofertas</button>
                         </div>
                     </article>
                 </div>
