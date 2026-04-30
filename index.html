@@ -449,6 +449,15 @@
             text-wrap: balance;
         }
 
+        .banner-subtitle__desktop,
+        .banner-subtitle__mobile {
+            display: block;
+        }
+
+        .banner-subtitle__mobile {
+            display: none;
+        }
+
         .hero-cta {
             display: inline-flex;
             align-items: center;
@@ -736,11 +745,20 @@
             margin-bottom: 28px;
         }
 
+        .catalog-filters-shell {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
         .catalog-filters {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 24px;
+            margin-bottom: 0;
+        }
+
+        .catalog-filters-hint {
+            display: none;
         }
 
         .categoria-btn {
@@ -1696,7 +1714,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(180px, 1fr));
+            grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(180px, 1fr));
             gap: 40px;
             align-items: start;
             padding: 50px 20px;
@@ -1980,18 +1998,6 @@
                 align-items: stretch;
             }
 
-            .catalog-filters {
-                gap: 8px;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 6px;
-                scrollbar-width: none;
-            }
-
-            .catalog-filters::-webkit-scrollbar {
-                display: none;
-            }
-
             .hero-indicators {
                 left: 22px;
                 bottom: 22px;
@@ -2225,6 +2231,27 @@
                 display: none;
             }
 
+            .hero-slide--team .banner-content {
+                width: min(100%, 270px);
+                gap: 10px;
+            }
+
+            .hero-slide--team .banner-subtitle {
+                display: block;
+                max-width: 23ch;
+                font-size: 0.88rem;
+                line-height: 1.42;
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            .hero-slide--team .banner-subtitle__desktop {
+                display: none;
+            }
+
+            .hero-slide--team .banner-subtitle__mobile {
+                display: block;
+            }
+
             .hero-cta {
                 min-height: 48px;
                 padding: 0 22px;
@@ -2242,6 +2269,42 @@
             .hero-indicators {
                 left: 18px;
                 bottom: 18px;
+            }
+
+            .catalog-filters-shell::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 54px;
+                height: 42px;
+                border-radius: 999px;
+                background: linear-gradient(90deg, rgba(244, 248, 248, 0), rgba(244, 248, 248, 0.95) 78%);
+                pointer-events: none;
+            }
+
+            .catalog-filters {
+                gap: 8px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-right: 36px;
+                padding-bottom: 6px;
+                scroll-behavior: smooth;
+                scrollbar-width: none;
+            }
+
+            .catalog-filters::-webkit-scrollbar {
+                display: none;
+            }
+
+            .catalog-filters-hint {
+                display: block;
+                margin-top: 8px;
+                color: rgba(36, 65, 77, 0.7);
+                font-size: 0.78rem;
+                font-weight: 600;
+                line-height: 1.3;
+                text-align: center;
             }
 
             .categories-carousel {
@@ -2377,9 +2440,12 @@
                         <div class="banner-content">
                             <h1 class="banner-title">
                                 <span class="banner-title__desktop">Atendimento pr&oacute;ximo, r&aacute;pido e de confian&ccedil;a</span>
-                                <span class="banner-title__mobile">Atendimento r&aacute;pido e de confian&ccedil;a</span>
+                                <span class="banner-title__mobile">Cuidado pr&oacute;ximo para sua sa&uacute;de</span>
                             </h1>
-                            <p class="banner-subtitle">Nossa equipe pronta para te ajudar em cada pedido</p>
+                            <p class="banner-subtitle">
+                                <span class="banner-subtitle__desktop">Nossa equipe pronta para te ajudar em cada pedido</span>
+                                <span class="banner-subtitle__mobile">Atendimento r&aacute;pido, humano e de confian&ccedil;a</span>
+                            </p>
                             <button class="hero-cta hero-cta--whatsapp" type="button" onclick="abrirWhatsApp('atendimento')">Falar no WhatsApp</button>
                         </div>
                     </article>
@@ -2416,14 +2482,17 @@
                     </div>
                 </div>
 
-                <div class="catalog-filters" aria-label="Filtrar produtos por categoria">
-                    <button class="categoria-btn active" type="button" data-filter="todos">Todos</button>
-                    <button class="categoria-btn" type="button" data-filter="medicamentos">Medicamentos</button>
-                    <button class="categoria-btn" type="button" data-filter="vitaminas">Vitaminas</button>
-                    <button class="categoria-btn" type="button" data-filter="beleza">Beleza</button>
-                    <button class="categoria-btn" type="button" data-filter="infantil">Infantil</button>
-                    <button class="categoria-btn" type="button" data-filter="higiene">Higiene</button>
-                    <button class="categoria-btn" type="button" data-filter="ofertas">Ofertas</button>
+                <div class="catalog-filters-shell">
+                    <div class="catalog-filters" aria-label="Filtrar produtos por categoria">
+                        <button class="categoria-btn active" type="button" data-filter="todos">Todos</button>
+                        <button class="categoria-btn" type="button" data-filter="medicamentos">Medicamentos</button>
+                        <button class="categoria-btn" type="button" data-filter="vitaminas">Vitaminas</button>
+                        <button class="categoria-btn" type="button" data-filter="beleza">Beleza</button>
+                        <button class="categoria-btn" type="button" data-filter="infantil">Infantil</button>
+                        <button class="categoria-btn" type="button" data-filter="higiene">Higiene</button>
+                        <button class="categoria-btn" type="button" data-filter="ofertas">Ofertas</button>
+                    </div>
+                    <p class="catalog-filters-hint" aria-hidden="true">Arraste para ver mais categorias →</p>
                 </div>
 
                 <div class="products-grid" id="productsGrid" aria-live="polite">
@@ -2652,28 +2721,7 @@
                 <div class="footer-grid">
                     <div class="footer-brand logo">
                         <img src="./images/logo-farmacia-brasil.png" alt="Farmácia Brasil">
-                        <p>Desde 1996 servindo você e sua família. Cuidado, confiança e qualidade em São José dos Pinhais.</p>
-                    </div>
-
-                    <div class="footer-col">
-                        <h3>Categorias</h3>
-                        <ul>
-                            <li>Medicamentos</li>
-                            <li>Beleza</li>
-                            <li>Infantil</li>
-                            <li>Vitaminas</li>
-                            <li>Higiene</li>
-                            <li>Ofertas</li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-col">
-                        <h3>Contato</h3>
-                        <ul>
-                            <li>R. Adir Pedroso, 1259 - SJP</li>
-                            <li>R. Tavares de Lyra, 3917 - SJP</li>
-                            <li>(41) 99875-2482</li>
-                        </ul>
+                        <p>Cuidando da sua sa&uacute;de desde 1996.</p>
                     </div>
 
                     <div class="footer-col">
@@ -2683,6 +2731,15 @@
                             <li><a href="#produtos">Produtos</a></li>
                             <li><a href="#categorias">Categorias</a></li>
                             <li><a href="#sobre">Quem Somos</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3>Contato</h3>
+                        <ul>
+                            <li>R. Adir Pedroso, 1259 - SJP</li>
+                            <li>R. Tavares de Lyra, 3917 - SJP</li>
+                            <li>(41) 99875-2482</li>
                         </ul>
                     </div>
                 </div>
