@@ -33,8 +33,11 @@
             padding: 0;
         }
 
-        html {
+        html,
+        body {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         body {
@@ -812,6 +815,14 @@
             grid-template-columns: 1fr;
             gap: 32px;
             align-items: stretch;
+        }
+
+        .catalog,
+        .products-grid,
+        .products-category-section,
+        .products-category-carousel {
+            max-width: 100%;
+            overflow: hidden;
         }
 
         .products-state {
@@ -2155,71 +2166,11 @@
         }
 
         @media (min-width: 721px) {
-            .products-category-section {
-                gap: 20px;
-            }
-
             .products-category-head {
                 flex-direction: row;
                 align-items: end;
                 justify-content: space-between;
                 gap: 20px;
-            }
-
-            .products-category-carousel {
-                position: relative;
-            }
-
-            .products-category-track {
-                gap: 18px;
-                padding: 4px 52px 16px 4px;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-            }
-
-            .products-category-track .product-card {
-                flex: 0 0 252px;
-                min-width: 252px;
-                max-width: 252px;
-            }
-
-            .products-carousel__arrow {
-                position: absolute;
-                top: 50%;
-                z-index: 3;
-                display: grid;
-                place-items: center;
-                width: 40px;
-                height: 40px;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.94);
-                border: 1px solid rgba(24, 55, 67, 0.12);
-                box-shadow: 0 14px 28px rgba(24, 55, 67, 0.16);
-                color: var(--brand-blue-dark);
-                font-size: 1.05rem;
-                font-weight: 800;
-                transform: translateY(-50%);
-                transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
-                backdrop-filter: blur(10px);
-            }
-
-            .products-carousel__arrow:hover {
-                transform: translateY(-50%) scale(1.04);
-                box-shadow: 0 18px 32px rgba(24, 55, 67, 0.18);
-            }
-
-            .products-carousel__arrow:disabled {
-                opacity: 0.42;
-                transform: translateY(-50%);
-                box-shadow: 0 10px 22px rgba(24, 55, 67, 0.12);
-            }
-
-            .products-carousel__arrow--prev {
-                left: 0;
-            }
-
-            .products-carousel__arrow--next {
-                right: 0;
             }
 
             .product-card__add {
@@ -2257,11 +2208,88 @@
             }
         }
 
-        @media (min-width: 1121px) {
-            .products-category-track .product-card {
-                flex-basis: 264px;
-                min-width: 264px;
-                max-width: 264px;
+        @media (min-width: 1024px) {
+            .products-grid.products-grid--carousel .products-category-section {
+                gap: 20px;
+            }
+
+            .products-grid.products-grid--carousel .products-category-carousel {
+                position: relative;
+            }
+
+            .products-grid.products-grid--carousel .products-category-track {
+                gap: 20px;
+                overflow-x: hidden;
+                padding: 4px 0 16px;
+                scroll-snap-type: x mandatory;
+            }
+
+            .products-grid.products-grid--carousel .products-category-track .product-card {
+                flex: 0 0 calc((100% - 60px) / 4);
+                min-width: calc((100% - 60px) / 4);
+                max-width: calc((100% - 60px) / 4);
+            }
+
+            .products-grid.products-grid--carousel .products-carousel__arrow {
+                position: absolute;
+                top: 50%;
+                z-index: 3;
+                display: grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.94);
+                border: 1px solid rgba(24, 55, 67, 0.12);
+                box-shadow: 0 14px 28px rgba(24, 55, 67, 0.16);
+                color: var(--brand-blue-dark);
+                font-size: 1.05rem;
+                font-weight: 800;
+                transform: translateY(-50%);
+                transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .products-grid.products-grid--carousel .products-carousel__arrow:hover {
+                transform: translateY(-50%) scale(1.04);
+                box-shadow: 0 18px 32px rgba(24, 55, 67, 0.18);
+            }
+
+            .products-grid.products-grid--carousel .products-carousel__arrow:disabled {
+                opacity: 0.42;
+                transform: translateY(-50%);
+                box-shadow: 0 10px 22px rgba(24, 55, 67, 0.12);
+            }
+
+            .products-grid.products-grid--carousel .products-carousel__arrow--prev {
+                left: 10px;
+            }
+
+            .products-grid.products-grid--carousel .products-carousel__arrow--next {
+                right: 10px;
+            }
+
+            .products-grid.products-grid--filtered .products-category-carousel {
+                overflow: hidden;
+            }
+
+            .products-grid.products-grid--filtered .products-category-track {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 20px;
+                overflow: hidden;
+                padding: 4px 0 0;
+                scroll-snap-type: none;
+            }
+
+            .products-grid.products-grid--filtered .products-category-track .product-card {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: none;
+            }
+
+            .products-grid.products-grid--filtered .products-carousel__arrow {
+                display: none !important;
             }
         }
 
@@ -3148,7 +3176,7 @@
         let productCarouselListenersInitialized = false;
         const CART_STORAGE_KEY = "farmaciaBrasilCarrinho";
         const categoryCarouselMediaQuery = window.matchMedia("(max-width: 768px)");
-        const productCarouselMediaQuery = window.matchMedia("(min-width: 721px)");
+        const productCarouselMediaQuery = window.matchMedia("(min-width: 1024px)");
         const productCarouselStates = new WeakMap();
         const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
             ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
@@ -3463,6 +3491,10 @@
             return productCarouselMediaQuery.matches;
         }
 
+        function carrosselProdutosAutomaticoAtivo() {
+            return carouselProdutosDesktopAtivo() && filtroProdutosAtivo === "todos";
+        }
+
         function obterCardsProdutoTrack(track) {
             return track
                 ? Array.from(track.querySelectorAll(".product-card:not([hidden])"))
@@ -3527,11 +3559,11 @@
             const cards = obterCardsProdutoTrack(track);
             const secao = track?.closest(".products-category-section");
             const habilitar = Boolean(
-                carouselProdutosDesktopAtivo() &&
+                carrosselProdutosAutomaticoAtivo() &&
                 track &&
                 secao &&
                 !secao.hidden &&
-                cards.length > 1 &&
+                cards.length > 4 &&
                 track.scrollWidth - track.clientWidth > 24
             );
 
@@ -3559,15 +3591,18 @@
             limparAutoScrollProdutos(track);
 
             if (
-                !carouselProdutosDesktopAtivo() ||
+                !carrosselProdutosAutomaticoAtivo() ||
                 !track ||
                 !secao ||
                 secao.hidden ||
                 document.hidden ||
                 state.hovered ||
-                cards.length < 2 ||
+                cards.length <= 4 ||
                 track.scrollWidth - track.clientWidth <= 24
             ) {
+                if (track && carouselProdutosDesktopAtivo() && !carrosselProdutosAutomaticoAtivo()) {
+                    track.scrollLeft = 0;
+                }
                 atualizarSetasProdutosTrack(track);
                 return;
             }
@@ -3586,7 +3621,7 @@
 
             limparRetomadaProdutos(track);
 
-            if (!carouselProdutosDesktopAtivo()) {
+            if (!carrosselProdutosAutomaticoAtivo()) {
                 return;
             }
 
@@ -3622,6 +3657,12 @@
         }
 
         function sincronizarCarrosseisProdutos() {
+            if (productsGrid) {
+                const usarCarrossel = carrosselProdutosAutomaticoAtivo();
+                productsGrid.classList.toggle("products-grid--carousel", usarCarrossel);
+                productsGrid.classList.toggle("products-grid--filtered", !usarCarrossel);
+            }
+
             obterTrilhosProdutos().forEach((track) => {
                 limparAutoScrollProdutos(track);
                 limparRetomadaProdutos(track);
