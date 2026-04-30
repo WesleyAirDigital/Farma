@@ -875,15 +875,27 @@
             line-height: 1.55;
         }
 
+        .products-category-carousel {
+            position: relative;
+        }
+
+        .products-carousel__arrow {
+            display: none;
+        }
+
+        .products-carousel__arrow[hidden] {
+            display: none !important;
+        }
+
         .products-category-track {
-            display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: 152px;
-            grid-auto-rows: 1fr;
+            display: flex;
+            align-items: stretch;
             gap: 14px;
             overflow-x: auto;
-            padding: 4px 20px 10px 0;
-            scroll-snap-type: x proximity;
+            padding: 4px 4px 10px;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: 4px;
+            scroll-behavior: smooth;
             overscroll-behavior-x: contain;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
@@ -891,6 +903,12 @@
 
         .products-category-track::-webkit-scrollbar {
             display: none;
+        }
+
+        .products-category-track .product-card {
+            flex: 0 0 152px;
+            min-width: 152px;
+            max-width: 152px;
         }
 
         .product-card {
@@ -2137,6 +2155,10 @@
         }
 
         @media (min-width: 721px) {
+            .products-category-section {
+                gap: 20px;
+            }
+
             .products-category-head {
                 flex-direction: row;
                 align-items: end;
@@ -2144,13 +2166,60 @@
                 gap: 20px;
             }
 
+            .products-category-carousel {
+                position: relative;
+            }
+
             .products-category-track {
-                grid-auto-flow: row;
-                grid-auto-columns: auto;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                overflow: visible;
-                padding: 0;
-                scroll-snap-type: none;
+                gap: 18px;
+                padding: 4px 52px 16px 4px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .products-category-track .product-card {
+                flex: 0 0 252px;
+                min-width: 252px;
+                max-width: 252px;
+            }
+
+            .products-carousel__arrow {
+                position: absolute;
+                top: 50%;
+                z-index: 3;
+                display: grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.94);
+                border: 1px solid rgba(24, 55, 67, 0.12);
+                box-shadow: 0 14px 28px rgba(24, 55, 67, 0.16);
+                color: var(--brand-blue-dark);
+                font-size: 1.05rem;
+                font-weight: 800;
+                transform: translateY(-50%);
+                transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .products-carousel__arrow:hover {
+                transform: translateY(-50%) scale(1.04);
+                box-shadow: 0 18px 32px rgba(24, 55, 67, 0.18);
+            }
+
+            .products-carousel__arrow:disabled {
+                opacity: 0.42;
+                transform: translateY(-50%);
+                box-shadow: 0 10px 22px rgba(24, 55, 67, 0.12);
+            }
+
+            .products-carousel__arrow--prev {
+                left: 0;
+            }
+
+            .products-carousel__arrow--next {
+                right: 0;
             }
 
             .product-card__add {
@@ -2189,8 +2258,10 @@
         }
 
         @media (min-width: 1121px) {
-            .products-category-track {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+            .products-category-track .product-card {
+                flex-basis: 264px;
+                min-width: 264px;
+                max-width: 264px;
             }
         }
 
@@ -3074,8 +3145,11 @@
         let categoryCarouselAutoScroll = null;
         let categoryCarouselScrollTimer = null;
         let categoryCarouselInitialized = false;
+        let productCarouselListenersInitialized = false;
         const CART_STORAGE_KEY = "farmaciaBrasilCarrinho";
         const categoryCarouselMediaQuery = window.matchMedia("(max-width: 768px)");
+        const productCarouselMediaQuery = window.matchMedia("(min-width: 721px)");
+        const productCarouselStates = new WeakMap();
         const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
             ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
             : (window.location.protocol === "file:" ? "http://localhost:3000" : "");
@@ -3279,8 +3353,22 @@
                         </div>
                         <p class="products-category-note mobile-only-hint">${escaparHtml(grupo.note || "Deslize para ver mais produtos desta categoria.")}</p>
                     </div>
-                    <div class="products-category-track" aria-label="${escaparAtributo(grupo.title || "Produtos")}">
-                        ${produtos.map(criarMarkupProduto).join("")}
+                    <div class="products-category-carousel">
+                        <button
+                            class="products-carousel__arrow products-carousel__arrow--prev"
+                            type="button"
+                            data-products-carousel-direction="prev"
+                            aria-label="Produtos anteriores da categoria ${escaparAtributo(grupo.title || "Produtos")}"
+                            hidden>‹</button>
+                        <div class="products-category-track" data-products-track aria-label="${escaparAtributo(grupo.title || "Produtos")}">
+                            ${produtos.map(criarMarkupProduto).join("")}
+                        </div>
+                        <button
+                            class="products-carousel__arrow products-carousel__arrow--next"
+                            type="button"
+                            data-products-carousel-direction="next"
+                            aria-label="Próximos produtos da categoria ${escaparAtributo(grupo.title || "Produtos")}"
+                            hidden>›</button>
                     </div>
                 </section>
             `;
@@ -3310,6 +3398,8 @@
                 .map((grupo) => criarMarkupSecaoCategoria(grupo, grupo.produtos))
                 .join("");
             aplicarFiltroProdutos(filtroProdutosAtivo);
+            inicializarCarrosseisProdutos();
+            sincronizarCarrosseisProdutos();
         }
 
         async function carregarCatalogoProdutos() {
@@ -3346,6 +3436,274 @@
                 .replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/(^-|-$)/g, "");
+        }
+
+        function obterTrilhosProdutos() {
+            return productsGrid
+                ? Array.from(productsGrid.querySelectorAll(".products-category-track"))
+                : [];
+        }
+
+        function obterEstadoCarouselProdutos(track) {
+            if (!productCarouselStates.has(track)) {
+                productCarouselStates.set(track, {
+                    autoTimer: null,
+                    resumeTimer: null,
+                    scrollTimer: null,
+                    hovered: false,
+                    ignoreScrollUntil: 0,
+                    initialized: false,
+                });
+            }
+
+            return productCarouselStates.get(track);
+        }
+
+        function carouselProdutosDesktopAtivo() {
+            return productCarouselMediaQuery.matches;
+        }
+
+        function obterCardsProdutoTrack(track) {
+            return track
+                ? Array.from(track.querySelectorAll(".product-card:not([hidden])"))
+                : [];
+        }
+
+        function obterDeslocamentoProdutoTrack(track, card) {
+            if (!track || !card) {
+                return 0;
+            }
+
+            const paddingLeft = parseFloat(window.getComputedStyle(track).paddingLeft) || 0;
+            return Math.max(0, card.offsetLeft - paddingLeft);
+        }
+
+        function obterIndiceProdutoTrackAtivo(track) {
+            const cards = obterCardsProdutoTrack(track);
+
+            if (!track || !cards.length) {
+                return 0;
+            }
+
+            const centroTrack = track.scrollLeft + (track.clientWidth / 2);
+            let indiceAtivo = 0;
+            let menorDistancia = Number.POSITIVE_INFINITY;
+
+            cards.forEach((card, index) => {
+                const centroCard = card.offsetLeft + (card.offsetWidth / 2);
+                const distancia = Math.abs(centroCard - centroTrack);
+
+                if (distancia < menorDistancia) {
+                    menorDistancia = distancia;
+                    indiceAtivo = index;
+                }
+            });
+
+            return indiceAtivo;
+        }
+
+        function limparAutoScrollProdutos(track) {
+            const state = obterEstadoCarouselProdutos(track);
+
+            if (state.autoTimer) {
+                window.clearTimeout(state.autoTimer);
+                state.autoTimer = null;
+            }
+        }
+
+        function limparRetomadaProdutos(track) {
+            const state = obterEstadoCarouselProdutos(track);
+
+            if (state.resumeTimer) {
+                window.clearTimeout(state.resumeTimer);
+                state.resumeTimer = null;
+            }
+        }
+
+        function atualizarSetasProdutosTrack(track, indiceAtivo = obterIndiceProdutoTrackAtivo(track)) {
+            const carousel = track?.closest(".products-category-carousel");
+            const prevButton = carousel?.querySelector('[data-products-carousel-direction="prev"]');
+            const nextButton = carousel?.querySelector('[data-products-carousel-direction="next"]');
+            const cards = obterCardsProdutoTrack(track);
+            const secao = track?.closest(".products-category-section");
+            const habilitar = Boolean(
+                carouselProdutosDesktopAtivo() &&
+                track &&
+                secao &&
+                !secao.hidden &&
+                cards.length > 1 &&
+                track.scrollWidth - track.clientWidth > 24
+            );
+
+            if (prevButton) {
+                prevButton.hidden = !habilitar;
+            }
+
+            if (nextButton) {
+                nextButton.hidden = !habilitar;
+            }
+
+            if (!habilitar) {
+                return;
+            }
+
+            prevButton.disabled = indiceAtivo <= 0;
+            nextButton.disabled = indiceAtivo >= cards.length - 1;
+        }
+
+        function agendarAutoScrollProdutosTrack(track, delay = 4200) {
+            const state = obterEstadoCarouselProdutos(track);
+            const cards = obterCardsProdutoTrack(track);
+            const secao = track?.closest(".products-category-section");
+
+            limparAutoScrollProdutos(track);
+
+            if (
+                !carouselProdutosDesktopAtivo() ||
+                !track ||
+                !secao ||
+                secao.hidden ||
+                document.hidden ||
+                state.hovered ||
+                cards.length < 2 ||
+                track.scrollWidth - track.clientWidth <= 24
+            ) {
+                atualizarSetasProdutosTrack(track);
+                return;
+            }
+
+            state.autoTimer = window.setTimeout(() => {
+                const indiceAtual = obterIndiceProdutoTrackAtivo(track);
+                const proximoIndice = indiceAtual >= cards.length - 1 ? 0 : indiceAtual + 1;
+
+                irParaProdutoTrackPorIndice(track, proximoIndice, "smooth", false);
+                agendarAutoScrollProdutosTrack(track, proximoIndice === 0 ? 5200 : 4200);
+            }, delay);
+        }
+
+        function agendarRetomadaCarouselProdutos(track, delay = 5600) {
+            const state = obterEstadoCarouselProdutos(track);
+
+            limparRetomadaProdutos(track);
+
+            if (!carouselProdutosDesktopAtivo()) {
+                return;
+            }
+
+            state.resumeTimer = window.setTimeout(() => {
+                if (!state.hovered) {
+                    agendarAutoScrollProdutosTrack(track, 2200);
+                }
+            }, delay);
+        }
+
+        function irParaProdutoTrackPorIndice(track, index, behavior = "smooth", reagendar = true) {
+            const cards = obterCardsProdutoTrack(track);
+            const indiceSeguro = Math.max(0, Math.min(index, cards.length - 1));
+            const cardAlvo = cards[indiceSeguro];
+            const state = obterEstadoCarouselProdutos(track);
+
+            if (!track || !cardAlvo) {
+                return;
+            }
+
+            state.ignoreScrollUntil = Date.now() + 900;
+
+            track.scrollTo({
+                left: obterDeslocamentoProdutoTrack(track, cardAlvo),
+                behavior,
+            });
+
+            atualizarSetasProdutosTrack(track, indiceSeguro);
+
+            if (reagendar) {
+                agendarRetomadaCarouselProdutos(track);
+            }
+        }
+
+        function sincronizarCarrosseisProdutos() {
+            obterTrilhosProdutos().forEach((track) => {
+                limparAutoScrollProdutos(track);
+                limparRetomadaProdutos(track);
+                atualizarSetasProdutosTrack(track);
+                agendarAutoScrollProdutosTrack(track);
+            });
+        }
+
+        function inicializarCarrosseisProdutos() {
+            obterTrilhosProdutos().forEach((track) => {
+                const state = obterEstadoCarouselProdutos(track);
+
+                if (state.initialized) {
+                    return;
+                }
+
+                state.initialized = true;
+
+                track.addEventListener("mouseenter", () => {
+                    state.hovered = true;
+                    limparAutoScrollProdutos(track);
+                    limparRetomadaProdutos(track);
+                });
+
+                track.addEventListener("mouseleave", () => {
+                    state.hovered = false;
+                    agendarAutoScrollProdutosTrack(track, 2200);
+                });
+
+                track.addEventListener("pointerdown", () => {
+                    limparAutoScrollProdutos(track);
+                    agendarRetomadaCarouselProdutos(track);
+                }, { passive: true });
+
+                track.addEventListener("wheel", () => {
+                    limparAutoScrollProdutos(track);
+                    agendarRetomadaCarouselProdutos(track, 6200);
+                }, { passive: true });
+
+                track.addEventListener("touchstart", () => {
+                    limparAutoScrollProdutos(track);
+                    agendarRetomadaCarouselProdutos(track, 6200);
+                }, { passive: true });
+
+                track.addEventListener("scroll", () => {
+                    window.clearTimeout(state.scrollTimer);
+                    state.scrollTimer = window.setTimeout(() => {
+                        atualizarSetasProdutosTrack(track);
+                    }, 70);
+
+                    if (Date.now() < state.ignoreScrollUntil) {
+                        return;
+                    }
+
+                    limparAutoScrollProdutos(track);
+                    agendarRetomadaCarouselProdutos(track, 5200);
+                }, { passive: true });
+            });
+
+            if (productCarouselListenersInitialized) {
+                return;
+            }
+
+            productCarouselListenersInitialized = true;
+
+            if (typeof productCarouselMediaQuery.addEventListener === "function") {
+                productCarouselMediaQuery.addEventListener("change", sincronizarCarrosseisProdutos);
+            } else if (typeof productCarouselMediaQuery.addListener === "function") {
+                productCarouselMediaQuery.addListener(sincronizarCarrosseisProdutos);
+            }
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    obterTrilhosProdutos().forEach((track) => {
+                        limparAutoScrollProdutos(track);
+                        limparRetomadaProdutos(track);
+                    });
+                    return;
+                }
+
+                sincronizarCarrosseisProdutos();
+            });
         }
 
         function converterPrecoParaNumero(preco = "") {
@@ -4434,6 +4792,22 @@
 
         if (productsGrid) {
             productsGrid.addEventListener("click", (event) => {
+                const carouselButton = event.target.closest("[data-products-carousel-direction]");
+
+                if (carouselButton) {
+                    const carousel = carouselButton.closest(".products-category-carousel");
+                    const track = carousel?.querySelector(".products-category-track");
+                    const direcao = carouselButton.dataset.productsCarouselDirection === "next" ? 1 : -1;
+
+                    if (track) {
+                        limparAutoScrollProdutos(track);
+                        irParaProdutoTrackPorIndice(track, obterIndiceProdutoTrackAtivo(track) + direcao, "smooth", false);
+                        agendarRetomadaCarouselProdutos(track, 6200);
+                    }
+
+                    return;
+                }
+
                 const whatsappTrigger = event.target.closest("[data-whatsapp-product]");
 
                 if (whatsappTrigger) {
@@ -4584,6 +4958,8 @@
 
                 secao.hidden = !exibirSecao;
             });
+
+            sincronizarCarrosseisProdutos();
         }
 
         botoesCategoria.forEach((botao) => {
