@@ -3173,11 +3173,9 @@
         let categoryCarouselAutoScroll = null;
         let categoryCarouselScrollTimer = null;
         let categoryCarouselInitialized = false;
-        let productCarouselListenersInitialized = false;
         const CART_STORAGE_KEY = "farmaciaBrasilCarrinho";
         const categoryCarouselMediaQuery = window.matchMedia("(max-width: 768px)");
         const productCarouselMediaQuery = window.matchMedia("(min-width: 1024px)");
-        const productCarouselStates = new WeakMap();
         const ORDER_API_BASE_URL = window.FARMACIA_BRASIL_API_BASE_URL
             ? window.FARMACIA_BRASIL_API_BASE_URL.replace(/\/$/, "")
             : (window.location.protocol === "file:" ? "http://localhost:3000" : "");
@@ -3472,26 +3470,11 @@
                 : [];
         }
 
-        function obterEstadoCarouselProdutos(track) {
-            if (!productCarouselStates.has(track)) {
-                productCarouselStates.set(track, {
-                    autoTimer: null,
-                    resumeTimer: null,
-                    scrollTimer: null,
-                    hovered: false,
-                    ignoreScrollUntil: 0,
-                    initialized: false,
-                });
-            }
-
-            return productCarouselStates.get(track);
-        }
-
         function carouselProdutosDesktopAtivo() {
             return productCarouselMediaQuery.matches;
         }
 
-        function carrosselProdutosAutomaticoAtivo() {
+        function carrosselProdutosDesktopManualAtivo() {
             return carouselProdutosDesktopAtivo() && filtroProdutosAtivo === "todos";
         }
 
@@ -3510,6 +3493,29 @@
             return Math.max(0, card.offsetLeft - paddingLeft);
         }
 
+        function obterQuantidadeCardsVisiveisTrack(track) {
+            const cards = obterCardsProdutoTrack(track);
+
+            if (!track || !cards.length) {
+                return 1;
+            }
+
+            if (!carrosselProdutosDesktopManualAtivo()) {
+                return 1;
+            }
+
+            const estilosTrack = window.getComputedStyle(track);
+            const gap = parseFloat(estilosTrack.columnGap || estilosTrack.gap) || 0;
+            const larguraCard = cards[0].getBoundingClientRect().width;
+
+            if (!larguraCard) {
+                return 1;
+            }
+
+            const cardsVisiveis = Math.floor((track.clientWidth + gap) / (larguraCard + gap));
+            return Math.max(1, Math.min(cards.length, cardsVisiveis || 1));
+        }
+
         function obterIndiceProdutoTrackAtivo(track) {
             const cards = obterCardsProdutoTrack(track);
 
@@ -3517,39 +3523,16 @@
                 return 0;
             }
 
-            const centroTrack = track.scrollLeft + (track.clientWidth / 2);
-            let indiceAtivo = 0;
-            let menorDistancia = Number.POSITIVE_INFINITY;
-
-            cards.forEach((card, index) => {
-                const centroCard = card.offsetLeft + (card.offsetWidth / 2);
-                const distancia = Math.abs(centroCard - centroTrack);
-
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    indiceAtivo = index;
-                }
+            const scrollAtual = track.scrollLeft + 4;
+            const indiceEncontrado = cards.findIndex((card) => {
+                return card.offsetLeft + card.offsetWidth > scrollAtual;
             });
 
-            return indiceAtivo;
-        }
-
-        function limparAutoScrollProdutos(track) {
-            const state = obterEstadoCarouselProdutos(track);
-
-            if (state.autoTimer) {
-                window.clearTimeout(state.autoTimer);
-                state.autoTimer = null;
+            if (indiceEncontrado === -1) {
+                return Math.max(0, cards.length - 1);
             }
-        }
 
-        function limparRetomadaProdutos(track) {
-            const state = obterEstadoCarouselProdutos(track);
-
-            if (state.resumeTimer) {
-                window.clearTimeout(state.resumeTimer);
-                state.resumeTimer = null;
-            }
+            return indiceEncontrado;
         }
 
         function atualizarSetasProdutosTrack(track, indiceAtivo = obterIndiceProdutoTrackAtivo(track)) {
@@ -3558,13 +3541,15 @@
             const nextButton = carousel?.querySelector('[data-products-carousel-direction="next"]');
             const cards = obterCardsProdutoTrack(track);
             const secao = track?.closest(".products-category-section");
+            const quantidadeVisivel = obterQuantidadeCardsVisiveisTrack(track);
+            const ultimoIndiceInicial = Math.max(0, cards.length - quantidadeVisivel);
             const habilitar = Boolean(
-                carrosselProdutosAutomaticoAtivo() &&
+                carrosselProdutosDesktopManualAtivo() &&
                 track &&
                 secao &&
                 !secao.hidden &&
-                cards.length > 4 &&
-                track.scrollWidth - track.clientWidth > 24
+                cards.length > quantidadeVisivel &&
+                track.scrollWidth - track.clientWidth > 8
             );
 
             if (prevButton) {
@@ -3580,69 +3565,19 @@
             }
 
             prevButton.disabled = indiceAtivo <= 0;
-            nextButton.disabled = indiceAtivo >= cards.length - 1;
+            nextButton.disabled = indiceAtivo >= ultimoIndiceInicial;
         }
 
-        function agendarAutoScrollProdutosTrack(track, delay = 4200) {
-            const state = obterEstadoCarouselProdutos(track);
+        function irParaProdutoTrackPorIndice(track, index, behavior = "smooth") {
             const cards = obterCardsProdutoTrack(track);
-            const secao = track?.closest(".products-category-section");
-
-            limparAutoScrollProdutos(track);
-
-            if (
-                !carrosselProdutosAutomaticoAtivo() ||
-                !track ||
-                !secao ||
-                secao.hidden ||
-                document.hidden ||
-                state.hovered ||
-                cards.length <= 4 ||
-                track.scrollWidth - track.clientWidth <= 24
-            ) {
-                if (track && carouselProdutosDesktopAtivo() && !carrosselProdutosAutomaticoAtivo()) {
-                    track.scrollLeft = 0;
-                }
-                atualizarSetasProdutosTrack(track);
-                return;
-            }
-
-            state.autoTimer = window.setTimeout(() => {
-                const indiceAtual = obterIndiceProdutoTrackAtivo(track);
-                const proximoIndice = indiceAtual >= cards.length - 1 ? 0 : indiceAtual + 1;
-
-                irParaProdutoTrackPorIndice(track, proximoIndice, "smooth", false);
-                agendarAutoScrollProdutosTrack(track, proximoIndice === 0 ? 5200 : 4200);
-            }, delay);
-        }
-
-        function agendarRetomadaCarouselProdutos(track, delay = 5600) {
-            const state = obterEstadoCarouselProdutos(track);
-
-            limparRetomadaProdutos(track);
-
-            if (!carrosselProdutosAutomaticoAtivo()) {
-                return;
-            }
-
-            state.resumeTimer = window.setTimeout(() => {
-                if (!state.hovered) {
-                    agendarAutoScrollProdutosTrack(track, 2200);
-                }
-            }, delay);
-        }
-
-        function irParaProdutoTrackPorIndice(track, index, behavior = "smooth", reagendar = true) {
-            const cards = obterCardsProdutoTrack(track);
-            const indiceSeguro = Math.max(0, Math.min(index, cards.length - 1));
+            const quantidadeVisivel = obterQuantidadeCardsVisiveisTrack(track);
+            const ultimoIndiceInicial = Math.max(0, cards.length - quantidadeVisivel);
+            const indiceSeguro = Math.max(0, Math.min(index, ultimoIndiceInicial));
             const cardAlvo = cards[indiceSeguro];
-            const state = obterEstadoCarouselProdutos(track);
 
             if (!track || !cardAlvo) {
                 return;
             }
-
-            state.ignoreScrollUntil = Date.now() + 900;
 
             track.scrollTo({
                 left: obterDeslocamentoProdutoTrack(track, cardAlvo),
@@ -3650,83 +3585,57 @@
             });
 
             atualizarSetasProdutosTrack(track, indiceSeguro);
+        }
 
-            if (reagendar) {
-                agendarRetomadaCarouselProdutos(track);
+        function moverTrackProdutos(track, direcao = 1) {
+            if (!track) {
+                return;
             }
+
+            const passo = carrosselProdutosDesktopManualAtivo()
+                ? obterQuantidadeCardsVisiveisTrack(track)
+                : 1;
+
+            irParaProdutoTrackPorIndice(
+                track,
+                obterIndiceProdutoTrackAtivo(track) + (direcao * passo),
+                "smooth"
+            );
         }
 
         function sincronizarCarrosseisProdutos() {
             if (productsGrid) {
-                const usarCarrossel = carrosselProdutosAutomaticoAtivo();
-                productsGrid.classList.toggle("products-grid--carousel", usarCarrossel);
-                productsGrid.classList.toggle("products-grid--filtered", !usarCarrossel);
+                const usarCarrosselDesktop = carrosselProdutosDesktopManualAtivo();
+                const usarGridDesktop = carouselProdutosDesktopAtivo() && filtroProdutosAtivo !== "todos";
+                productsGrid.classList.toggle("products-grid--carousel", usarCarrosselDesktop);
+                productsGrid.classList.toggle("products-grid--filtered", usarGridDesktop);
             }
 
             obterTrilhosProdutos().forEach((track) => {
-                limparAutoScrollProdutos(track);
-                limparRetomadaProdutos(track);
+                if (!carrosselProdutosDesktopManualAtivo()) {
+                    track.scrollLeft = 0;
+                }
                 atualizarSetasProdutosTrack(track);
-                agendarAutoScrollProdutosTrack(track);
             });
         }
 
         function inicializarCarrosseisProdutos() {
             obterTrilhosProdutos().forEach((track) => {
-                const state = obterEstadoCarouselProdutos(track);
-
-                if (state.initialized) {
+                if (track.dataset.carouselReady === "true") {
                     return;
                 }
 
-                state.initialized = true;
-
-                track.addEventListener("mouseenter", () => {
-                    state.hovered = true;
-                    limparAutoScrollProdutos(track);
-                    limparRetomadaProdutos(track);
-                });
-
-                track.addEventListener("mouseleave", () => {
-                    state.hovered = false;
-                    agendarAutoScrollProdutosTrack(track, 2200);
-                });
-
-                track.addEventListener("pointerdown", () => {
-                    limparAutoScrollProdutos(track);
-                    agendarRetomadaCarouselProdutos(track);
-                }, { passive: true });
-
-                track.addEventListener("wheel", () => {
-                    limparAutoScrollProdutos(track);
-                    agendarRetomadaCarouselProdutos(track, 6200);
-                }, { passive: true });
-
-                track.addEventListener("touchstart", () => {
-                    limparAutoScrollProdutos(track);
-                    agendarRetomadaCarouselProdutos(track, 6200);
-                }, { passive: true });
-
+                track.dataset.carouselReady = "true";
                 track.addEventListener("scroll", () => {
-                    window.clearTimeout(state.scrollTimer);
-                    state.scrollTimer = window.setTimeout(() => {
-                        atualizarSetasProdutosTrack(track);
-                    }, 70);
-
-                    if (Date.now() < state.ignoreScrollUntil) {
-                        return;
-                    }
-
-                    limparAutoScrollProdutos(track);
-                    agendarRetomadaCarouselProdutos(track, 5200);
+                    atualizarSetasProdutosTrack(track);
                 }, { passive: true });
             });
 
-            if (productCarouselListenersInitialized) {
+            if (document.body.dataset.productsCarouselReady === "true") {
                 return;
             }
 
-            productCarouselListenersInitialized = true;
+            document.body.dataset.productsCarouselReady = "true";
 
             if (typeof productCarouselMediaQuery.addEventListener === "function") {
                 productCarouselMediaQuery.addEventListener("change", sincronizarCarrosseisProdutos);
@@ -3734,17 +3643,9 @@
                 productCarouselMediaQuery.addListener(sincronizarCarrosseisProdutos);
             }
 
-            document.addEventListener("visibilitychange", () => {
-                if (document.hidden) {
-                    obterTrilhosProdutos().forEach((track) => {
-                        limparAutoScrollProdutos(track);
-                        limparRetomadaProdutos(track);
-                    });
-                    return;
-                }
-
+            window.addEventListener("resize", () => {
                 sincronizarCarrosseisProdutos();
-            });
+            }, { passive: true });
         }
 
         function converterPrecoParaNumero(preco = "") {
@@ -4841,9 +4742,7 @@
                     const direcao = carouselButton.dataset.productsCarouselDirection === "next" ? 1 : -1;
 
                     if (track) {
-                        limparAutoScrollProdutos(track);
-                        irParaProdutoTrackPorIndice(track, obterIndiceProdutoTrackAtivo(track) + direcao, "smooth", false);
-                        agendarRetomadaCarouselProdutos(track, 6200);
+                        moverTrackProdutos(track, direcao);
                     }
 
                     return;
