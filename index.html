@@ -212,6 +212,13 @@
             display: block;
         }
 
+        .site-header .brand img {
+            height: 60px;
+            max-height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
         .brand img {
             max-height: 80px;
             width: auto;
@@ -1824,13 +1831,28 @@
             padding-top: 18px;
             border-top: 1px solid #e2e8ea;
             display: flex;
+            align-items: center;
             justify-content: space-between;
             gap: 12px;
             flex-wrap: wrap;
             color: var(--muted);
             font-size: 13px;
             padding-left: 20px;
-            padding-right: 20px;
+            padding-right: 132px;
+        }
+
+        .footer-copy {
+            flex: 1 1 280px;
+        }
+
+        .footer-dev {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            text-align: right;
+            white-space: nowrap;
         }
 
         .footer-bottom a {
@@ -1961,8 +1983,9 @@
                 gap: 12px;
             }
 
-            .brand img {
-                max-height: 60px;
+            .site-header .brand img {
+                height: 48px;
+                max-height: 48px;
             }
 
             .nav a {
@@ -2162,6 +2185,14 @@
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
+                align-items: center;
+                padding-right: 20px;
+            }
+
+            .footer-dev {
+                justify-content: center;
+                text-align: center;
+                white-space: normal;
             }
         }
 
@@ -2948,8 +2979,8 @@
                 </div>
 
                 <div class="footer-bottom">
-                    <span>© 2026 Farmácia Brasil. Todos os direitos reservados.</span>
-                    <span>
+                    <span class="footer-copy">© 2026 Farmácia Brasil. Todos os direitos reservados.</span>
+                    <span class="footer-dev">
                         Desenvolvido por
                         <a href="https://airdigitalmarketing.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnqJIWF3P801Poq6_pbTtLCsuLLJSia-0-S6hTMKodkMFIdGLntD_ym5I-71w_aem_c-D0pLUtULBzx8HjelNTnw" target="_blank" rel="noopener noreferrer">AirDigital</a>
                     </span>
