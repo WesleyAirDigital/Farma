@@ -1775,6 +1775,36 @@
 
         .unit-card {
             padding: 22px;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .unit-card--map {
+            cursor: pointer;
+        }
+
+        .unit-card--map:hover,
+        .unit-card--map:focus-visible {
+            transform: translateY(-4px);
+            border-color: rgba(33, 79, 99, 0.18);
+            box-shadow: 0 24px 42px rgba(29, 70, 85, 0.16);
+        }
+
+        .unit-card--map:focus-visible {
+            outline: 3px solid rgba(33, 79, 99, 0.14);
+            outline-offset: 4px;
+        }
+
+        .unit-card--map:hover .unit-address-link,
+        .unit-card--map:focus-visible .unit-address-link {
+            color: var(--brand-blue-dark);
+            opacity: 0.96;
+            transform: translateY(-2px);
+        }
+
+        .unit-card--map:hover .unit-address-link::after,
+        .unit-card--map:focus-visible .unit-address-link::after {
+            color: var(--brand-orange-deep);
+            border-color: currentColor;
         }
 
         .unit-card h3 {
@@ -1790,13 +1820,48 @@
 
         .unit-address-link,
         .footer-address-link {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            width: fit-content;
             color: inherit;
             text-decoration: none;
+            cursor: pointer;
+            transition: color 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
+        }
+
+        .unit-address-link::after,
+        .footer-address-link::after {
+            content: "📍 Ver no mapa";
+            display: inline-block;
+            color: var(--brand-blue);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            line-height: 1.2;
+            border-bottom: 1px solid rgba(33, 79, 99, 0);
+            transition: color 0.22s ease, border-color 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
         }
 
         .unit-address-link:hover,
         .footer-address-link:hover {
             color: var(--brand-blue-dark);
+            opacity: 0.96;
+            transform: translateY(-2px);
+        }
+
+        .unit-address-link:hover::after,
+        .footer-address-link:hover::after {
+            color: var(--brand-orange-deep);
+            border-color: currentColor;
+        }
+
+        .unit-address-link:focus-visible,
+        .footer-address-link:focus-visible {
+            outline: 3px solid rgba(33, 79, 99, 0.14);
+            outline-offset: 4px;
+            border-radius: 10px;
         }
 
         .unit-highlight {
@@ -3023,13 +3088,23 @@
                 </div>
 
                 <div class="units-grid">
-                    <article class="unit-card">
+                    <article
+                        class="unit-card unit-card--map"
+                        role="link"
+                        tabindex="0"
+                        aria-label="Abrir mapa da Unidade 1 da Farmácia Brasil"
+                    >
                         <h3>📍 Unidade 1</h3>
                         <p><a class="unit-address-link" href="https://www.google.com/maps/search/?api=1&query=R.%20Adir%20Pedroso%2C%201259%20-%20S%C3%A3o%20Jos%C3%A9%20dos%20Pinhais%20-%20PR" target="_blank" rel="noopener noreferrer">R. Adir Pedroso, 1259 - SJP</a></p>
                         <span class="unit-highlight">Farmácia Brasil</span>
                     </article>
 
-                    <article class="unit-card">
+                    <article
+                        class="unit-card unit-card--map"
+                        role="link"
+                        tabindex="0"
+                        aria-label="Abrir mapa da Unidade 2 da Farmácia Brasil"
+                    >
                         <h3>📍 Unidade 2</h3>
                         <p><a class="unit-address-link" href="https://www.google.com/maps/search/?api=1&query=R.%20Tavares%20de%20Lyra%2C%203917%20-%20S%C3%A3o%20Jos%C3%A9%20dos%20Pinhais%20-%20PR" target="_blank" rel="noopener noreferrer">R. Tavares de Lyra, 3917 - SJP</a></p>
                         <span class="unit-highlight">Atendimento local</span>
@@ -3300,6 +3375,7 @@
         const productsGrid = document.getElementById("productsGrid");
         const secaoProdutos = document.getElementById("produtos");
         const medicamentoInputs = document.querySelectorAll(".js-medicamento-input");
+        const unitMapCards = document.querySelectorAll(".unit-card--map[role='link']");
         const cartToggle = document.getElementById("cartToggle");
         const floatingCartToggle = document.getElementById("floatingCartToggle");
         const cartCount = document.getElementById("cartCount");
@@ -4782,6 +4858,16 @@
             abrirPedidoRapido(produto, "manual");
         }
 
+        function abrirMapaPeloCard(card) {
+            const linkMapa = card?.querySelector(".unit-address-link[href]");
+
+            if (!linkMapa) {
+                return;
+            }
+
+            linkMapa.click();
+        }
+
         if (menuToggle && mainNav) {
             menuToggle.addEventListener("click", () => {
                 mainNav.classList.toggle("is-open");
@@ -4793,6 +4879,25 @@
                 });
             });
         }
+
+        unitMapCards.forEach((card) => {
+            card.addEventListener("click", (event) => {
+                if (event.target.closest(".unit-address-link")) {
+                    return;
+                }
+
+                abrirMapaPeloCard(card);
+            });
+
+            card.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" || event.target.closest(".unit-address-link")) {
+                    return;
+                }
+
+                event.preventDefault();
+                abrirMapaPeloCard(card);
+            });
+        });
 
         if (quickOrderForm) {
             quickOrderForm.addEventListener("submit", async (event) => {
