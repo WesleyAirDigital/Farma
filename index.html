@@ -1885,7 +1885,7 @@
             color: var(--muted);
             font-size: 13px;
             padding-left: 20px;
-            padding-right: 168px;
+            padding-right: 132px;
         }
 
         .footer-copy {
@@ -1915,76 +1915,98 @@
 
         .floating-actions {
             position: fixed;
-            right: 18px;
-            bottom: 18px;
-            z-index: 40;
+            right: max(18px, env(safe-area-inset-right));
+            bottom: max(18px, env(safe-area-inset-bottom));
+            z-index: 70;
             display: flex;
-            align-items: flex-end;
-            gap: 12px;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            pointer-events: none;
         }
 
         .cart-float,
         .whatsapp-float {
             position: relative;
-            width: 62px;
-            height: 62px;
             display: grid;
             place-items: center;
             border-radius: 50%;
-            font-size: 1.7rem;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            border: 0;
+            line-height: 1;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            pointer-events: auto;
+            will-change: transform;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
         }
 
         .cart-float {
-            border: 1px solid rgba(33, 79, 99, 0.16);
-            background: #ffffff;
+            width: 56px;
+            height: 56px;
+            border: 1px solid rgba(33, 79, 99, 0.12);
+            background: rgba(255, 255, 255, 0.96);
             color: var(--brand-blue-dark);
-            box-shadow: 0 18px 30px rgba(22, 57, 71, 0.16);
+            font-size: 1.35rem;
+            box-shadow:
+                0 10px 22px rgba(22, 57, 71, 0.12),
+                0 2px 6px rgba(22, 57, 71, 0.06);
+            backdrop-filter: blur(12px);
         }
 
         .cart-float__count {
             position: absolute;
-            top: -4px;
-            right: -2px;
-            min-width: 24px;
-            height: 24px;
-            padding: 0 7px;
+            top: -3px;
+            right: -1px;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 6px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 999px;
             background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+            border: 2px solid #ffffff;
             color: #fff;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             font-weight: 800;
-            box-shadow: 0 10px 20px rgba(223, 106, 31, 0.22);
+            box-shadow: 0 8px 18px rgba(223, 106, 31, 0.24);
         }
 
         .whatsapp-float {
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, #2fc665, #25d366);
             color: #fff;
-            box-shadow: 0 18px 30px rgba(37, 211, 102, 0.32);
+            font-size: 1.7rem;
+            box-shadow:
+                0 16px 28px rgba(37, 211, 102, 0.28),
+                0 4px 10px rgba(24, 116, 58, 0.16);
         }
 
-        .cart-float::before,
-        .whatsapp-float::before {
-            content: attr(data-label);
-            position: absolute;
-            right: 0;
-            bottom: calc(100% + 12px);
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(22, 57, 71, 0.94);
-            color: #fff;
-            font-size: 0.82rem;
-            font-weight: 700;
-            white-space: nowrap;
-            box-shadow: 0 12px 24px rgba(22, 57, 71, 0.18);
+        .cart-float:focus-visible,
+        .whatsapp-float:focus-visible {
+            outline: 3px solid rgba(33, 79, 99, 0.16);
+            outline-offset: 4px;
         }
 
-        .cart-float:hover,
+        .cart-float:hover {
+            transform: translateY(-2px);
+            border-color: rgba(33, 79, 99, 0.22);
+            box-shadow:
+                0 14px 30px rgba(22, 57, 71, 0.16),
+                0 3px 8px rgba(22, 57, 71, 0.08);
+        }
+
         .whatsapp-float:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow:
+                0 20px 34px rgba(37, 211, 102, 0.34),
+                0 6px 12px rgba(24, 116, 58, 0.18);
+        }
+
+        .cart-float:active,
+        .whatsapp-float:active {
+            transform: scale(0.96);
         }
 
         @media (max-width: 1120px) {
@@ -2706,27 +2728,26 @@
             }
 
             .floating-actions {
-                right: 16px;
-                bottom: 16px;
-                gap: 10px;
+                right: max(14px, env(safe-area-inset-right));
+                bottom: max(14px, env(safe-area-inset-bottom));
+                gap: 12px;
             }
 
-            .cart-float,
+            .cart-float {
+                width: 56px;
+                height: 56px;
+            }
+
             .whatsapp-float {
-                width: 58px;
-                height: 58px;
-                font-size: 1.55rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.58rem;
             }
 
             .cart-float__count {
                 min-width: 22px;
                 height: 22px;
                 font-size: 0.72rem;
-            }
-
-            .cart-float::before,
-            .whatsapp-float::before {
-                display: none;
             }
         }
     </style>
@@ -3256,11 +3277,11 @@
     </div>
 
     <div class="floating-actions" aria-label="Ações rápidas">
-        <button class="cart-float" id="floatingCartToggle" type="button" aria-label="Abrir carrinho" data-label="Abrir carrinho" title="Abrir carrinho">
+        <button class="cart-float" id="floatingCartToggle" type="button" aria-label="Abrir carrinho" title="Abrir carrinho">
             <span aria-hidden="true">🛒</span>
             <span class="cart-float__count" id="floatingCartCount">0</span>
         </button>
-        <button class="whatsapp-float" type="button" onclick="abrirWhatsApp('atendimento')" aria-label="Falar no WhatsApp" data-label="Falar no WhatsApp" title="Falar no WhatsApp">
+        <button class="whatsapp-float" type="button" onclick="abrirWhatsApp('atendimento')" aria-label="Falar no WhatsApp" title="Falar no WhatsApp">
             ✆
         </button>
     </div>
